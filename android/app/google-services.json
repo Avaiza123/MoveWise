@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "152989007258",
+    "project_id": "movewise-b8ea8",
+    "storage_bucket": "movewise-b8ea8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152989007258:android:bd85f0c4e49a3129038e23",
+        "android_client_info": {
+          "package_name": "com.example.movewise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtQ-yiKOL4lxToVPluJVF_oElEcpCZT3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

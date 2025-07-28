@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_styles.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:movewise/core/constants/app_colors.dart';
+import 'package:movewise/core/constants/app_sizes.dart';
+import 'package:movewise/core/constants/app_texts.dart';
+import 'package:movewise/core/utils/app_styles.dart';
+import 'package:movewise/core/res/routes/route_name.dart';
 
 class GenderScreen extends StatefulWidget {
   const GenderScreen({Key? key}) : super(key: key);
@@ -18,20 +24,24 @@ class _GenderScreenState extends State<GenderScreen> {
     });
   }
 
-  void _navigateNext() {
+  Future<void> _navigateNext() async {
     if (selectedGender != null) {
-      Navigator.pushNamed(context, '/goal');
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('onboarding_done', false);
+      await prefs.setString('selected_gender', selectedGender!);
+
+      Get.toNamed(RouteName.GoalScreen);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Row(
             children: const [
               Icon(Icons.warning_amber_rounded, color: Colors.white),
-              SizedBox(width: 12),
+              SizedBox(width: AppSizes.sm),
               Expanded(
                 child: Text(
-                  'Please select your gender.',
-                  style: TextStyle(fontSize: 16),
+                  AppText.genderSelectionError,
+                  style: AppStyles.snackBarTextStyle,
                 ),
               ),
             ],
@@ -39,10 +49,11 @@ class _GenderScreenState extends State<GenderScreen> {
           backgroundColor: AppColors.buttonColor,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppSizes.cardRadius),
           ),
           elevation: 8,
-          margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          margin: const EdgeInsets.symmetric(
+              horizontal: AppSizes.defaultSpace, vertical: AppSizes.sm),
           duration: const Duration(seconds: 4),
         ),
       );
@@ -59,38 +70,50 @@ class _GenderScreenState extends State<GenderScreen> {
       onTap: () => _selectGender(label),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
-        margin: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSizes.md,
+          horizontal: AppSizes.mdLg,
+        ),
+        margin: const EdgeInsets.symmetric(vertical: AppSizes.sm),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primaryColor.withOpacity(0.1) : Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          color: isSelected
+              ? AppColors.primaryColor.withOpacity(0.3)
+              : Colors.white,
+          borderRadius: BorderRadius.circular(AppSizes.cardRadius),
           border: Border.all(
-            color: isSelected ? AppColors.primaryColor : Colors.grey.shade300,
+            color: isSelected
+                ? AppColors.primaryColor
+                : Colors.grey.shade300,
             width: 1.5,
           ),
-          boxShadow: [
-            if (isSelected)
-              BoxShadow(
-                color: AppColors.primaryColor.withOpacity(0.2),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-          ],
+          boxShadow: isSelected
+              ? [
+            BoxShadow(
+              color: AppColors.primaryColor.withOpacity(0.2),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ]
+              : [],
         ),
         child: Row(
           children: [
             Icon(
               icon,
-              size: 28,
-              color: isSelected ? AppColors.primaryColorDark : Colors.grey[700],
+              size: AppSizes.iconLg,
+              color: isSelected
+                  ? AppColors.primaryColorDark
+                  : Colors.grey[700],
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: AppSizes.md),
             Text(
               label,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: AppSizes.fontSizeLg,
                 fontWeight: FontWeight.w600,
-                color: isSelected ? AppColors.primaryColorDark : Colors.grey[800],
+                color: isSelected
+                    ? AppColors.primaryColorDark
+                    : Colors.grey[800],
               ),
             ),
           ],
@@ -104,47 +127,34 @@ class _GenderScreenState extends State<GenderScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(70),
-        child: AppBar(
-          backgroundColor: AppColors.appBarColor,
-          elevation: 6,
-          shadowColor: Colors.black.withOpacity(0.3),
-          centerTitle: true,
-          title: Text(
-            'Select Gender',
-            style: AppStyles.appBarTitle,
-          ),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(14),
-            ),
-          ),
-        ),
+        preferredSize: Size.fromHeight(AppSizes.appBarHeight),
+        child: AppStyles.customAppBar(AppText.selectYourGenderTitle),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(34.0),
+        padding: const EdgeInsets.all(AppSizes.xl),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Who are you?', style: AppStyles.screenTitle),
-            const SizedBox(height: 20),
+            Text(AppText.genderQuestion, style: AppStyles.screenTitle),
+            const SizedBox(height: AppSizes.md),
             Text(
-              'Let us know your gender to personalize your experience.',
-              style: TextStyle(fontSize: 16, color: AppColors.textSubtleColor),
+              AppText.genderSubText,
+              style: AppStyles.label,
             ),
-            const SizedBox(height: 40),
-
-            _buildGenderCard(label: 'Male', icon: Icons.male),
-            _buildGenderCard(label: 'Female', icon: Icons.female),
-            _buildGenderCard(label: 'Prefer not to say', icon: Icons.help_outline_rounded),
-
-            const SizedBox(height: 35),
-
+            const SizedBox(height: AppSizes.xl),
+            _buildGenderCard(label: AppText.genderMale, icon: Icons.male),
+            _buildGenderCard(label: AppText.genderFemale, icon: Icons.female),
+            _buildGenderCard(
+              label: AppText.genderPreferNotToSay,
+              icon: Icons.help_outline_rounded,
+            ),
+            const SizedBox(height: AppSizes.lg),
             Center(
               child: ElevatedButton(
                 onPressed: _navigateNext,
                 style: AppStyles.elevatedButtonStyle,
-                child: Text('Next', style: AppStyles.buttonText),
+                child: Text(AppText.continueButton,
+                    style: AppStyles.buttonText),
               ),
             ),
           ],

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_styles.dart';
+import 'package:get/get.dart';
+import 'package:movewise/core/constants/app_colors.dart';
+import 'package:movewise/core/constants/app_texts.dart';
+import 'package:movewise/core/utils/app_styles.dart';
+import 'package:movewise/core/constants/app_sizes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/res/routes/route_name.dart';
 
 class GoalScreen extends StatefulWidget {
   const GoalScreen({Key? key}) : super(key: key);
@@ -12,43 +17,37 @@ class GoalScreen extends StatefulWidget {
 class _GoalScreenState extends State<GoalScreen> {
   final Set<String> selectedGoals = {};
 
-  final List<String> goals = [
-    'Lose Weight',
-    'Build Muscle',
-    'Stay Fit',
-    'Increase Flexibility',
-    'Improve Posture',
-  ];
+  void _toggleGoal(String goal) {
+    setState(() {
+      selectedGoals.contains(goal)
+          ? selectedGoals.remove(goal)
+          : selectedGoals.add(goal);
+    });
+  }
 
-  void _navigateNext() {
+  Future<void> _handleNavigation() async {
     if (selectedGoals.isNotEmpty) {
-      Navigator.pushNamed(context, '/height');
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('onboarding_done', false);
+      await prefs.setStringList('selected_goals', selectedGoals.toList());
+
+      Get.toNamed(RouteName.HeightScreen); // Or WeightScreen
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: AppColors.buttonColor,
           behavior: SnackBarBehavior.floating,
-          margin: const EdgeInsets.all(16),
+          margin: const EdgeInsets.all(AppSizes.md),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(AppSizes.cardRadius),
           ),
-          content: const Text(
-            'Please select at least one goal to continue',
-            style: TextStyle(color: Colors.white),
+          content: Text(
+            AppText.goalSelectionError,
+            style: AppStyles.snackBarTextStyle,
           ),
         ),
       );
     }
-  }
-
-  void _toggleGoal(String goal) {
-    setState(() {
-      if (selectedGoals.contains(goal)) {
-        selectedGoals.remove(goal);
-      } else {
-        selectedGoals.add(goal);
-      }
-    });
   }
 
   @override
@@ -56,58 +55,55 @@ class _GoalScreenState extends State<GoalScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(70),
-        child: AppBar(
-          backgroundColor: AppColors.appBarColor,
-          elevation: 6,
-          shadowColor: Colors.black.withOpacity(0.3),
-          centerTitle: true,
-          title: Text(
-            'Select Your Goal',
-            style: AppStyles.appBarTitle,
-          ),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
-          ),
-        ),
+        preferredSize: Size.fromHeight(AppSizes.appBarHeight),
+        child: AppStyles.customAppBar(AppText.selectYourGoalTitle),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 30),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSizes.lg,
+          vertical: AppSizes.lg,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('What are your fitness goals?', style: AppStyles.screenTitle),
-            const SizedBox(height: 30),
-
-            // Goals List
+            Text(AppText.fitnessQuestion, style: AppStyles.screenTitle),
+            const SizedBox(height: AppSizes.lg),
             Expanded(
               child: ListView.builder(
-                itemCount: goals.length,
+                itemCount: AppText.fitnessGoals.length,
                 itemBuilder: (context, index) {
-                  final goal = goals[index];
+                  final goal = AppText.fitnessGoals[index];
                   final isSelected = selectedGoals.contains(goal);
 
                   return GestureDetector(
                     onTap: () => _toggleGoal(goal),
-                    child: Card(
-                      color: isSelected
-                          ? AppColors.primaryColor.withOpacity(0.9)
-                          : Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        side: BorderSide(
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(vertical: AppSizes.sm),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? AppColors.primaryColor.withOpacity(0.3)
+                            : Colors.white,
+                        borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                        border: Border.all(
                           color: isSelected
-                              ? AppColors.primaryColorDark
+                              ? AppColors.primaryColor
                               : Colors.grey.shade300,
                           width: 2,
                         ),
+                        boxShadow: isSelected
+                            ? [
+                          BoxShadow(
+                            color: AppColors.primaryColor.withOpacity(0.2),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
+                          ),
+                        ]
+                            : [],
                       ),
-                      elevation: 3,
-                      margin: const EdgeInsets.symmetric(vertical: 8),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 16.0,
-                          horizontal: 20,
+                          vertical: AppSizes.md,
+                          horizontal: AppSizes.mdLg,
                         ),
                         child: Row(
                           children: [
@@ -115,15 +111,14 @@ class _GoalScreenState extends State<GoalScreen> {
                               isSelected
                                   ? Icons.check_circle
                                   : Icons.circle_outlined,
-                              color:
-                              isSelected ? Colors.white : Colors.grey[600],
+                              color: isSelected ? Colors.white : Colors.grey[600],
                             ),
-                            const SizedBox(width: 16),
+                            const SizedBox(width: AppSizes.md),
                             Expanded(
                               child: Text(
                                 goal,
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: AppSizes.fontSizeLg,
                                   color: isSelected
                                       ? Colors.white
                                       : AppColors.textColor,
@@ -139,18 +134,18 @@ class _GoalScreenState extends State<GoalScreen> {
                 },
               ),
             ),
-
-            const SizedBox(height: 10),
-
+            const SizedBox(height: AppSizes.md),
             Center(
               child: ElevatedButton(
-                onPressed: _navigateNext,
+                onPressed: _handleNavigation,
                 style: AppStyles.elevatedButtonStyle,
-                child: Text('Continue', style: AppStyles.buttonText),
+                child: Text(
+                  AppText.continueButton,
+                  style: AppStyles.buttonText,
+                ),
               ),
             ),
-
-            const SizedBox(height: 220),
+            const SizedBox(height: AppSizes.lg),
           ],
         ),
       ),

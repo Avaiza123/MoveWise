@@ -1,44 +1,27 @@
 import 'package:flutter/material.dart';
-
-// Onboarding Screens
-import 'views/onboarding/welcome_screen.dart';
-import 'views/onboarding/gender_screen.dart';
-import 'views/onboarding/goal_screen.dart';
-// import 'views/onboarding/experience_screen.dart';
-// import 'views/onboarding/activity_screen.dart';
-// import 'views/onboarding/diet_screen.dart';
-import 'views/onboarding/height_screen.dart';
-import 'views/onboarding/weight_screen.dart';
-import 'views/onboarding/disease_inspection_screen.dart';
-
-void main() {
-  runApp(const MyApp());
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:movewise/core/res/routes/routes.dart';
+import 'package:movewise/core/res/theme/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'MoveWise',
+      // theme: AppTheme.lightTheme,
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-        scaffoldBackgroundColor: Colors.grey[100],
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const WelcomeScreen(),
-        '/gender': (context) => const GenderScreen(),
-        '/goal': (context) => const GoalScreen(),
-        // '/experience': (context) => const ExperienceScreen(),
-        // '/activity': (context) => const ActivityScreen(),
-        // '/diet': (context) => const DietScreen(),
-        '/height': (context) => const HeightScreen(),
-        '/weight': (context) => const WeightScreen(),
-        '/disease': (context) => const DiseaseScreen(),
-      },
+      getPages: AppRoute.appRoutes(), // ✅ CORRECTED HERE
+      initialRoute: '/', // 🔄 Optional: define your start screen route
     );
   }
 }

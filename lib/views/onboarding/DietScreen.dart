@@ -8,55 +8,56 @@ import 'package:movewise/core/constants/app_texts.dart';
 import 'package:movewise/core/utils/app_styles.dart';
 import '../../core/res/routes/route_name.dart';
 
-class DiseaseScreen extends StatefulWidget {
-  const DiseaseScreen({Key? key}) : super(key: key);
+class DietScreen extends StatefulWidget {
+  const DietScreen({Key? key}) : super(key: key);
 
   @override
-  State<DiseaseScreen> createState() => _DiseaseScreenState();
+  State<DietScreen> createState() => _DietScreenState();
 }
 
-class _DiseaseScreenState extends State<DiseaseScreen> {
-  final Set<String> selectedDiseases = {};
+class _DietScreenState extends State<DietScreen> {
+  final Set<String> selectedRestrictions = {};
 
-  final List<Map<String, dynamic>> diseases = [
-    {'name': AppText.diseaseDiabetes, 'icon': Icons.bloodtype},
-    {'name': AppText.diseaseBP, 'icon': Icons.favorite},
-    {'name': AppText.diseaseKneePain, 'icon': Icons.accessibility_new},
-    {'name': AppText.diseaseAnklePain, 'icon': Icons.directions_walk},
-    {'name': AppText.diseaseBackPain, 'icon': Icons.event_seat},
-    {'name': AppText.diseaseMigraine, 'icon': Icons.psychology},
-    {'name': AppText.diseaseNone, 'icon': Icons.not_interested},
+  final List<Map<String, dynamic>> dietRestrictions = [
+    {'name': AppText.dietVegan, 'icon': Icons.spa},
+    {'name': AppText.dietVegetarian, 'icon': Icons.eco},
+    {'name': AppText.dietGlutenFree, 'icon': Icons.no_food},
+    {'name': AppText.dietDairyFree, 'icon': Icons.icecream},
+    {'name': AppText.dietLowSugar, 'icon': Icons.local_cafe},
+    {'name': AppText.dietNoRestrictions, 'icon': Icons.not_interested},
   ];
 
-  void _toggleDisease(String disease) {
+  void _toggleRestriction(String restriction) {
     setState(() {
-      if (selectedDiseases.contains(disease)) {
-        selectedDiseases.remove(disease);
-      } else {
-        if (disease == AppText.diseaseNone) {
-          selectedDiseases
-            ..clear()
-            ..add(disease);
+      if (restriction == AppText.dietNoRestrictions) {
+        if (selectedRestrictions.contains(restriction)) {
+          selectedRestrictions.remove(restriction);
         } else {
-          selectedDiseases.remove(AppText.diseaseNone);
-          selectedDiseases.add(disease);
+          selectedRestrictions
+            ..clear()
+            ..add(restriction);
         }
+      } else {
+        selectedRestrictions.remove(AppText.dietNoRestrictions);
+        selectedRestrictions.contains(restriction)
+            ? selectedRestrictions.remove(restriction)
+            : selectedRestrictions.add(restriction);
       }
     });
   }
 
   Future<void> _navigateNext() async {
-    if (selectedDiseases.isNotEmpty) {
+    if (selectedRestrictions.isNotEmpty) {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('onboarding_done', false);
-      await prefs.setStringList('selected_diseases', selectedDiseases.toList());
+      await prefs.setBool('onboarding_done', true);
+      await prefs.setStringList('diet_preferences', selectedRestrictions.toList());
 
-      Get.toNamed(RouteName.DietScreen);
+      Get.toNamed(RouteName.SignupScreen);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            AppText.diseaseSelectionError,
+            AppText.dietSelectionError,
             style: AppStyles.snackBarTextStyle,
           ),
           backgroundColor: AppColors.buttonColor,
@@ -72,13 +73,13 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isNoIssueSelected = selectedDiseases.contains(AppText.diseaseNone);
+    final bool noRestrictionsSelected = selectedRestrictions.contains(AppText.dietNoRestrictions);
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(AppSizes.appBarHeight),
-        child: AppStyles.customAppBar(AppText.selectYourDiseaseTitle),
+        child: AppStyles.customAppBar(AppText.selectDietTitle),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -88,25 +89,25 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppText.diseaseQuestion, style: AppStyles.screenTitle),
+            Text(AppText.dietQuestion, style: AppStyles.screenTitle),
             const SizedBox(height: AppSizes.gapLarge),
 
             Expanded(
               child: ListView.builder(
-                itemCount: diseases.length,
+                itemCount: dietRestrictions.length,
                 itemBuilder: (context, index) {
-                  final disease = diseases[index];
-                  final String name = disease['name'];
-                  final IconData icon = disease['icon'];
-                  final bool isSelected = selectedDiseases.contains(name);
-                  final bool isDisabled = isNoIssueSelected && name != AppText.diseaseNone;
+                  final restriction = dietRestrictions[index];
+                  final String name = restriction['name'];
+                  final IconData icon = restriction['icon'];
+                  final bool isSelected = selectedRestrictions.contains(name);
+                  final bool isDisabled = noRestrictionsSelected && name != AppText.dietNoRestrictions;
 
                   return IgnorePointer(
                     ignoring: isDisabled,
                     child: Opacity(
                       opacity: isDisabled ? 0.4 : 1.0,
                       child: GestureDetector(
-                        onTap: () => _toggleDisease(name),
+                        onTap: () => _toggleRestriction(name),
                         child: Card(
                           color: isSelected
                               ? AppColors.primaryColor.withOpacity(0.3)
@@ -124,7 +125,7 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
                           margin: const EdgeInsets.symmetric(vertical: AppSizes.gapSmall),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                              vertical: AppSizes.paddingMediumLarge, // Increased height here
+                              vertical: AppSizes.paddingLarge,
                               horizontal: AppSizes.paddingMediumLarge,
                             ),
                             child: Row(

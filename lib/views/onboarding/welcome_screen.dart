@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../utils/app_styles.dart'; // Adjust this import based on your directory
-import '../../../utils/app_colors.dart'; // Adjust as needed
+import 'package:get/get.dart';
+import 'package:movewise/core/constants/app_colors.dart';
+import 'package:movewise/core/utils/app_styles.dart';
+import 'package:movewise/core/constants/app_sizes.dart';
+import 'package:movewise/core/constants/app_texts.dart';
+import 'package:movewise/core/res/routes/route_name.dart';
+import 'package:movewise/core/constants/app_images.dart'; // <-- Add this import
+
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -21,7 +27,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       vsync: this,
       duration: const Duration(seconds: 2),
     );
-
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     _controller.forward();
   }
@@ -32,8 +37,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.dispose();
   }
 
-  void _navigateNext() {
-    Navigator.pushNamed(context, '/gender');
+  Future<void> _handleNavigation() async {
+    Get.toNamed(RouteName.GenderScreen);
   }
 
   @override
@@ -41,20 +46,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     return Scaffold(
       body: Stack(
         children: [
-          // Background Image
           Positioned.fill(
             child: Image.asset(
-              'assets/images/background.png',
+              AppImages.splashBackground,
               fit: BoxFit.cover,
             ),
           ),
-
-          // Semi-transparent overlay
-          Container(
-            color: Colors.black.withOpacity(0.6),
-          ),
-
-          // Content
+          Container(color: AppColors.blackColor.withOpacity(0.6)),
           SafeArea(
             child: Center(
               child: FadeTransition(
@@ -62,30 +60,17 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Logo Image
-                    Container(
-                      width: 650,
-                      height: 650,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.transparent,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(1.0),
-                        child: Image.asset(
-                          'assets/images/logo2.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: MediaQuery.of(context).size.width * 0.8,
+                      child: Image.asset(AppImages.splashLogo ),
                     ),
-                    const SizedBox(height: 30),
-
-                    // Get Started Button using central style
+                    const SizedBox(height: AppSizes.defaultSpace),
                     ElevatedButton(
-                      onPressed: _navigateNext,
+                      onPressed: _handleNavigation,
                       style: AppStyles.elevatedButtonStyle,
                       child: Text(
-                        'Get Started',
+                        AppText.getStarted,
                         style: AppStyles.buttonText,
                       ),
                     ),
