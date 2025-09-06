@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       getPages: AppRoute.appRoutes(), // ✅ CORRECTED HERE
-      initialRoute: '/', // 🔄 Optional: define your start screen route
+      initialRoute: '/welcome_screen', // 🔄 Optional: define your start screen route
     );
   }
 }

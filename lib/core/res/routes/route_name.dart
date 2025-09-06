@@ -17,6 +17,5 @@ class RouteName{
   static const SignupScreen= '/signup_screen';
   static const ForgotPassword= '/ForgetPassword_screen';
   static const DashboardScreen= '/dasboard_screen';
-  static const OTPVerificationScreen='/OtpScreen';
 
 }

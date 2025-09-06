@@ -5,8 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:movewise/core/constants/app_colors.dart';
 import 'package:movewise/core/constants/app_sizes.dart';
 import 'package:movewise/core/constants/app_texts.dart';
+import 'package:movewise/core/constants/app_icons.dart';
 import 'package:movewise/core/utils/app_styles.dart';
 import 'package:movewise/core/res/routes/route_name.dart';
+
+import '../../widgets/custom_appbar.dart';
 
 class GenderScreen extends StatefulWidget {
   const GenderScreen({Key? key}) : super(key: key);
@@ -24,20 +27,24 @@ class _GenderScreenState extends State<GenderScreen> {
     });
   }
 
+  /// Save user info in cache
+  Future<void> _saveUserInfo() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('onboarding_done', false);
+    await prefs.setString('selected_gender', selectedGender ?? "");
+  }
+
   Future<void> _navigateNext() async {
     if (selectedGender != null) {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('onboarding_done', false);
-      await prefs.setString('selected_gender', selectedGender!);
-
+      await _saveUserInfo();
       Get.toNamed(RouteName.GoalScreen);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Row(
-            children: const [
-              Icon(Icons.warning_amber_rounded, color: Colors.white),
-              SizedBox(width: AppSizes.sm),
+            children: [
+              const Icon(AppIcons.info, color: Colors.white),
+              const SizedBox(width: AppSizes.sm),
               Expanded(
                 child: Text(
                   AppText.genderSelectionError,
@@ -76,20 +83,26 @@ class _GenderScreenState extends State<GenderScreen> {
         ),
         margin: const EdgeInsets.symmetric(vertical: AppSizes.sm),
         decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.primaryColor.withOpacity(0.3)
-              : Colors.white,
           borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+          gradient: isSelected
+              ? const LinearGradient(
+            colors: [
+              AppColors.gradientStart,
+              AppColors.gradientEnd,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          )
+              : null,
+          color: isSelected ? null : Colors.white,
           border: Border.all(
-            color: isSelected
-                ? AppColors.primaryColor
-                : Colors.grey.shade300,
+            color: isSelected ? Colors.transparent : Colors.grey.shade300,
             width: 1.5,
           ),
           boxShadow: isSelected
               ? [
             BoxShadow(
-              color: AppColors.primaryColor.withOpacity(0.2),
+              color: AppColors.primaryColor.withOpacity(0.25),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -101,9 +114,7 @@ class _GenderScreenState extends State<GenderScreen> {
             Icon(
               icon,
               size: AppSizes.iconLg,
-              color: isSelected
-                  ? AppColors.primaryColorDark
-                  : Colors.grey[700],
+              color: isSelected ? AppColors.white : Colors.grey[700],
             ),
             const SizedBox(width: AppSizes.md),
             Text(
@@ -111,9 +122,7 @@ class _GenderScreenState extends State<GenderScreen> {
               style: TextStyle(
                 fontSize: AppSizes.fontSizeLg,
                 fontWeight: FontWeight.w600,
-                color: isSelected
-                    ? AppColors.primaryColorDark
-                    : Colors.grey[800],
+                color: isSelected ? AppColors.white : Colors.grey[800],
               ),
             ),
           ],
@@ -126,9 +135,8 @@ class _GenderScreenState extends State<GenderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(AppSizes.appBarHeight),
-        child: AppStyles.customAppBar(AppText.selectYourGenderTitle),
+      appBar: const CustomAppBar(
+        title: AppText.selectYourGenderTitle,
       ),
       body: Padding(
         padding: const EdgeInsets.all(AppSizes.xl),
@@ -137,24 +145,41 @@ class _GenderScreenState extends State<GenderScreen> {
           children: [
             Text(AppText.genderQuestion, style: AppStyles.screenTitle),
             const SizedBox(height: AppSizes.md),
-            Text(
-              AppText.genderSubText,
-              style: AppStyles.label,
-            ),
+            Text(AppText.genderSubText, style: AppStyles.label),
             const SizedBox(height: AppSizes.xl),
-            _buildGenderCard(label: AppText.genderMale, icon: Icons.male),
-            _buildGenderCard(label: AppText.genderFemale, icon: Icons.female),
+
+            // Gender Cards
+            _buildGenderCard(label: AppText.genderMale, icon: AppIcons.male),
+            _buildGenderCard(label: AppText.genderFemale, icon: AppIcons.female),
             _buildGenderCard(
               label: AppText.genderPreferNotToSay,
-              icon: Icons.help_outline_rounded,
+              icon: AppIcons.preferNotToSay,
             ),
+
             const SizedBox(height: AppSizes.lg),
+
+            // Continue Button with gradient
             Center(
-              child: ElevatedButton(
-                onPressed: _navigateNext,
-                style: AppStyles.elevatedButtonStyle,
-                child: Text(AppText.continueButton,
-                    style: AppStyles.buttonText),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: AppColors.primaryGradient,
+                  borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                ),
+                child: ElevatedButton(
+                  onPressed: _navigateNext,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                    ),
+                  ),
+                  child: Text(
+                    AppText.continueButton,
+                    style: AppStyles.buttonText.copyWith(color: Colors.white),
+                  ),
+                ),
               ),
             ),
           ],

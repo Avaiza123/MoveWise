@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:movewise/core/constants/app_colors.dart';
-import 'package:movewise/core/utils/app_styles.dart';
 import 'package:movewise/core/constants/app_sizes.dart';
 import 'package:movewise/core/constants/app_texts.dart';
-import '../../core/res/routes/route_name.dart';
+import 'package:movewise/core/constants/app_icons.dart';
+import 'package:movewise/core/utils/app_styles.dart';
+import 'package:movewise/core/res/routes/route_name.dart';
+import '../../widgets/custom_appbar.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -31,7 +34,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Future<void> _register() async {
     if (_formKey.currentState!.validate()) {
       setState(() => _isLoading = true);
-
       try {
         await _auth.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
@@ -42,14 +44,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           const SnackBar(content: Text(AppText.registrationSuccess)),
         );
 
-        // Navigate to Login or Home
         Get.offNamed(RouteName.LoginScreen);
       } on FirebaseAuthException catch (e) {
-        String errorMessage = 'Registration failed';
+        String errorMessage = AppText.registrationFailed;
         if (e.code == 'email-already-in-use') {
-          errorMessage = 'Email already in use';
+          errorMessage = AppText.emailAlreadyInUse;
         } else if (e.code == 'weak-password') {
-          errorMessage = 'Password is too weak';
+          errorMessage = AppText.passwordTooWeak;
         } else {
           errorMessage = e.message ?? errorMessage;
         }
@@ -67,17 +68,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return InputDecoration(
       hintText: hint,
       hintStyle: AppStyles.hint,
-      labelStyle: AppStyles.label,
       filled: true,
       fillColor: AppColors.white,
       prefixIcon: Icon(icon, color: AppColors.primaryColor),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppSizes.radiusMedium),
+        borderRadius: BorderRadius.circular(AppSizes.cardRadius),
         borderSide: const BorderSide(color: AppColors.primaryColor),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppSizes.radiusMedium),
+        borderRadius: BorderRadius.circular(AppSizes.cardRadius),
         borderSide: const BorderSide(color: AppColors.primaryColor, width: 2),
       ),
     );
@@ -87,12 +87,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.appBarColor,
-        title: Text(AppText.signUp, style: AppStyles.appBarTitle),
-        centerTitle: true,
-        elevation: 0,
-      ),
+      appBar: const CustomAppBar(title: AppText.signUp),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSizes.paddingLarge),
@@ -110,7 +105,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 TextFormField(
                   controller: _usernameController,
                   style: AppStyles.input,
-                  decoration: _buildInputDecoration(AppText.usernameHint, Icons.person),
+                  decoration: _buildInputDecoration(AppText.usernameHint, AppIcons.username),
                   validator: (value) =>
                   value == null || value.isEmpty ? AppText.usernameRequired : null,
                 ),
@@ -123,7 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   style: AppStyles.input,
-                  decoration: _buildInputDecoration(AppText.emailHint, Icons.email),
+                  decoration: _buildInputDecoration(AppText.emailHint, AppIcons.email),
                   validator: (value) {
                     if (value == null || value.isEmpty) return AppText.emailRequired;
                     if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
@@ -141,14 +136,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   controller: _passwordController,
                   obscureText: !_isPasswordVisible,
                   style: AppStyles.input,
-                  decoration: _buildInputDecoration(AppText.passwordHint, Icons.lock).copyWith(
+                  decoration: _buildInputDecoration(AppText.passwordHint, AppIcons.lock).copyWith(
                     suffixIcon: IconButton(
                       icon: Icon(
                         _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
                         color: Colors.grey,
                       ),
-                      onPressed: () =>
-                          setState(() => _isPasswordVisible = !_isPasswordVisible),
+                      onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
                     ),
                   ),
                   validator: (value) =>
@@ -163,18 +157,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   controller: _confirmPasswordController,
                   obscureText: !_isConfirmPasswordVisible,
                   style: AppStyles.input,
-                  decoration:
-                  _buildInputDecoration(AppText.confirmPasswordHint, Icons.lock_outline)
+                  decoration: _buildInputDecoration(AppText.confirmPasswordHint, AppIcons.lock)
                       .copyWith(
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _isConfirmPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+                        _isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
                         color: Colors.grey,
                       ),
-                      onPressed: () => setState(() =>
-                      _isConfirmPasswordVisible = !_isConfirmPasswordVisible),
+                      onPressed: () =>
+                          setState(() => _isConfirmPasswordVisible = !_isConfirmPasswordVisible),
                     ),
                   ),
                   validator: (value) {
@@ -186,15 +177,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: AppSizes.gapLarge),
 
-                // Sign Up Button
+                // Sign Up Button with gradient
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: _isLoading ? null : _register,
-                    style: AppStyles.elevatedButtonStyle,
-                    child: _isLoading
-                        ? const CircularProgressIndicator(color: Colors.white)
-                        : Text(AppText.signUp, style: AppStyles.buttonText),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: AppColors.primaryGradient,
+                      borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: _isLoading ? null : _register,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      ),
+                      child: _isLoading
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : Text(AppText.signUp, style: AppStyles.buttonText.copyWith(color: Colors.white)),
+                    ),
                   ),
                 ),
                 const SizedBox(height: AppSizes.gapLarge),

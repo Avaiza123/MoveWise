@@ -82,7 +82,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         title: Text(AppText.forgotPassword, style: AppStyles.appBarTitle),
-        backgroundColor: AppColors.appBarColor,
+        backgroundColor: AppColors.primaryColorDark,
         elevation: 0,
       ),
       body: SafeArea(

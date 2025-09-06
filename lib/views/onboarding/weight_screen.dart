@@ -3,11 +3,12 @@ import 'dart:math';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:movewise/core/constants/app_colors.dart';
-import 'package:movewise/core/constants/app_texts.dart';
-import 'package:movewise/core/constants/app_sizes.dart';
-import 'package:movewise/core/utils/app_styles.dart';
-import 'package:movewise/core/res/routes/route_name.dart';
+import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_texts.dart';
+import '../../core/constants/app_sizes.dart';
+import '../../core/utils/app_styles.dart';
+import '../../core/res/routes/route_name.dart';
+import '../../widgets/custom_appbar.dart';
 
 class WeightScreen extends StatefulWidget {
   const WeightScreen({super.key});
@@ -18,7 +19,7 @@ class WeightScreen extends StatefulWidget {
 
 class _WeightScreenState extends State<WeightScreen> {
   String selectedUnit = 'kg';
-  double weight = 0;
+  double weight = 60;
   double? bmi;
 
   void _navigateToDisease() {
@@ -32,28 +33,26 @@ class _WeightScreenState extends State<WeightScreen> {
       bmi = weightKg / pow(heightM, 2);
     });
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setDouble('bmi', bmi!);
-    await prefs.setBool('onboarding_done', false);
+    await prefs.setDouble('weight', weight); // Save selected weight
+    await prefs.setDouble('bmi', bmi!);      // Save calculated BMI
+    await prefs.setBool('onboarding_done', false); // Mark onboarding done
   }
 
   @override
   Widget build(BuildContext context) {
     final double heightCm = Get.arguments as double;
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
+
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(70),
-        child: AppStyles.customAppBar(AppText.selectWeight),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(AppSizes.defaultSpace),
+      backgroundColor: AppColors.backgroundColor,
+      appBar: const CustomAppBar(title: AppText.selectWeight),
+      body: SafeArea(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.all(AppSizes.defaultSpace),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              /// Toggle for KG / LB
+              /// Unit Toggle
               ToggleButtons(
                 isSelected: [selectedUnit == 'kg', selectedUnit == 'lb'],
                 onPressed: (index) {
@@ -61,23 +60,49 @@ class _WeightScreenState extends State<WeightScreen> {
                     selectedUnit = index == 0 ? 'kg' : 'lb';
                   });
                 },
-                borderRadius: BorderRadius.circular(12),
-                selectedColor: Colors.white,
+                borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                selectedColor: AppColors.white,
                 fillColor: AppColors.primaryColor,
                 textStyle: AppStyles.toggleText,
                 children: const [
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('KG')),
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('LB')),
+                  Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Text('KG')),
+                  Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Text('LB')),
                 ],
               ),
+
               const SizedBox(height: AppSizes.spaceBetweenItem),
-              Text(
-                '${weight.round()} $selectedUnit',
-                style: AppStyles.value,
+
+              /// Weight Display in Box
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSizes.lg,
+                  vertical: AppSizes.md,
+                ),
+                decoration: BoxDecoration(
+                  gradient: AppColors.primaryGradient,
+                  borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primaryColor.withOpacity(0.3),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Text(
+                  '${weight.round()} $selectedUnit',
+                  style: AppStyles.screenTitle.copyWith(color: Colors.white),
+                ),
               ),
               const SizedBox(height: AppSizes.spaceBetweenItem),
+
+              /// Horizontal Weight Selector
               SizedBox(
-                height: 80,
+                height: 100,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 500,
@@ -86,18 +111,38 @@ class _WeightScreenState extends State<WeightScreen> {
                     final isSelected = weight.round() == value.round();
                     return GestureDetector(
                       onTap: () => setState(() => weight = value),
-                      child: Container(
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 250),
                         width: 60,
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        margin: const EdgeInsets.symmetric(horizontal: 6),
                         decoration: BoxDecoration(
-                          color: isSelected ? AppColors.primaryColor : Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(10),
+                          gradient: isSelected
+                              ? AppColors.primaryGradient
+                              : null,
+                          color: isSelected
+                              ? null
+                              : Colors.grey.shade300.withOpacity(0.3),
+                          borderRadius:
+                          BorderRadius.circular(AppSizes.cardRadius),
+                          boxShadow: isSelected
+                              ? [
+                            BoxShadow(
+                                color: AppColors.primaryColor
+                                    .withOpacity(0.3),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4))
+                          ]
+                              : [],
                         ),
                         alignment: Alignment.center,
                         child: Text(
                           value.round().toString(),
-                          style: textTheme.bodySmall?.copyWith(
-                            color: isSelected ? Colors.white : Colors.black,
+                          style: AppStyles.bodyWhite.copyWith(
+                            color: isSelected ? Colors.white : Colors.black87,
+                            fontWeight: isSelected
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            fontSize: isSelected ? 18 : 14,
                           ),
                         ),
                       ),
@@ -105,59 +150,70 @@ class _WeightScreenState extends State<WeightScreen> {
                   },
                 ),
               ),
+
               const SizedBox(height: AppSizes.spaceBetweenItem),
+
+              /// Calculate BMI Button
               ElevatedButton(
                 onPressed: () => _calculateBMI(heightCm),
-                style: AppStyles.elevatedButtonStyle,
-                child: Text(AppText.calculateBMI, style: AppStyles.buttonText),
+                style: AppStyles.buttonStyle,
+                child: Text(AppText.calculateBMI,
+                    style: AppStyles.buttonText),
               ),
+
               const SizedBox(height: AppSizes.defaultSpace),
+
+              /// BMI Result Display
               if (bmi != null) ...[
-                SfRadialGauge(
-                  axes: <RadialAxis>[
-                    RadialAxis(
-                      minimum: 10,
-                      maximum: 50,
-                      ranges: <GaugeRange>[
-                        GaugeRange(startValue: 10, endValue: 16, color: Colors.red.shade900),
-                        GaugeRange(startValue: 16, endValue: 17, color: Colors.red),
-                        GaugeRange(startValue: 17, endValue: 18.5, color: Colors.orange),
-                        GaugeRange(startValue: 18.5, endValue: 25, color: Colors.teal),
-                        GaugeRange(startValue: 25, endValue: 30, color: Colors.yellow),
-                        GaugeRange(startValue: 30, endValue: 35, color: Colors.orangeAccent),
-                        GaugeRange(startValue: 35, endValue: 40, color: Colors.deepOrange),
-                        GaugeRange(startValue: 40, endValue: 50, color: Colors.redAccent),
-                      ],
-                      pointers: <GaugePointer>[
-                        NeedlePointer(value: bmi!),
-                      ],
-                      annotations: <GaugeAnnotation>[
-                        GaugeAnnotation(
-                          widget: Text(
-                            'BMI: ${bmi!.toStringAsFixed(1)}',
-                            style: AppStyles.label,
-                          ),
-                          angle: 90,
-                          positionFactor: 0.8,
-                        )
-                      ],
-                    )
-                  ],
+                /// Gauge
+                SizedBox(
+                  height: 250,
+                  child: SfRadialGauge(
+                    axes: <RadialAxis>[
+                      RadialAxis(
+                        minimum: 10,
+                        maximum: 50,
+                        ranges: <GaugeRange>[
+                          GaugeRange(
+                              startValue: 10,
+                              endValue: 16,
+                              color: Colors.red.shade900),
+                          GaugeRange(startValue: 16, endValue: 17, color: Colors.red),
+                          GaugeRange(startValue: 17, endValue: 18.5, color: Colors.orange),
+                          GaugeRange(startValue: 18.5, endValue: 25, color: Colors.teal),
+                          GaugeRange(startValue: 25, endValue: 30, color: Colors.yellow),
+                          GaugeRange(startValue: 30, endValue: 35, color: Colors.orangeAccent),
+                          GaugeRange(startValue: 35, endValue: 40, color: Colors.deepOrange),
+                          GaugeRange(startValue: 40, endValue: 50, color: Colors.redAccent),
+                        ],
+                        pointers: <GaugePointer>[NeedlePointer(value: bmi!)],
+                        annotations: <GaugeAnnotation>[
+                          GaugeAnnotation(
+                            widget: Text('BMI: ${bmi!.toStringAsFixed(1)}',
+                                style: AppStyles.headingWhite.copyWith(fontSize: 20)),
+                            angle: 90,
+                            positionFactor: 0.7,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
 
                 const SizedBox(height: AppSizes.defaultSpace),
+
+                /// BMI Category Card
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut,
-                  width: double.infinity,
                   padding: const EdgeInsets.all(AppSizes.cardPadding),
+                  width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppSizes.cardRadius),
                     gradient: LinearGradient(
                       colors: _bmiGradientColors(bmi!),
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
+                    borderRadius: BorderRadius.circular(AppSizes.cardRadius),
                     boxShadow: [
                       BoxShadow(
                         color: AppColors.primaryColor.withOpacity(0.3),
@@ -168,28 +224,27 @@ class _WeightScreenState extends State<WeightScreen> {
                   ),
                   child: Column(
                     children: [
-                      Icon(_bmiIcon(bmi!), size: 40, color: Colors.white),
-                      const SizedBox(height: 10),
-                      Text(
-                        _bmiCategory(bmi!),
-                        style: AppStyles.screenTitle.copyWith(color: Colors.white),
-                      ),
+                      Icon(_bmiIcon(bmi!), size: 50, color: Colors.white),
+                      const SizedBox(height: 12),
+                      Text(_bmiCategory(bmi!),
+                          style: AppStyles.screenTitle.copyWith(color: Colors.white)),
                       const SizedBox(height: 8),
-                      Text(
-                        _bmiSuggestion(bmi!),
-                        textAlign: TextAlign.center,
-                        style: AppStyles.bodyWhite,
-                      ),
+                      Text(_bmiSuggestion(bmi!),
+                          textAlign: TextAlign.center, style: AppStyles.bodyWhite),
                     ],
                   ),
                 ),
+
                 const SizedBox(height: AppSizes.defaultSpace),
+
+                /// Next Button
                 ElevatedButton(
                   onPressed: _navigateToDisease,
-                  style: AppStyles.elevatedButtonStyle,
+                  style: AppStyles.buttonStyle,
                   child: Text(AppText.next, style: AppStyles.buttonText),
                 ),
               ],
+
               const SizedBox(height: AppSizes.bottomSpace),
             ],
           ),

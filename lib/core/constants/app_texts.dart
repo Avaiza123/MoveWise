@@ -133,6 +133,12 @@ class AppText {
 
 
 
+  static const String registrationFailed = "Registration failed";
+  static const String emailAlreadyInUse = "Email already in use";
+  static const String passwordTooWeak = "Password is too weak";
+
+
+
   static const String otpVerification = 'OTP Verification';
   static const String enterOtpSentToPhone = 'Please enter the OTP sent to your phone number.';
   static const String otp = 'Enter OTP';

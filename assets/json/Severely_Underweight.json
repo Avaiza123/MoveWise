@@ -1,0 +1,636 @@
+{
+  "id": "severely-underweight",
+  "category": "severely underweight",
+  "duration_days": 30,
+  "description": "A 30-day exercise plan designed for individuals in the severely underweight category, focusing on building foundational strength and muscle with a gradual progression.",
+  "daily_schedule": [
+    {
+      "day": 1,
+      "workout": [
+        {
+          "exercise_id": 81,
+          "title": "Squat exercise",
+          "sets": 3,
+          "reps": 8,
+          "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153000/Skaters_exercise_wfh22l.gif"
+        },
+        {
+          "exercise_id": 97,
+          "title": "Wall push up exercise",
+          "sets": 3,
+          "reps": 8,
+          "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153023/Windshield_wipers_exercise_set1dd.gif"
+        },
+        {
+          "exercise_id": 57,
+          "title": "Plank exercise",
+          "sets": 3,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+        },
+        {
+          "exercise_id": 88,
+          "title": "Superman exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "workout": [
+        {
+          "exercise_id": 48,
+          "title": "Lunge exercise",
+          "sets": 3,
+          "reps": 8,
+          "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 3,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        },
+        {
+          "exercise_id": 14,
+          "title": "Bridge exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "workout": "Rest"
+    },
+    {
+      "day": 4,
+      "workout": [
+        {
+          "exercise_id": 81,
+          "title": "Squat exercise",
+          "sets": 3,
+          "reps": 8,
+          "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 97,
+          "title": "Wall push up exercise",
+          "sets": 3,
+          "reps": 8,
+          "image_url": "https://example.com/exercises/Wall%20push%20up%20exercise.gif"
+        },
+        {
+          "exercise_id": 57,
+          "title": "Plank exercise",
+          "sets": 3,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+        },
+        {
+          "exercise_id": 88,
+          "title": "Superman exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "workout": [
+        {
+          "exercise_id": 48,
+          "title": "Lunge exercise",
+          "sets": 3,
+          "reps": 8,
+          "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 3,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        },
+        {
+          "exercise_id": 14,
+          "title": "Bridge exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "workout": "Rest"
+    },
+    {
+      "day": 7,
+      "workout": "Rest"
+    },
+    {
+      "day": 8,
+      "workout": [
+        {
+          "exercise_id": 81,
+          "title": "Squat exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 97,
+          "title": "Wall push up exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Wall%20push%20up%20exercise.gif"
+        },
+        {
+          "exercise_id": 57,
+          "title": "Plank exercise",
+          "sets": 3,
+          "reps": 30,
+          "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+        },
+        {
+          "exercise_id": 88,
+          "title": "Superman exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "workout": [
+        {
+          "exercise_id": 48,
+          "title": "Lunge exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 3,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        },
+        {
+          "exercise_id": 14,
+          "title": "Bridge exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "workout": "Rest"
+    },
+    {
+      "day": 11,
+      "workout": [
+        {
+          "exercise_id": 81,
+          "title": "Squat exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 97,
+          "title": "Wall push up exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Wall%20push%20up%20exercise.gif"
+        },
+        {
+          "exercise_id": 57,
+          "title": "Plank exercise",
+          "sets": 3,
+          "reps": 30,
+          "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+        },
+        {
+          "exercise_id": 88,
+          "title": "Superman exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "workout": [
+        {
+          "exercise_id": 48,
+          "title": "Lunge exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 3,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        },
+        {
+          "exercise_id": 14,
+          "title": "Bridge exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "workout": "Rest"
+    },
+    {
+      "day": 14,
+      "workout": "Rest"
+    },
+    {
+      "day": 15,
+      "workout": [
+        {
+          "exercise_id": 81,
+          "title": "Squat exercise",
+          "sets": 4,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 97,
+          "title": "Wall push up exercise",
+          "sets": 4,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Wall%20push%20up%20exercise.gif"
+        },
+        {
+          "exercise_id": 57,
+          "title": "Plank exercise",
+          "sets": 4,
+          "reps": 30,
+          "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+        },
+        {
+          "exercise_id": 88,
+          "title": "Superman exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 16,
+      "workout": [
+        {
+          "exercise_id": 48,
+          "title": "Lunge exercise",
+          "sets": 4,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 4,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        },
+        {
+          "exercise_id": 14,
+          "title": "Bridge exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 17,
+      "workout": "Rest"
+    },
+    {
+      "day": 18,
+      "workout": [
+        {
+          "exercise_id": 81,
+          "title": "Squat exercise",
+          "sets": 4,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 97,
+          "title": "Wall push up exercise",
+          "sets": 4,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Wall%20push%20up%20exercise.gif"
+        },
+        {
+          "exercise_id": 57,
+          "title": "Plank exercise",
+          "sets": 4,
+          "reps": 30,
+          "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+        },
+        {
+          "exercise_id": 88,
+          "title": "Superman exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "workout": [
+        {
+          "exercise_id": 48,
+          "title": "Lunge exercise",
+          "sets": 4,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 4,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        },
+        {
+          "exercise_id": 14,
+          "title": "Bridge exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 20,
+      "workout": "Rest"
+    },
+    {
+      "day": 21,
+      "workout": "Rest"
+    },
+    {
+      "day": 22,
+      "workout": [
+        {
+          "exercise_id": 81,
+          "title": "Squat exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 61,
+          "title": "Push up exercise",
+          "sets": 4,
+          "reps": 8,
+          "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+        },
+        {
+          "exercise_id": 57,
+          "title": "Plank exercise",
+          "sets": 4,
+          "reps": 40,
+          "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+        },
+        {
+          "exercise_id": 88,
+          "title": "Superman exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 23,
+      "workout": [
+        {
+          "exercise_id": 48,
+          "title": "Lunge exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 4,
+          "reps": 30,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        },
+        {
+          "exercise_id": 14,
+          "title": "Bridge exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 24,
+      "workout": "Rest"
+    },
+    {
+      "day": 25,
+      "workout": [
+        {
+          "exercise_id": 81,
+          "title": "Squat exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 61,
+          "title": "Push up exercise",
+          "sets": 4,
+          "reps": 8,
+          "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+        },
+        {
+          "exercise_id": 57,
+          "title": "Plank exercise",
+          "sets": 4,
+          "reps": 40,
+          "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+        },
+        {
+          "exercise_id": 88,
+          "title": "Superman exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 26,
+      "workout": [
+        {
+          "exercise_id": 48,
+          "title": "Lunge exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 4,
+          "reps": 30,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        },
+        {
+          "exercise_id": 14,
+          "title": "Bridge exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 27,
+      "workout": "Rest"
+    },
+    {
+      "day": 28,
+      "workout": "Rest"
+    },
+    {
+      "day": 29,
+      "workout": [
+        {
+          "exercise_id": 98,
+          "title": "Wall sit exercise",
+          "sets": 3,
+          "reps": "Hold for 30-45 seconds",
+          "image_url": "https://example.com/exercises/Wall%20sit%20exercise.gif"
+        },
+        {
+          "exercise_id": 61,
+          "title": "Push up exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+        },
+        {
+          "exercise_id": 45,
+          "title": "Leg raises exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Leg%20raises%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 30,
+      "workout": [
+        {
+          "exercise_id": 98,
+          "title": "Wall sit exercise",
+          "sets": 3,
+          "reps": "Hold for 30-45 seconds",
+          "image_url": "https://example.com/exercises/Wall%20sit%20exercise.gif"
+        },
+        {
+          "exercise_id": 61,
+          "title": "Push up exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+        },
+        {
+          "exercise_id": 45,
+          "title": "Leg raises exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Leg%20raises%20exercise.gif"
+        }
+      ]
+    }
+  ]
+}

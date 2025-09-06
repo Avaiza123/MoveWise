@@ -4,7 +4,6 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:movewise/core/res/routes/route_name.dart';
 import 'package:movewise/views/auth/LoginScreen.dart';
 import 'package:movewise/views/auth/SignupScreen.dart';
-import 'package:movewise/views/auth/otp_verification_screen.dart';
 import 'package:movewise/views/dashboard/dashboard_screen.dart';
 import 'package:movewise/views/onboarding/DietScreen.dart';
 import 'package:movewise/views/onboarding/disease_inspection_screen.dart';
@@ -70,13 +69,7 @@ class AppRoute{
         name: RouteName.DashboardScreen,
         page: () => const DashboardScreen()
     ),
-    GetPage(
-      name: RouteName.OTPVerificationScreen,
-      page: () {
-        final verificationId = Get.arguments as String;
-        return OTPVerificationScreen(verificationId: verificationId);
-      },
-    ),
+
 
   ];
 }

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:movewise/core/constants/app_colors.dart';
-import 'package:movewise/core/constants/app_sizes.dart';
-import 'package:movewise/core/constants/app_texts.dart';
-import 'package:movewise/core/utils/app_styles.dart';
+import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_sizes.dart';
+import '../../core/constants/app_texts.dart';
+import '../../core/constants/app_icons.dart';
+import '../../core/utils/app_styles.dart';
 import '../../core/res/routes/route_name.dart';
+import '../../widgets/custom_appbar.dart';
 
 class DiseaseScreen extends StatefulWidget {
   const DiseaseScreen({Key? key}) : super(key: key);
@@ -19,13 +21,13 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
   final Set<String> selectedDiseases = {};
 
   final List<Map<String, dynamic>> diseases = [
-    {'name': AppText.diseaseDiabetes, 'icon': Icons.bloodtype},
-    {'name': AppText.diseaseBP, 'icon': Icons.favorite},
-    {'name': AppText.diseaseKneePain, 'icon': Icons.accessibility_new},
-    {'name': AppText.diseaseAnklePain, 'icon': Icons.directions_walk},
-    {'name': AppText.diseaseBackPain, 'icon': Icons.event_seat},
-    {'name': AppText.diseaseMigraine, 'icon': Icons.psychology},
-    {'name': AppText.diseaseNone, 'icon': Icons.not_interested},
+    {'name': AppText.diseaseDiabetes, 'icon': AppIcons.diabetes},
+    {'name': AppText.diseaseBP, 'icon': AppIcons.bp},
+    {'name': AppText.diseaseKneePain, 'icon': AppIcons.kneePain},
+    {'name': AppText.diseaseAnklePain, 'icon': AppIcons.anklePain},
+    {'name': AppText.diseaseBackPain, 'icon': AppIcons.back},
+    {'name': AppText.diseaseMigraine, 'icon': AppIcons.migraine},
+    {'name': AppText.diseaseNone, 'icon': AppIcons.none},
   ];
 
   void _toggleDisease(String disease) {
@@ -76,10 +78,7 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(AppSizes.appBarHeight),
-        child: AppStyles.customAppBar(AppText.selectYourDiseaseTitle),
-      ),
+      appBar: const CustomAppBar(title: AppText.selectYourDiseaseTitle),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppSizes.paddingLarge,
@@ -91,6 +90,7 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
             Text(AppText.diseaseQuestion, style: AppStyles.screenTitle),
             const SizedBox(height: AppSizes.gapLarge),
 
+            /// Diseases List
             Expanded(
               child: ListView.builder(
                 itemCount: diseases.length,
@@ -108,24 +108,35 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
                       child: GestureDetector(
                         onTap: () => _toggleDisease(name),
                         child: Card(
-                          color: isSelected
-                              ? AppColors.primaryColor.withOpacity(0.3)
-                              : Colors.white,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(AppSizes.radiusLarge),
+                            borderRadius: BorderRadius.circular(AppSizes.cardRadius),
                             side: BorderSide(
                               color: isSelected
-                                  ? AppColors.primaryColor
+                                  ? Colors.transparent
                                   : Colors.grey.shade300,
                               width: 2,
                             ),
                           ),
-                          elevation: 3,
+                          elevation: 4,
                           margin: const EdgeInsets.symmetric(vertical: AppSizes.gapSmall),
-                          child: Padding(
+                          child: Container(
                             padding: const EdgeInsets.symmetric(
-                              vertical: AppSizes.paddingMediumLarge, // Increased height here
+                              vertical: AppSizes.paddingMediumLarge,
                               horizontal: AppSizes.paddingMediumLarge,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                              gradient: isSelected
+                                  ? const LinearGradient(
+                                colors: [
+                                  AppColors.gradientStart,
+                                  AppColors.gradientEnd,
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              )
+                                  : null,
+                              color: isSelected ? null : AppColors.cardBackground,
                             ),
                             child: Row(
                               children: [
@@ -133,19 +144,19 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
                                   icon,
                                   color: isSelected
                                       ? AppColors.white
-                                      : AppColors.primaryColor,
+                                      : AppColors.primaryColorDark,
                                   size: AppSizes.iconLg,
                                 ),
                                 const SizedBox(width: AppSizes.gapMedium),
                                 Expanded(
                                   child: Text(
                                     name,
-                                    style: TextStyle(
-                                      fontSize: AppSizes.fontSizeLg,
-                                      fontWeight: FontWeight.w500,
+                                    style: AppStyles.heading.copyWith(
                                       color: isSelected
                                           ? AppColors.white
-                                          : AppColors.primaryColor,
+                                          : AppColors.primaryColorDark,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: AppSizes.fontSizeLg,
                                     ),
                                   ),
                                 ),
@@ -154,7 +165,7 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
                                       ? Icons.check_circle
                                       : Icons.radio_button_unchecked,
                                   color: isSelected
-                                      ? AppColors.primaryColor
+                                      ? AppColors.white
                                       : Colors.grey,
                                 ),
                               ],
@@ -170,13 +181,31 @@ class _DiseaseScreenState extends State<DiseaseScreen> {
 
             const SizedBox(height: AppSizes.gapMedium),
 
+            /// Continue Button
             Center(
-              child: ElevatedButton(
-                onPressed: _navigateNext,
-                style: AppStyles.elevatedButtonStyle,
-                child: Text(AppText.continueButton, style: AppStyles.buttonText),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: AppColors.primaryGradient,
+                  borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                ),
+                child: ElevatedButton(
+                  onPressed: _navigateNext,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                    ),
+                  ),
+                  child: Text(
+                    AppText.continueButton,
+                    style: AppStyles.buttonText.copyWith(color: Colors.white),
+                  ),
+                ),
               ),
             ),
+
             const SizedBox(height: AppSizes.gapLarge),
           ],
         ),

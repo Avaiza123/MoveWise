@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_sizes.dart';
 import '../../core/constants/app_texts.dart';
 import '../../core/utils/app_styles.dart';
 import '../../core/res/routes/route_name.dart';
+import '../../widgets/custom_appbar.dart';
 
 class HeightScreen extends StatefulWidget {
   const HeightScreen({super.key});
@@ -27,16 +29,34 @@ class _HeightScreenState extends State<HeightScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      scrollToValue();
+      _scrollToValue();
     });
   }
 
-  void scrollToValue() {
+  void _scrollToValue() {
     final int minValue = selectedUnit == 'cm' ? 100 : 48;
     final double offset = (sliderValue - minValue) * 30;
     if (scrollController.hasClients) {
-      scrollController.jumpTo(offset.clamp(0, scrollController.position.maxScrollExtent));
+      scrollController.jumpTo(
+        offset.clamp(0, scrollController.position.maxScrollExtent),
+      );
     }
+  }
+
+  Future<void> _saveHeightAndNavigate() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // Convert height to cm if unit is ft/in
+    final int heightInCm = selectedUnit == 'cm'
+        ? heightCm
+        : ((heightFt * 12 + heightIn) * 2.54).round();
+
+    // Save height and onboarding flag in cache
+    await prefs.setInt('height_cm', heightInCm);
+    await prefs.setBool('onboarding_done', true);
+
+    // Navigate to Weight Screen
+    Get.toNamed(RouteName.WeightScreen, arguments: heightInCm.toDouble());
   }
 
   @override
@@ -45,20 +65,32 @@ class _HeightScreenState extends State<HeightScreen> {
     final int maxValue = selectedUnit == 'cm' ? 220 : 84;
 
     return Scaffold(
-      appBar: AppStyles.customAppBar(AppText.selectYourHeight),
+      backgroundColor: AppColors.backgroundColor,
+      appBar: const CustomAppBar(title: AppText.selectYourHeight),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppSizes.defaultSpace),
           child: Column(
             children: [
-              /// ✅ Card UI
+              // Height Card
               Container(
-                decoration: AppStyles.cardDecoration,
+                decoration: AppStyles.cardDecoration.copyWith(
+                  gradient: AppColors.primaryGradient,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primaryColor.withOpacity(0.5),
+                      blurRadius: 19,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+                ),
                 padding: const EdgeInsets.symmetric(
-                    horizontal: AppSizes.lg, vertical: AppSizes.lg),
+                  horizontal: AppSizes.lg,
+                  vertical: AppSizes.lg,
+                ),
                 child: Column(
                   children: [
-                    /// Toggle Buttons
+                    // Toggle Units
                     ToggleButtons(
                       isSelected: [
                         selectedUnit == 'cm',
@@ -70,20 +102,24 @@ class _HeightScreenState extends State<HeightScreen> {
                           sliderValue = selectedUnit == 'cm'
                               ? heightCm.toDouble()
                               : (heightFt * 12 + heightIn.toDouble());
-                          scrollToValue();
+                          _scrollToValue();
                         });
                       },
-                      color: AppColors.white,
-                      selectedColor: AppColors.primary,
-                      fillColor: AppColors.white.withOpacity(0.1),
+                      color: AppColors.white.withOpacity(0.7),
+                      selectedColor: AppColors.primaryColor,
+                      fillColor: AppColors.white,
+                      borderColor: Colors.white70,
+                      selectedBorderColor: AppColors.primaryColor,
                       borderRadius: BorderRadius.circular(AppSizes.cardRadius),
                       children: const [
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: AppSizes.lg),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: AppSizes.lg, vertical: AppSizes.sm),
                           child: Text(AppText.cm),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: AppSizes.lg),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: AppSizes.lg, vertical: AppSizes.sm),
                           child: Text(AppText.feetInches),
                         ),
                       ],
@@ -91,7 +127,7 @@ class _HeightScreenState extends State<HeightScreen> {
 
                     const SizedBox(height: AppSizes.spaceBetweenItem),
 
-                    /// Value Display
+                    // Value Display
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: selectedUnit == 'cm'
@@ -104,81 +140,78 @@ class _HeightScreenState extends State<HeightScreen> {
 
                     const SizedBox(height: AppSizes.spaceBetweenItem),
 
-                    /// Ruler
+                    // Ruler
                     SizedBox(
-                      height: 90,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          ListView.builder(
-                            controller: scrollController,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: maxValue - minValue + 1,
-                            itemBuilder: (context, index) {
-                              final value = minValue + index;
-                              final isSelected = selectedUnit == 'cm'
-                                  ? value == heightCm
-                                  : value == (heightFt * 12 + heightIn);
+                      height: 100,
+                      child: ListView.builder(
+                        controller: scrollController,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: maxValue - minValue + 1,
+                        itemBuilder: (context, index) {
+                          final value = minValue + index;
+                          final isSelected = selectedUnit == 'cm'
+                              ? value == heightCm
+                              : value == (heightFt * 12 + heightIn);
 
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    sliderValue = value.toDouble();
-                                    if (selectedUnit == 'cm') {
-                                      heightCm = value;
-                                    } else {
-                                      heightFt = value ~/ 12;
-                                      heightIn = value % 12;
-                                    }
-                                    scrollToValue();
-                                  });
-                                },
-                                child: Container(
-                                  width: 30,
-                                  alignment: Alignment.bottomCenter,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Container(
-                                        height: 20,
-                                        width: 2,
-                                        color: isSelected
-                                            ? AppColors.primary
-                                            : AppColors.white,
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        selectedUnit == 'cm'
-                                            ? "$value"
-                                            : "${value ~/ 12}'${value % 12}\"",
-                                        style: AppStyles.bodyWhite.copyWith(
-                                          fontSize: 12,
-                                          color: isSelected
-                                              ? AppColors.primary
-                                              : AppColors.white,
-                                          fontWeight: isSelected
-                                              ? FontWeight.bold
-                                              : FontWeight.normal,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                sliderValue = value.toDouble();
+                                if (selectedUnit == 'cm') {
+                                  heightCm = value;
+                                } else {
+                                  heightFt = value ~/ 12;
+                                  heightIn = value % 12;
+                                }
+                                _scrollToValue();
+                              });
                             },
-                          ),
-                        ],
+                            child: Container(
+                              width: 30,
+                              alignment: Alignment.bottomCenter,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    height: isSelected ? 28 : 18,
+                                    width: 2,
+                                    color: isSelected
+                                        ? AppColors.accentColor
+                                        : AppColors.white,
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    selectedUnit == 'cm'
+                                        ? "$value"
+                                        : "${value ~/ 12}'${value % 12}\"",
+                                    style: AppStyles.bodyWhite.copyWith(
+                                      fontSize: isSelected ? 13 : 11,
+                                      color: isSelected
+                                          ? AppColors.accentColor
+                                          : AppColors.white,
+                                      fontWeight: isSelected
+                                          ? FontWeight.bold
+                                          : FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
 
                     const SizedBox(height: AppSizes.sm),
 
-                    /// Slider
+                    // Slider
                     Slider(
                       value: sliderValue,
                       min: minValue.toDouble(),
                       max: maxValue.toDouble(),
                       divisions: maxValue - minValue,
+                      activeColor: AppColors.accentColor,
+                      inactiveColor: Colors.white30,
                       onChanged: (value) {
                         setState(() {
                           sliderValue = value;
@@ -195,38 +228,34 @@ class _HeightScreenState extends State<HeightScreen> {
                           curve: Curves.easeOut,
                         );
                       },
-                      label: selectedUnit == 'cm'
-                          ? "${sliderValue.round()} cm"
-                          : "${sliderValue ~/ 12} ft ${(sliderValue % 12).round()} in",
                     ),
                   ],
                 ),
               ),
 
-              const SizedBox(height: AppSizes.spaceBetweenItem),
+              const SizedBox(height: AppSizes.spaceBetweenItem * 1.5),
 
-              /// ✅ NEXT Button
-              Padding(
-                padding: const EdgeInsets.only(bottom: AppSizes.bottomSpace),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    final prefs = await SharedPreferences.getInstance();
-                    final int heightInCm = selectedUnit == 'cm'
-                        ? heightCm
-                        : ((heightFt * 12 + heightIn) * 2.54).round();
-
-                    await prefs.setBool('onBoarding', false);
-                    await prefs.setInt('height_cm', heightInCm);
-
-                    Get.toNamed(
-                      RouteName.WeightScreen,
-                      arguments: heightInCm.toDouble(),
-                    );
-                  },
-                  style: AppStyles.buttonStyle,
-                  child: Text(AppText.next, style: AppStyles.buttonText),
+              // Next Button
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: AppColors.primaryGradient,
+                  borderRadius: BorderRadius.circular(AppSizes.cardRadius),
                 ),
-
+                child: ElevatedButton(
+                  onPressed: _saveHeightAndNavigate,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                    ),
+                  ),
+                  child: Text(
+                    AppText.next,
+                    style: AppStyles.buttonText.copyWith(color: Colors.white),
+                  ),
+                ),
               ),
             ],
           ),
@@ -235,19 +264,23 @@ class _HeightScreenState extends State<HeightScreen> {
     );
   }
 
-  /// Widget to show label/value
+  /// Value display widget
   Widget _valueBox(String label, String value) {
     return Container(
-      padding: const EdgeInsets.all(AppSizes.sm),
+      padding: const EdgeInsets.all(AppSizes.md),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.white),
+        color: AppColors.white.withOpacity(0.1),
+        border: Border.all(color: Colors.white70),
         borderRadius: BorderRadius.circular(AppSizes.cardRadius),
       ),
       child: Column(
         children: [
           Text(label, style: AppStyles.bodyWhite),
           const SizedBox(height: AppSizes.xs),
-          Text(value, style: AppStyles.headingWhite),
+          Text(
+            value,
+            style: AppStyles.headingWhite.copyWith(color: AppColors.accentColor),
+          ),
         ],
       ),
     );

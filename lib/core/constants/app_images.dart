@@ -7,4 +7,5 @@ class AppImages {
   static const String splashLogo = 'assets/images/logo2.png';
   static const String googleLogo = 'assets/images/google.png';
 
+
 }

@@ -7,8 +7,10 @@ import 'package:movewise/core/res/routes/route_name.dart';
 import 'package:movewise/core/constants/app_colors.dart';
 import 'package:movewise/core/constants/app_sizes.dart';
 import 'package:movewise/core/constants/app_texts.dart';
+import 'package:movewise/core/constants/app_icons.dart';
 import 'package:movewise/core/constants/app_images.dart';
 import 'package:movewise/core/utils/app_styles.dart';
+import '../../widgets/custom_appbar.dart'; // ✅ Custom AppBar
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,9 +23,15 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
   bool isPasswordVisible = false;
 
+  /// Save login status in cache
+  Future<void> _setLoginCache() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('is_logged_in', true);
+  }
+
+  /// Email/password login
   Future<void> handleLogin() async {
     if (_formKey.currentState!.validate()) {
       try {
@@ -31,12 +39,15 @@ class _LoginScreenState extends State<LoginScreen> {
           emailController.text.trim(),
           passwordController.text.trim(),
         );
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setBool('isLoggedIn', true);
+        await _setLoginCache(); // ✅ Save login in cache
         Get.offAllNamed(RouteName.DashboardScreen);
       } catch (e) {
-        Get.snackbar("Login Failed", e.toString(),
-            backgroundColor: AppColors.primaryColor, colorText: Colors.white);
+        Get.snackbar(
+          "Login Failed",
+          e.toString(),
+          backgroundColor: AppColors.primaryColor,
+          colorText: Colors.white,
+        );
       }
     }
   }
@@ -50,11 +61,10 @@ class _LoginScreenState extends State<LoginScreen> {
       suffixIcon: isPassword
           ? IconButton(
         icon: Icon(
-          isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+          isPasswordVisible ? AppIcons.visibility : AppIcons.visibilityOff,
           color: Colors.grey,
         ),
-        onPressed: () =>
-            setState(() => isPasswordVisible = !isPasswordVisible),
+        onPressed: () => setState(() => isPasswordVisible = !isPasswordVisible),
       )
           : null,
       filled: true,
@@ -80,10 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(AppSizes.appBarHeight),
-        child: AppStyles.customAppBar(AppText.loginTitle),
-      ),
+      appBar: const CustomAppBar(title: AppText.loginTitle),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(AppSizes.paddingLarge),
         child: Form(
@@ -100,8 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFormField(
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
-                decoration:
-                _buildInputDecoration(AppText.emailHint, Icons.email),
+                decoration: _buildInputDecoration(AppText.emailHint, AppIcons.email),
                 validator: (value) {
                   if (value == null || value.isEmpty) return AppText.emailRequired;
                   if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
@@ -119,11 +125,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: passwordController,
                 obscureText: !isPasswordVisible,
                 decoration: _buildInputDecoration(
-                    AppText.passwordHint, Icons.lock,
+                    AppText.passwordHint, AppIcons.lock,
                     isPassword: true),
-                validator: (value) => (value == null || value.length < 6)
-                    ? AppText.passwordInvalid
-                    : null,
+                validator: (value) =>
+                (value == null || value.length < 6) ? AppText.passwordInvalid : null,
               ),
               const SizedBox(height: AppSizes.gapSmall),
 
@@ -131,65 +136,25 @@ class _LoginScreenState extends State<LoginScreen> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () => Get.toNamed(RouteName.ForgotPassword),
-                  child: Text(AppText.forgotPassword,
-                      style: AppStyles.linkText),
+                  child: Text(AppText.forgotPassword, style: AppStyles.linkText),
                 ),
               ),
               const SizedBox(height: AppSizes.gapLarge),
 
+              // Email Login Button
               Center(
                 child: SizedBox(
                   width: screenWidth * 0.85,
                   child: ElevatedButton(
                     onPressed: handleLogin,
                     style: AppStyles.elevatedButtonStyle,
-                    child: Text(AppText.loginButton,
-                        style: AppStyles.buttonText),
+                    child: Text(AppText.loginButton, style: AppStyles.buttonText),
                   ),
                 ),
               ),
               const SizedBox(height: AppSizes.gapMedium),
-
-              Center(child: Text("OR", style: AppStyles.label)),
-              const SizedBox(height: AppSizes.gapSmall),
-
-              // Phone Login
-              Text(AppText.phoneLabel, style: AppStyles.label),
-              const SizedBox(height: AppSizes.gapSmall),
-              TextFormField(
-                controller: phoneController,
-                keyboardType: TextInputType.phone,
-                decoration:
-                _buildInputDecoration(AppText.phoneHint, Icons.phone),
-              ),
-              const SizedBox(height: AppSizes.gapSmall),
-              SizedBox(
-                width: screenWidth * 0.85,
-                child: ElevatedButton.icon(
-                  icon: const Icon(Icons.phone, color: Colors.white),
-                  label: const Text("Login with Phone"),
-                  onPressed: () {
-                    if (phoneController.text.isNotEmpty) {
-                      AuthService().signInWithPhone(
-                        phoneNumber: phoneController.text,
-                        codeSentCallback: (verificationId) {
-                          Get.toNamed(RouteName.OTPVerificationScreen,
-                              arguments: verificationId);
-                        },
-                        onFailed: (message) {
-                          Get.snackbar('Error', message);
-                        },
-                      );
-                    } else {
-                      Get.snackbar("Error", "Phone number cannot be empty",
-                          backgroundColor: AppColors.primaryColor,
-                          colorText: Colors.white);
-                    }
-                  },
-                  style: AppStyles.elevatedButtonStyle,
-                ),
-              ),
-              const SizedBox(height: AppSizes.gapSmall),
+              // Center(child: Text("OR", style: AppStyles.label)),
+               const SizedBox(height: AppSizes.gapSmall),
 
               // Google Login
               SizedBox(
@@ -198,33 +163,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () async {
                     try {
                       await AuthService().signInWithGoogle();
-                      final prefs = await SharedPreferences.getInstance();
-                      await prefs.setBool('isLoggedIn', true);
+                      await _setLoginCache(); // ✅ Save login for Google
                       Get.offAllNamed(RouteName.DashboardScreen);
                     } catch (e) {
-                      Get.snackbar("Google Sign-In Failed", e.toString(),
-                          backgroundColor: AppColors.primaryColor,
-                          colorText: Colors.white);
+                      Get.snackbar(
+                        "Google Sign-In Failed",
+                        e.toString(),
+                        backgroundColor: AppColors.primaryColor,
+                        colorText: Colors.white,
+                      );
                     }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                      BorderRadius.circular(AppSizes.radiusMedium),
-                      side: const BorderSide(color: Colors.grey),
-                    ),
+                    // shape: RoundedRectangleBorder(
+                    //  // borderRadius: BorderSizes.radiusMedium,
+                    //   side: const BorderSide(color: Colors.grey),
+                    // ),
                     elevation: 2,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        AppImages.googleLogo,
-                        height: 24,
-                        width: 24,
-                      ),
+                      Image.asset(AppImages.googleLogo, height: 24, width: 24),
                       const SizedBox(width: 10),
                       const Text(
                         "Continue with Google",
@@ -247,8 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(AppText.signupPrompt, style: AppStyles.label),
                   TextButton(
                     onPressed: () => Get.toNamed(RouteName.SignupScreen),
-                    child: Text(AppText.signupButton,
-                        style: AppStyles.linkText),
+                    child: Text(AppText.signupButton, style: AppStyles.linkText),
                   ),
                 ],
               ),

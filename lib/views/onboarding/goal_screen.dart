@@ -5,7 +5,9 @@ import 'package:movewise/core/constants/app_texts.dart';
 import 'package:movewise/core/utils/app_styles.dart';
 import 'package:movewise/core/constants/app_sizes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../core/res/routes/route_name.dart';
+import '../../widgets/custom_appbar.dart'; // ✅ Custom gradient AppBar
 
 class GoalScreen extends StatefulWidget {
   const GoalScreen({Key? key}) : super(key: key);
@@ -31,7 +33,7 @@ class _GoalScreenState extends State<GoalScreen> {
       await prefs.setBool('onboarding_done', false);
       await prefs.setStringList('selected_goals', selectedGoals.toList());
 
-      Get.toNamed(RouteName.HeightScreen); // Or WeightScreen
+      Get.toNamed(RouteName.HeightScreen);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -54,10 +56,12 @@ class _GoalScreenState extends State<GoalScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(AppSizes.appBarHeight),
-        child: AppStyles.customAppBar(AppText.selectYourGoalTitle),
+
+      /// ✅ Use Custom Gradient AppBar
+      appBar: const CustomAppBar(
+        title: AppText.selectYourGoalTitle,
       ),
+
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppSizes.lg,
@@ -68,6 +72,8 @@ class _GoalScreenState extends State<GoalScreen> {
           children: [
             Text(AppText.fitnessQuestion, style: AppStyles.screenTitle),
             const SizedBox(height: AppSizes.lg),
+
+            /// Fitness Goal List
             Expanded(
               child: ListView.builder(
                 itemCount: AppText.fitnessGoals.length,
@@ -77,28 +83,41 @@ class _GoalScreenState extends State<GoalScreen> {
 
                   return GestureDetector(
                     onTap: () => _toggleGoal(goal),
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: AppSizes.sm),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      margin: const EdgeInsets.symmetric(
+                        vertical: AppSizes.sm,
+                      ),
                       decoration: BoxDecoration(
-                        color: isSelected
-                            ? AppColors.primaryColor.withOpacity(0.3)
-                            : Colors.white,
-                        borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                        gradient: isSelected
+                            ? const LinearGradient(
+                          colors: [
+                            AppColors.gradientStart,
+                            AppColors.gradientEnd,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        )
+                            : null,
+                        color: isSelected ? null : AppColors.white,
+                        borderRadius:
+                        BorderRadius.circular(AppSizes.cardRadius),
                         border: Border.all(
                           color: isSelected
-                              ? AppColors.primaryColor
+                              ? Colors.transparent
                               : Colors.grey.shade300,
                           width: 2,
                         ),
-                        boxShadow: isSelected
-                            ? [
+                        boxShadow: [
                           BoxShadow(
-                            color: AppColors.primaryColor.withOpacity(0.2),
-                            blurRadius: 10,
+                            color: isSelected
+                                ? AppColors.primaryColor.withOpacity(0.3)
+                                : Colors.grey.withOpacity(0.15),
+                            blurRadius: 8,
                             offset: const Offset(0, 4),
                           ),
-                        ]
-                            : [],
+                        ],
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
@@ -111,7 +130,10 @@ class _GoalScreenState extends State<GoalScreen> {
                               isSelected
                                   ? Icons.check_circle
                                   : Icons.circle_outlined,
-                              color: isSelected ? Colors.white : Colors.grey[600],
+                              color: isSelected
+                                  ? AppColors.white
+                                  : Colors.grey[600],
+                              size: 26,
                             ),
                             const SizedBox(width: AppSizes.md),
                             Expanded(
@@ -120,9 +142,9 @@ class _GoalScreenState extends State<GoalScreen> {
                                 style: TextStyle(
                                   fontSize: AppSizes.fontSizeLg,
                                   color: isSelected
-                                      ? Colors.white
+                                      ? AppColors.white
                                       : AppColors.textColor,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
@@ -134,14 +156,30 @@ class _GoalScreenState extends State<GoalScreen> {
                 },
               ),
             ),
+
             const SizedBox(height: AppSizes.md),
+
+            /// ✅ Gradient Continue Button (same as GenderScreen)
             Center(
-              child: ElevatedButton(
-                onPressed: _handleNavigation,
-                style: AppStyles.elevatedButtonStyle,
-                child: Text(
-                  AppText.continueButton,
-                  style: AppStyles.buttonText,
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: AppColors.primaryGradient,
+                  borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                ),
+                child: ElevatedButton(
+                  onPressed: _handleNavigation,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                    ),
+                  ),
+                  child: Text(
+                    AppText.continueButton,
+                    style: AppStyles.buttonText.copyWith(color: Colors.white),
+                  ),
                 ),
               ),
             ),

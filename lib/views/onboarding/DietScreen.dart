@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:movewise/core/constants/app_colors.dart';
-import 'package:movewise/core/constants/app_sizes.dart';
-import 'package:movewise/core/constants/app_texts.dart';
-import 'package:movewise/core/utils/app_styles.dart';
+import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_sizes.dart';
+import '../../core/constants/app_texts.dart';
+import '../../core/constants/app_icons.dart';
+import '../../core/utils/app_styles.dart';
 import '../../core/res/routes/route_name.dart';
+import '../../widgets/custom_appbar.dart';
 
 class DietScreen extends StatefulWidget {
   const DietScreen({Key? key}) : super(key: key);
@@ -19,14 +21,15 @@ class _DietScreenState extends State<DietScreen> {
   final Set<String> selectedRestrictions = {};
 
   final List<Map<String, dynamic>> dietRestrictions = [
-    {'name': AppText.dietVegan, 'icon': Icons.spa},
-    {'name': AppText.dietVegetarian, 'icon': Icons.eco},
-    {'name': AppText.dietGlutenFree, 'icon': Icons.no_food},
-    {'name': AppText.dietDairyFree, 'icon': Icons.icecream},
-    {'name': AppText.dietLowSugar, 'icon': Icons.local_cafe},
-    {'name': AppText.dietNoRestrictions, 'icon': Icons.not_interested},
+    {'name': AppText.dietVegan, 'icon': AppIcons.vegan},
+    {'name': AppText.dietVegetarian, 'icon': AppIcons.vegetarian},
+    {'name': AppText.dietGlutenFree, 'icon': AppIcons.glutenFree},
+    {'name': AppText.dietDairyFree, 'icon': AppIcons.dairyFree},
+    {'name': AppText.dietLowSugar, 'icon': AppIcons.lowSugar},
+    {'name': AppText.dietNoRestrictions, 'icon': AppIcons.noRestrictions},
   ];
 
+  /// Toggle selection logic
   void _toggleRestriction(String restriction) {
     setState(() {
       if (restriction == AppText.dietNoRestrictions) {
@@ -46,12 +49,18 @@ class _DietScreenState extends State<DietScreen> {
     });
   }
 
+  /// Save onboarding done + diet preferences in cache
+  Future<void> _savePreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('onboarding_done', true);
+    await prefs.setStringList(
+        'diet_preferences', selectedRestrictions.toList());
+  }
+
+  /// Navigate to SignupScreen after saving
   Future<void> _navigateNext() async {
     if (selectedRestrictions.isNotEmpty) {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('onboarding_done', true);
-      await prefs.setStringList('diet_preferences', selectedRestrictions.toList());
-
+      await _savePreferences();
       Get.toNamed(RouteName.SignupScreen);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -73,14 +82,12 @@ class _DietScreenState extends State<DietScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final bool noRestrictionsSelected = selectedRestrictions.contains(AppText.dietNoRestrictions);
+    final bool noRestrictionsSelected =
+    selectedRestrictions.contains(AppText.dietNoRestrictions);
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(AppSizes.appBarHeight),
-        child: AppStyles.customAppBar(AppText.selectDietTitle),
-      ),
+      appBar: const CustomAppBar(title: AppText.selectDietTitle),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppSizes.paddingLarge,
@@ -92,6 +99,7 @@ class _DietScreenState extends State<DietScreen> {
             Text(AppText.dietQuestion, style: AppStyles.screenTitle),
             const SizedBox(height: AppSizes.gapLarge),
 
+            /// Diet Restrictions List
             Expanded(
               child: ListView.builder(
                 itemCount: dietRestrictions.length,
@@ -100,7 +108,8 @@ class _DietScreenState extends State<DietScreen> {
                   final String name = restriction['name'];
                   final IconData icon = restriction['icon'];
                   final bool isSelected = selectedRestrictions.contains(name);
-                  final bool isDisabled = noRestrictionsSelected && name != AppText.dietNoRestrictions;
+                  final bool isDisabled =
+                      noRestrictionsSelected && name != AppText.dietNoRestrictions;
 
                   return IgnorePointer(
                     ignoring: isDisabled,
@@ -108,58 +117,63 @@ class _DietScreenState extends State<DietScreen> {
                       opacity: isDisabled ? 0.4 : 1.0,
                       child: GestureDetector(
                         onTap: () => _toggleRestriction(name),
-                        child: Card(
-                          color: isSelected
-                              ? AppColors.primaryColor.withOpacity(0.3)
-                              : Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(AppSizes.radiusLarge),
-                            side: BorderSide(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(vertical: AppSizes.gapSmall),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: AppSizes.paddingLarge,
+                            horizontal: AppSizes.paddingMediumLarge,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                            gradient: isSelected
+                                ? const LinearGradient(
+                              colors: [
+                                AppColors.gradientStart,
+                                AppColors.gradientEnd,
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            )
+                                : null,
+                            color: isSelected ? null : AppColors.cardBackground,
+                            border: Border.all(
                               color: isSelected
-                                  ? AppColors.primaryColor
+                                  ? Colors.transparent
                                   : Colors.grey.shade300,
                               width: 2,
                             ),
                           ),
-                          elevation: 3,
-                          margin: const EdgeInsets.symmetric(vertical: AppSizes.gapSmall),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: AppSizes.paddingLarge,
-                              horizontal: AppSizes.paddingMediumLarge,
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  icon,
-                                  color: isSelected
-                                      ? AppColors.white
-                                      : AppColors.primaryColor,
-                                  size: AppSizes.iconLg,
-                                ),
-                                const SizedBox(width: AppSizes.gapMedium),
-                                Expanded(
-                                  child: Text(
-                                    name,
-                                    style: TextStyle(
-                                      fontSize: AppSizes.fontSizeLg,
-                                      fontWeight: FontWeight.w500,
-                                      color: isSelected
-                                          ? AppColors.white
-                                          : AppColors.primaryColor,
-                                    ),
+                          child: Row(
+                            children: [
+                              Icon(
+                                icon,
+                                color: isSelected
+                                    ? AppColors.white
+                                    : AppColors.primaryColorDark,
+                                size: AppSizes.iconLg,
+                              ),
+                              const SizedBox(width: AppSizes.gapMedium),
+                              Expanded(
+                                child: Text(
+                                  name,
+                                  style: AppStyles.heading.copyWith(
+                                    color: isSelected
+                                        ? AppColors.white
+                                        : AppColors.primaryColorDark,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: AppSizes.fontSizeLg,
                                   ),
                                 ),
-                                Icon(
-                                  isSelected
-                                      ? Icons.check_circle
-                                      : Icons.radio_button_unchecked,
-                                  color: isSelected
-                                      ? AppColors.primaryColor
-                                      : Colors.grey,
-                                ),
-                              ],
-                            ),
+                              ),
+                              Icon(
+                                isSelected
+                                    ? AppIcons.checkCircle
+                                    : AppIcons.radioUnchecked,
+                                color: isSelected
+                                    ? AppColors.white
+                                    : Colors.grey,
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -171,13 +185,31 @@ class _DietScreenState extends State<DietScreen> {
 
             const SizedBox(height: AppSizes.gapMedium),
 
+            /// Continue Button
             Center(
-              child: ElevatedButton(
-                onPressed: _navigateNext,
-                style: AppStyles.elevatedButtonStyle,
-                child: Text(AppText.continueButton, style: AppStyles.buttonText),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: AppColors.primaryGradient,
+                  borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                ),
+                child: ElevatedButton(
+                  onPressed: _navigateNext,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                    ),
+                  ),
+                  child: Text(
+                    AppText.continueButton,
+                    style: AppStyles.buttonText.copyWith(color: Colors.white),
+                  ),
+                ),
               ),
             ),
+
             const SizedBox(height: AppSizes.gapLarge),
           ],
         ),

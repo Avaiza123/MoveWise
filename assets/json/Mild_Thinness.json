@@ -1,0 +1,868 @@
+{
+  "id": "mild-thinness",
+  "category": "mild thinness",
+  "duration_days": 30,
+  "description": "A 30-day exercise plan focused on strength and muscle building for individuals in the mild thinness category.",
+  "daily_schedule": [
+    {
+      "day": 1,
+      "workout": [
+        {
+          "exercise_id": 90,
+          "title": "Sumo squat exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 85,
+          "title": "Squat kickback exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Squat%20kickback%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 63,
+          "title": "Reverse crunches exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Reverse%20crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "workout": [
+        {
+          "exercise_id": 35,
+          "title": "Half squat jab cross exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
+        },
+        {
+          "exercise_id": 15,
+          "title": "Calf raises exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
+        },
+        {
+          "exercise_id": 10,
+          "title": "Big arm circles exercise",
+          "sets": 3,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Big%20arm%20circles%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 3,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "workout": [
+        {
+          "exercise_id": 31,
+          "title": "Front and back lunges exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
+        },
+        {
+          "exercise_id": 58,
+          "title": "Plank hip dips exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
+        },
+        {
+          "exercise_id": 9,
+          "title": "Bicycle crunches exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Bicycle%20crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 67,
+          "title": "Russian twist exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "workout": [
+        {
+          "exercise_id": 90,
+          "title": "Sumo squat exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 85,
+          "title": "Squat kickback exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Squat%20kickback%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 63,
+          "title": "Reverse crunches exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Reverse%20crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "workout": [
+        {
+          "exercise_id": 35,
+          "title": "Half squat jab cross exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
+        },
+        {
+          "exercise_id": 15,
+          "title": "Calf raises exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
+        },
+        {
+          "exercise_id": 10,
+          "title": "Big arm circles exercise",
+          "sets": 3,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Big%20arm%20circles%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 3,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "workout": [
+        {
+          "exercise_id": 31,
+          "title": "Front and back lunges exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
+        },
+        {
+          "exercise_id": 58,
+          "title": "Plank hip dips exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
+        },
+        {
+          "exercise_id": 9,
+          "title": "Bicycle crunches exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Bicycle%20crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 67,
+          "title": "Russian twist exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "workout": "Rest"
+    },
+    {
+      "day": 8,
+      "workout": [
+        {
+          "exercise_id": 90,
+          "title": "Sumo squat exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 85,
+          "title": "Squat kickback exercise",
+          "sets": 4,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Squat%20kickback%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 63,
+          "title": "Reverse crunches exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Reverse%20crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "workout": [
+        {
+          "exercise_id": 35,
+          "title": "Half squat jab cross exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
+        },
+        {
+          "exercise_id": 15,
+          "title": "Calf raises exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
+        },
+        {
+          "exercise_id": 10,
+          "title": "Big arm circles exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Big%20arm%20circles%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "workout": [
+        {
+          "exercise_id": 31,
+          "title": "Front and back lunges exercise",
+          "sets": 4,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
+        },
+        {
+          "exercise_id": 58,
+          "title": "Plank hip dips exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
+        },
+        {
+          "exercise_id": 9,
+          "title": "Bicycle crunches exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Bicycle%20crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 67,
+          "title": "Russian twist exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "workout": [
+        {
+          "exercise_id": 90,
+          "title": "Sumo squat exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 85,
+          "title": "Squat kickback exercise",
+          "sets": 4,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Squat%20kickback%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 63,
+          "title": "Reverse crunches exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Reverse%20crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "workout": [
+        {
+          "exercise_id": 35,
+          "title": "Half squat jab cross exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
+        },
+        {
+          "exercise_id": 15,
+          "title": "Calf raises exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
+        },
+        {
+          "exercise_id": 10,
+          "title": "Big arm circles exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Big%20arm%20circles%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "workout": [
+        {
+          "exercise_id": 31,
+          "title": "Front and back lunges exercise",
+          "sets": 4,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
+        },
+        {
+          "exercise_id": 58,
+          "title": "Plank hip dips exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
+        },
+        {
+          "exercise_id": 9,
+          "title": "Bicycle crunches exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Bicycle%20crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 67,
+          "title": "Russian twist exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "workout": "Rest"
+    },
+    {
+      "day": 15,
+      "workout": [
+        {
+          "exercise_id": 90,
+          "title": "Sumo squat exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 85,
+          "title": "Squat kickback exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Squat%20kickback%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 63,
+          "title": "Reverse crunches exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Reverse%20crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 16,
+      "workout": [
+        {
+          "exercise_id": 35,
+          "title": "Half squat jab cross exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
+        },
+        {
+          "exercise_id": 15,
+          "title": "Calf raises exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
+        },
+        {
+          "exercise_id": 10,
+          "title": "Big arm circles exercise",
+          "sets": 4,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Big%20arm%20circles%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 4,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 17,
+      "workout": [
+        {
+          "exercise_id": 31,
+          "title": "Front and back lunges exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
+        },
+        {
+          "exercise_id": 58,
+          "title": "Plank hip dips exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
+        },
+        {
+          "exercise_id": 9,
+          "title": "Bicycle crunches exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Bicycle%20crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 67,
+          "title": "Russian twist exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 18,
+      "workout": [
+        {
+          "exercise_id": 90,
+          "title": "Sumo squat exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 85,
+          "title": "Squat kickback exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Squat%20kickback%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 63,
+          "title": "Reverse crunches exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Reverse%20crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 19,
+      "workout": [
+        {
+          "exercise_id": 35,
+          "title": "Half squat jab cross exercise",
+          "sets": 4,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
+        },
+        {
+          "exercise_id": 15,
+          "title": "Calf raises exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
+        },
+        {
+          "exercise_id": 10,
+          "title": "Big arm circles exercise",
+          "sets": 4,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Big%20arm%20circles%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 4,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 20,
+      "workout": [
+        {
+          "exercise_id": 31,
+          "title": "Front and back lunges exercise",
+          "sets": 4,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
+        },
+        {
+          "exercise_id": 58,
+          "title": "Plank hip dips exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
+        },
+        {
+          "exercise_id": 9,
+          "title": "Bicycle crunches exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Bicycle%20crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 67,
+          "title": "Russian twist exercise",
+          "sets": 4,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 21,
+      "workout": "Rest"
+    },
+    {
+      "day": 22,
+      "workout": [
+        {
+          "exercise_id": 90,
+          "title": "Sumo squat exercise",
+          "sets": 5,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 85,
+          "title": "Squat kickback exercise",
+          "sets": 5,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Squat%20kickback%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 63,
+          "title": "Reverse crunches exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Reverse%20crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 23,
+      "workout": [
+        {
+          "exercise_id": 35,
+          "title": "Half squat jab cross exercise",
+          "sets": 5,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
+        },
+        {
+          "exercise_id": 15,
+          "title": "Calf raises exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
+        },
+        {
+          "exercise_id": 10,
+          "title": "Big arm circles exercise",
+          "sets": 5,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Big%20arm%20circles%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 5,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 24,
+      "workout": [
+        {
+          "exercise_id": 31,
+          "title": "Front and back lunges exercise",
+          "sets": 5,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
+        },
+        {
+          "exercise_id": 58,
+          "title": "Plank hip dips exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
+        },
+        {
+          "exercise_id": 9,
+          "title": "Bicycle crunches exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Bicycle%20crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 67,
+          "title": "Russian twist exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 25,
+      "workout": [
+        {
+          "exercise_id": 90,
+          "title": "Sumo squat exercise",
+          "sets": 5,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 85,
+          "title": "Squat kickback exercise",
+          "sets": 5,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Squat%20kickback%20exercise.gif"
+        },
+        {
+          "exercise_id": 19,
+          "title": "Crunches exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 63,
+          "title": "Reverse crunches exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Reverse%20crunches%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 26,
+      "workout": [
+        {
+          "exercise_id": 35,
+          "title": "Half squat jab cross exercise",
+          "sets": 5,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
+        },
+        {
+          "exercise_id": 15,
+          "title": "Calf raises exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
+        },
+        {
+          "exercise_id": 10,
+          "title": "Big arm circles exercise",
+          "sets": 5,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Big%20arm%20circles%20exercise.gif"
+        },
+        {
+          "exercise_id": 5,
+          "title": "Arm swings exercise",
+          "sets": 5,
+          "reps": 25,
+          "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 27,
+      "workout": [
+        {
+          "exercise_id": 31,
+          "title": "Front and back lunges exercise",
+          "sets": 5,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
+        },
+        {
+          "exercise_id": 58,
+          "title": "Plank hip dips exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
+        },
+        {
+          "exercise_id": 9,
+          "title": "Bicycle crunches exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Bicycle%20crunches%20exercise.gif"
+        },
+        {
+          "exercise_id": 67,
+          "title": "Russian twist exercise",
+          "sets": 5,
+          "reps": 20,
+          "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 28,
+      "workout": "Rest"
+    },
+    {
+      "day": 29,
+      "workout": [
+        {
+          "exercise_id": 42,
+          "title": "jump squat exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Jump%20squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 64,
+          "title": "Reverse plank leg raises exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Reverse%20plank%20leg%20raises%20exercise.gif"
+        },
+        {
+          "exercise_id": 56,
+          "title": "Pilates swimming exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Pilates%20swimming%20exercise.gif"
+        }
+      ]
+    },
+    {
+      "day": 30,
+      "workout": [
+        {
+          "exercise_id": 42,
+          "title": "jump squat exercise",
+          "sets": 3,
+          "reps": 10,
+          "image_url": "https://example.com/exercises/Jump%20squat%20exercise.gif"
+        },
+        {
+          "exercise_id": 64,
+          "title": "Reverse plank leg raises exercise",
+          "sets": 3,
+          "reps": 12,
+          "image_url": "https://example.com/exercises/Reverse%20plank%20leg%20raises%20exercise.gif"
+        },
+        {
+          "exercise_id": 56,
+          "title": "Pilates swimming exercise",
+          "sets": 3,
+          "reps": 15,
+          "image_url": "https://example.com/exercises/Pilates%20swimming%20exercise.gif"
+        }
+      ]
+    }
+  ]
+}

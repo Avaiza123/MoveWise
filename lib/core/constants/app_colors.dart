@@ -1,17 +1,73 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primaryColor = Colors.teal;
-  static const Color primaryColorDark = Colors.white;
-  static const Color buttonColor = Colors.teal;
-  static const Color textColor = Colors.black87;
-  static const Color textSubtleColor = Colors.blueGrey;
-  static const Color backgroundColor = Color(0xFFF5F5F5);
-  static final Color appBarColor = Colors.teal.shade600.withOpacity(0.95);
-  static final Color blackColor = Color(0xFF000000);
+  // 🔥 Primary Brand Colors
+  static const Color primaryColor = Color(0xFF00C9A7); // Vibrant teal-green
+  static const Color primaryColorDark = Color(0xFF007A6E); // Deep teal
+  static const Color accentColor = Color(0xFF6C63FF); // Energetic purple accent
+
+  // Buttons
+  static const Color buttonColor = primaryColor;
+  static const Color gradientStart = Color(0xFF00C9A7); // Fresh green-teal
+  static const Color gradientEnd = Color(0xFF007991); // Dark teal
+  // Text
+  static const Color textColor = Color(0xFF212121);
+  static const Color textSubtleColor = Color(0xFF6D6D6D);
+
+  // Backgrounds
+  static const Color backgroundColor = Color(0xFFF9FAFB);
+  static const Color cardBackground = Colors.white;
+
+  // Gradient for AppBar / Buttons / Highlights
+  static const LinearGradient primaryGradient = LinearGradient(
+    colors: [primaryColor, accentColor],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  // Shadows
+  static final Color shadowColor = Colors.black.withOpacity(0.1);
+
+  // Neutrals
   static const Color white = Colors.white;
   static const Color black = Colors.black;
-  static const Color primary = Colors.teal;
-  static const Color primaryTextColor = Color(0xFF2D2C2C); // For labels like "Email", "Password"
-  static const Color hintTextColor = Color(0xFFA6A3A3); // For hint text like "Enter your email"
+
+  // Extra States
+  static const Color success = Color(0xFF4CAF50);
+  static const Color warning = Color(0xFFFFC107);
+  static const Color error = Color(0xFFE53935);
+
+  // Text Input Fields
+  static const Color primaryTextColor = Color(0xFF2D2C2C);
+  static const Color hintTextColor = Color(0xFFA6A3A3);
+
+
+
+  static const Color primary = Color(0xFF6C63FF); // Based on Figma
+  static const Color secondary = Color(0xFFFFB800);
+  static const Color background = Color(0xFFF5F6FA);
+  static const Color textPrimary = Color(0xFF333333);
+  static const Color textSecondary = Color(0xFF888888);
+  static const Color accent = Color(0xFFFF6F61);
+
+  static const Color lavender = Color(0xFFE4C9F9);
+  static const Color yellow = Color(0xFFFFE99D);
+  static const Color mint = Color(0xFFAAF1CB);
+  static const Color pink = Color(0xFFFFA5B8);
+  static const Color peach = Color(0xFFFFD18B);
+  static const Color gray = Color(0xFFC5CFD6);
+  static const Color sky = Color(0xFFC2DEFF);
+  static const Color orange = Color(0xFFFF922B);
+  static const Color lilac = Color(0xFFE9E9FF);
+  static const Color teal = Color(0xFF73DBD5);
+
+
+  // Icon Colors (vibrant)
+  static const Color red = Color(0xFFFF6B6B);
+  static const Color green = Color(0xFF51CF66);
+  static const Color blue = Color(0xFF349CF3);
+  static const Color purple = Color(0xFF845EF7);
+  static const Color pinkAccent = Color(0xFFF06595);
+
+
 }

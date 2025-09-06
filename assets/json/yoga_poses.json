@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "title": "Bird Dog Pose (Chakravakasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166798/Bird_Dog_Pose_Chakravakasana_lp27h7.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Boat Pose (Navasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166798/Boat_Pose_Navasana_fppc7e.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Bound Angle Pose (Baddha Konasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166799/Bound_Angle_Pose_Baddha_Konasana_x17nde.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Bow Pose (Dhanurasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166800/Bow_Pose_Dhanurasana_i24qtf.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Bridge Pose (Setu Bandhasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166802/Bridge_Pose_Setu_Bandhasana_ig45dm.jpg"
+  },
+  {
+    "id": 6,
+    "title": "Butterfly Pose (Konasana Baddha)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166803/Butterfly_Pose_Konasana_Baddha_twzzc7.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Cat Tail Pulling Pose",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166804/Cat_Tail_Pulling_Pose_fip1yp.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Cat-Cow Pose",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166806/Cat-Cow_Pose_dd53o3.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Cat-Cow Pose (Marjaryasana Bitilasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166806/Cat-Cow_Pose_MarjaryasanaBitilasana_s8u23p.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Child's Pose (Balasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166808/Child_s_Pose_Balasana_quqgym.jpg"
+  },
+  {
+    "id": 11,
+    "title": "Cobra Pose (Bhujangasana) Left",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166809/Cobra_Pose_Bhujangasana_Left_bntliw.jpg"
+  },
+  {
+    "id": 12,
+    "title": "Cobra Pose (Bhujangasana) Right",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166810/Cobra_Pose_Bhujangasana_Right_h22bs5.jpg"
+  },
+  {
+    "id": 13,
+    "title": "Corpse Pose (Savasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166811/Corpse_Pose_Savasana_w430wi.jpg"
+  },
+  {
+    "id": 14,
+    "title": "Cow Face Pose (Gomukhasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166813/Cow_Face_Pose_Gomukhasana_y2wqaz.jpg"
+  },
+  {
+    "id": 15,
+    "title": "Crescent Low Lunge Pose (Anjaneyasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166814/Crescent_Low_Lunge_Pose_Anjaneyasana_kjgelc.jpg"
+  },
+  {
+    "id": 16,
+    "title": "Dancer's Pose (Natarajasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166816/Dancer_s_Pose_Natarajasana_nzwbdv.jpg"
+  },
+  {
+    "id": 17,
+    "title": "Dandasana (Staff Pose)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166817/Dandasana_Staff_Pose_ohvhno.jpg"
+  },
+  {
+    "id": 18,
+    "title": "Downward-Facing Dog (Adho Mukha Svanasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166819/Downward-Facing_Dog_Adho_Mukha_Svanasana_bdajmx.jpg"
+  },
+  {
+    "id": 19,
+    "title": "Easy Pose (Sukhasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166820/Easy_Pose_Sukhasana_v5o0m4.jpg"
+  },
+  {
+    "id": 20,
+    "title": "Extended Side Angle Pose (Utthita Parsvakonasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166821/Extended_Side_Angle_Pose_Utthita_Parsvakonasana_sjgadj.jpg"
+  },
+  {
+    "id": 21,
+    "title": "Figure-Four Stretch (Supta Kapotasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166823/Figure-Four_Stretch_Supta_Kapotasana_loj4ni.jpg"
+  },
+  {
+    "id": 22,
+    "title": "Forearm Stand (Pincha Mayurasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166826/Forearm_Stand_Pincha_Mayurasana_mjal19.jpg"
+  },
+  {
+    "id": 23,
+    "title": "Forward Fold Pose (Uttanasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166826/Forward_Fold_Pose_Uttanasana_kkc5ai.jpg"
+  },
+  {
+    "id": 24,
+    "title": "Halasana (Plow Pose)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166827/Halasana_Plow_Pose_ri4rzd.jpg"
+  },
+  {
+    "id": 25,
+    "title": "Happy Baby Pose (Ananda Balasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166829/Happy_Baby_Pose_Ananda_Balasana_yajpz5.jpg"
+  },
+  {
+    "id": 26,
+    "title": "Legs-Up-the-Wall Pose (Viparita Karani)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166830/Legs-Up-the-Wall_Pose_Viparita_Karani_ktoviz.jpg"
+  },
+  {
+    "id": 27,
+    "title": "Locust Pose (Salabhasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166832/Locust_Pose_Salabhasana_aw0x7j.jpg"
+  },
+  {
+    "id": 28,
+    "title": "Lotus Pose (Padmasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166834/Lotus_Pose_Padmasana_kafz47.jpg"
+  },
+  {
+    "id": 29,
+    "title": "Low Lunge Pose (Anjaneyasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166835/Low_Lunge_Pose_Anjaneyasana_amgyyo.jpg"
+  },
+  {
+    "id": 30,
+    "title": "Low Lunge Pose Up (Anjaneyasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166837/Low_Lunge_Pose_Up_Anjaneyasana_kqlhh6.jpg"
+  },
+  {
+    "id": 31,
+    "title": "Low plank pose (Chaturanga dandasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166839/Low_plank_pose_Chaturanga_dandasana_qlihow.jpg"
+  },
+  {
+    "id": 32,
+    "title": "Lunge Pose (Anjaneyasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166840/Lunge_Pose_Anjaneyasana_mtajpn.jpg"
+  },
+  {
+    "id": 33,
+    "title": "Malasana (Garland Pose)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166841/Malasana_Garland_Pose_rgv8zm.jpg"
+  },
+  {
+    "id": 34,
+    "title": "Mountain Pose (Tadasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166843/Mountain_Pose_Tadasana_wu3jk9.jpg"
+  },
+  {
+    "id": 35,
+    "title": "Rabbit Pose (Sasangasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166845/Rabbit_Pose_Sasangasana_wf6hxj.jpg"
+  },
+  {
+    "id": 36,
+    "title": "Reclined Hero Pose (Supta Virasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166848/Reclined_Hero_Pose_Supta_Virasana_sh5tid.jpg"
+  },
+  {
+    "id": 37,
+    "title": "Reclined Spinal Twist (Supta Matsyendrasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166850/Reclined_Spinal_Twist_Supta_Matsyendrasana_wd2n0k.jpg"
+  },
+  {
+    "id": 38,
+    "title": "Reclining Hero Pose (Virasana Supta)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166854/Reclining_Hero_Pose_Virasana_Supta_tfepkz.jpg"
+  },
+  {
+    "id": 39,
+    "title": "Reclining Pigeon Pose (Supta Kapotasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166855/Reclining_Pigeon_Pose_Supta_Kapotasana_shlhu7.jpg"
+  },
+  {
+    "id": 40,
+    "title": "Revolved triangle pose (parivrtta)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166857/Revolved_triangle_pose_parivrtta_rpzmn6.jpg"
+  },
+  {
+    "id": 41,
+    "title": "Scorpion Pose (Vrischikasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166858/Scorpion_Pose_Vrischikasana_m5p3ps.jpg"
+  },
+  {
+    "id": 42,
+    "title": "Seated Forward Bend (Paschimottanasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166860/Seated_Forward_Bend_Paschimottanasana_dt88vf.jpg"
+  },
+  {
+    "id": 43,
+    "title": "Seated Neck Stretch",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166861/Seated_Neck_Stretch_ycmzmv.jpg"
+  },
+  {
+    "id": 44,
+    "title": "Seated Spinal Twist (Ardha Matsyendrasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166863/Seated_Spinal_Twist_Ardha_Matsyendrasana_spsezz.jpg"
+  },
+  {
+    "id": 45,
+    "title": "Seated Toe Touch Stretch",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166864/Seated_Toe_Touch_Stretch_hyl1ns.jpg"
+  },
+  {
+    "id": 46,
+    "title": "Seated Twist Stretch Exercise (Vakrasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166866/Seated_Twist_Stretch_Exercise_Vakrasana_sazm70.jpg"
+  },
+  {
+    "id": 47,
+    "title": "Standing Forward Bend (Uttanasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166867/Standing_Forward_Bend_Uttanasana_dro9eu.jpg"
+  },
+  {
+    "id": 48,
+    "title": "Supine position with crossed legs",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166868/Supine_position_with_crossed_legs_wnzbzv.jpg"
+  },
+  {
+    "id": 49,
+    "title": "Throne Pose (Bhadrasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166870/Throne_Pose_Bhadrasana_izwb3f.jpg"
+  },
+  {
+    "id": 50,
+    "title": "Upward Salute Pose (Urdhva Hastasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166872/Upward_Salute_Pose_Urdhva_Hastasana_bgfdrq.jpg"
+  },
+  {
+    "id": 51,
+    "title": "Warrior I Pose (Virabhadrasana I)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166873/Warrior_I_Pose_Virabhadrasana_I_ajieap.jpg"
+  },
+  {
+    "id": 52,
+    "title": "Warrior II Pose (Virabhadrasana II)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166875/Warrior_II_Pose_Virabhadrasana_II_fiphr1.jpg"
+  },
+  {
+    "id": 53,
+    "title": "Wide-Legged Forward Bend (Prasarita Padottanasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166876/Wide-Legged_Forward_Bend_Prasarita_Padottanasana_fhfisp.jpg"
+  },
+  {
+    "id": 54,
+    "title": "Wild Thing (Camatkarasana)",
+    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757166878/Wild_Thing_Camatkarasana_u5hl3n.jpg"
+  }
+]
