@@ -8,32 +8,32 @@
             "day": 1,
             "workout": [
                 {
-                    "exercise_id": 81,
-                    "title": "Squat exercise",
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
                     "sets": 3,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Sumo_squat_exercise_vdbwpb.gif"
                 },
                 {
-                    "exercise_id": 97,
-                    "title": "Wall push up exercise",
+                    "exercise_id": 6,
+                    "title": "Asymmetrical push up exercise",
                     "sets": 3,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Wall%20push%20up%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Asymmetrical_push_up_exercise_gqr2uy.gif"
                 },
                 {
-                    "exercise_id": 57,
-                    "title": "Plank exercise",
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
                     "sets": 3,
                     "reps": 30,
-                    "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152986/Plank_hip_dips_exercise_pfswvl.gif"
                 },
                 {
-                    "exercise_id": 88,
-                    "title": "Superman exercise",
+                    "exercise_id": 91,
+                    "title": "Superman twist exercise",
                     "sets": 3,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Superman_twist_exercise_wz9pqm.gif"
                 }
             ]
         },
@@ -41,32 +41,32 @@
             "day": 2,
             "workout": [
                 {
-                    "exercise_id": 48,
-                    "title": "Lunge exercise",
+                    "exercise_id": 47,
+                    "title": "Lunge back kick exercise",
                     "sets": 3,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152977/Lunge_back_kick_exercise_zgyc7v.gif"
                 },
                 {
                     "exercise_id": 5,
                     "title": "Arm swings exercise",
                     "sets": 3,
                     "reps": 25,
-                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Arm_swings_exercise_dktbpw.gif"
                 },
                 {
-                    "exercise_id": 14,
-                    "title": "Bridge exercise",
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
                     "sets": 3,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Advanced_bridge_exercise_hxul2s.gif"
                 },
                 {
-                    "exercise_id": 19,
-                    "title": "Crunches exercise",
+                    "exercise_id": 9,
+                    "title": "Bicycle crunches exercise",
                     "sets": 3,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Bicycle_crunches_exercise_grpqlp.gif"
                 }
             ]
         },
@@ -78,32 +78,32 @@
             "day": 4,
             "workout": [
                 {
-                    "exercise_id": 81,
-                    "title": "Squat exercise",
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
                     "sets": 3,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Sumo_squat_exercise_vdbwpb.gif"
                 },
                 {
-                    "exercise_id": 97,
-                    "title": "Wall push up exercise",
+                    "exercise_id": 6,
+                    "title": "Asymmetrical push up exercise",
                     "sets": 3,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Wall%20push%20up%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Asymmetrical_push_up_exercise_gqr2uy.gif"
                 },
                 {
-                    "exercise_id": 57,
-                    "title": "Plank exercise",
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
                     "sets": 3,
                     "reps": 30,
-                    "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152986/Plank_hip_dips_exercise_pfswvl.gif"
                 },
                 {
-                    "exercise_id": 88,
-                    "title": "Superman exercise",
+                    "exercise_id": 91,
+                    "title": "Superman twist exercise",
                     "sets": 3,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Superman_twist_exercise_wz9pqm.gif"
                 }
             ]
         },
@@ -111,32 +111,32 @@
             "day": 5,
             "workout": [
                 {
-                    "exercise_id": 48,
-                    "title": "Lunge exercise",
+                    "exercise_id": 47,
+                    "title": "Lunge back kick exercise",
                     "sets": 3,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152977/Lunge_back_kick_exercise_zgyc7v.gif"
                 },
                 {
                     "exercise_id": 5,
                     "title": "Arm swings exercise",
                     "sets": 3,
                     "reps": 25,
-                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Arm_swings_exercise_dktbpw.gif"
                 },
                 {
-                    "exercise_id": 14,
-                    "title": "Bridge exercise",
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
                     "sets": 3,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Advanced_bridge_exercise_hxul2s.gif"
                 },
                 {
-                    "exercise_id": 19,
-                    "title": "Crunches exercise",
+                    "exercise_id": 9,
+                    "title": "Bicycle crunches exercise",
                     "sets": 3,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Bicycle_crunches_exercise_grpqlp.gif"
                 }
             ]
         },
@@ -152,32 +152,32 @@
             "day": 8,
             "workout": [
                 {
-                    "exercise_id": 81,
-                    "title": "Squat exercise",
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
                     "sets": 4,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Sumo_squat_exercise_vdbwpb.gif"
                 },
                 {
-                    "exercise_id": 61,
-                    "title": "Push up exercise",
+                    "exercise_id": 6,
+                    "title": "Asymmetrical push up exercise",
                     "sets": 3,
                     "reps": 8,
-                    "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Asymmetrical_push_up_exercise_gqr2uy.gif"
                 },
                 {
-                    "exercise_id": 57,
-                    "title": "Plank exercise",
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
                     "sets": 4,
                     "reps": 30,
-                    "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152986/Plank_hip_dips_exercise_pfswvl.gif"
                 },
                 {
-                    "exercise_id": 88,
-                    "title": "Superman exercise",
+                    "exercise_id": 91,
+                    "title": "Superman twist exercise",
                     "sets": 4,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Superman_twist_exercise_wz9pqm.gif"
                 }
             ]
         },
@@ -185,32 +185,32 @@
             "day": 9,
             "workout": [
                 {
-                    "exercise_id": 48,
-                    "title": "Lunge exercise",
+                    "exercise_id": 47,
+                    "title": "Lunge back kick exercise",
                     "sets": 4,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152977/Lunge_back_kick_exercise_zgyc7v.gif"
                 },
                 {
                     "exercise_id": 5,
                     "title": "Arm swings exercise",
                     "sets": 4,
                     "reps": 25,
-                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Arm_swings_exercise_dktbpw.gif"
                 },
                 {
-                    "exercise_id": 14,
-                    "title": "Bridge exercise",
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
                     "sets": 4,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Advanced_bridge_exercise_hxul2s.gif"
                 },
                 {
-                    "exercise_id": 19,
-                    "title": "Crunches exercise",
+                    "exercise_id": 9,
+                    "title": "Bicycle crunches exercise",
                     "sets": 4,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Bicycle_crunches_exercise_grpqlp.gif"
                 }
             ]
         },
@@ -222,32 +222,32 @@
             "day": 11,
             "workout": [
                 {
-                    "exercise_id": 81,
-                    "title": "Squat exercise",
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
                     "sets": 4,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Sumo_squat_exercise_vdbwpb.gif"
                 },
                 {
-                    "exercise_id": 61,
-                    "title": "Push up exercise",
+                    "exercise_id": 6,
+                    "title": "Asymmetrical push up exercise",
                     "sets": 3,
                     "reps": 8,
-                    "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Asymmetrical_push_up_exercise_gqr2uy.gif"
                 },
                 {
-                    "exercise_id": 57,
-                    "title": "Plank exercise",
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
                     "sets": 4,
                     "reps": 30,
-                    "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152986/Plank_hip_dips_exercise_pfswvl.gif"
                 },
                 {
-                    "exercise_id": 88,
-                    "title": "Superman exercise",
+                    "exercise_id": 91,
+                    "title": "Superman twist exercise",
                     "sets": 4,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Superman_twist_exercise_wz9pqm.gif"
                 }
             ]
         },
@@ -255,32 +255,32 @@
             "day": 12,
             "workout": [
                 {
-                    "exercise_id": 48,
-                    "title": "Lunge exercise",
+                    "exercise_id": 47,
+                    "title": "Lunge back kick exercise",
                     "sets": 4,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152977/Lunge_back_kick_exercise_zgyc7v.gif"
                 },
                 {
                     "exercise_id": 5,
                     "title": "Arm swings exercise",
                     "sets": 4,
                     "reps": 25,
-                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Arm_swings_exercise_dktbpw.gif"
                 },
                 {
-                    "exercise_id": 14,
-                    "title": "Bridge exercise",
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
                     "sets": 4,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Advanced_bridge_exercise_hxul2s.gif"
                 },
                 {
-                    "exercise_id": 19,
-                    "title": "Crunches exercise",
+                    "exercise_id": 9,
+                    "title": "Bicycle crunches exercise",
                     "sets": 4,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Bicycle_crunches_exercise_grpqlp.gif"
                 }
             ]
         },
@@ -296,32 +296,32 @@
             "day": 15,
             "workout": [
                 {
-                    "exercise_id": 81,
-                    "title": "Squat exercise",
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
                     "sets": 4,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Sumo_squat_exercise_vdbwpb.gif"
                 },
                 {
-                    "exercise_id": 61,
-                    "title": "Push up exercise",
+                    "exercise_id": 6,
+                    "title": "Asymmetrical push up exercise",
                     "sets": 4,
                     "reps": 8,
-                    "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Asymmetrical_push_up_exercise_gqr2uy.gif"
                 },
                 {
-                    "exercise_id": 57,
-                    "title": "Plank exercise",
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
                     "sets": 4,
                     "reps": 40,
-                    "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152986/Plank_hip_dips_exercise_pfswvl.gif"
                 },
                 {
-                    "exercise_id": 88,
-                    "title": "Superman exercise",
+                    "exercise_id": 91,
+                    "title": "Superman twist exercise",
                     "sets": 4,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Superman_twist_exercise_wz9pqm.gif"
                 }
             ]
         },
@@ -329,32 +329,32 @@
             "day": 16,
             "workout": [
                 {
-                    "exercise_id": 48,
-                    "title": "Lunge exercise",
+                    "exercise_id": 47,
+                    "title": "Lunge back kick exercise",
                     "sets": 4,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152977/Lunge_back_kick_exercise_zgyc7v.gif"
                 },
                 {
                     "exercise_id": 5,
                     "title": "Arm swings exercise",
                     "sets": 4,
                     "reps": 30,
-                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Arm_swings_exercise_dktbpw.gif"
                 },
                 {
-                    "exercise_id": 14,
-                    "title": "Bridge exercise",
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
                     "sets": 4,
                     "reps": 20,
-                    "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Advanced_bridge_exercise_hxul2s.gif"
                 },
                 {
-                    "exercise_id": 19,
-                    "title": "Crunches exercise",
+                    "exercise_id": 9,
+                    "title": "Bicycle crunches exercise",
                     "sets": 4,
                     "reps": 20,
-                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Bicycle_crunches_exercise_grpqlp.gif"
                 }
             ]
         },
@@ -366,32 +366,32 @@
             "day": 18,
             "workout": [
                 {
-                    "exercise_id": 81,
-                    "title": "Squat exercise",
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
                     "sets": 4,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Sumo_squat_exercise_vdbwpb.gif"
                 },
                 {
-                    "exercise_id": 61,
-                    "title": "Push up exercise",
+                    "exercise_id": 6,
+                    "title": "Asymmetrical push up exercise",
                     "sets": 4,
                     "reps": 8,
-                    "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Asymmetrical_push_up_exercise_gqr2uy.gif"
                 },
                 {
-                    "exercise_id": 57,
-                    "title": "Plank exercise",
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
                     "sets": 4,
                     "reps": 40,
-                    "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152986/Plank_hip_dips_exercise_pfswvl.gif"
                 },
                 {
-                    "exercise_id": 88,
-                    "title": "Superman exercise",
+                    "exercise_id": 91,
+                    "title": "Superman twist exercise",
                     "sets": 4,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Superman_twist_exercise_wz9pqm.gif"
                 }
             ]
         },
@@ -399,32 +399,32 @@
             "day": 19,
             "workout": [
                 {
-                    "exercise_id": 48,
-                    "title": "Lunge exercise",
+                    "exercise_id": 47,
+                    "title": "Lunge back kick exercise",
                     "sets": 4,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152977/Lunge_back_kick_exercise_zgyc7v.gif"
                 },
                 {
                     "exercise_id": 5,
                     "title": "Arm swings exercise",
                     "sets": 4,
                     "reps": 30,
-                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Arm_swings_exercise_dktbpw.gif"
                 },
                 {
-                    "exercise_id": 14,
-                    "title": "Bridge exercise",
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
                     "sets": 4,
                     "reps": 20,
-                    "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Advanced_bridge_exercise_hxul2s.gif"
                 },
                 {
-                    "exercise_id": 19,
-                    "title": "Crunches exercise",
+                    "exercise_id": 9,
+                    "title": "Bicycle crunches exercise",
                     "sets": 4,
                     "reps": 20,
-                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Bicycle_crunches_exercise_grpqlp.gif"
                 }
             ]
         },
@@ -440,32 +440,32 @@
             "day": 22,
             "workout": [
                 {
-                    "exercise_id": 81,
-                    "title": "Squat exercise",
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
                     "sets": 5,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Sumo_squat_exercise_vdbwpb.gif"
                 },
                 {
-                    "exercise_id": 61,
-                    "title": "Push up exercise",
+                    "exercise_id": 6,
+                    "title": "Asymmetrical push up exercise",
                     "sets": 4,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Asymmetrical_push_up_exercise_gqr2uy.gif"
                 },
                 {
-                    "exercise_id": 57,
-                    "title": "Plank exercise",
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
                     "sets": 5,
                     "reps": 40,
-                    "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152986/Plank_hip_dips_exercise_pfswvl.gif"
                 },
                 {
-                    "exercise_id": 88,
-                    "title": "Superman exercise",
+                    "exercise_id": 91,
+                    "title": "Superman twist exercise",
                     "sets": 5,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Superman_twist_exercise_wz9pqm.gif"
                 }
             ]
         },
@@ -473,32 +473,32 @@
             "day": 23,
             "workout": [
                 {
-                    "exercise_id": 48,
-                    "title": "Lunge exercise",
+                    "exercise_id": 47,
+                    "title": "Lunge back kick exercise",
                     "sets": 5,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152977/Lunge_back_kick_exercise_zgyc7v.gif"
                 },
                 {
                     "exercise_id": 5,
                     "title": "Arm swings exercise",
                     "sets": 5,
                     "reps": 30,
-                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Arm_swings_exercise_dktbpw.gif"
                 },
                 {
-                    "exercise_id": 14,
-                    "title": "Bridge exercise",
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
                     "sets": 5,
                     "reps": 20,
-                    "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Advanced_bridge_exercise_hxul2s.gif"
                 },
                 {
-                    "exercise_id": 19,
-                    "title": "Crunches exercise",
+                    "exercise_id": 9,
+                    "title": "Bicycle crunches exercise",
                     "sets": 5,
                     "reps": 20,
-                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Bicycle_crunches_exercise_grpqlp.gif"
                 }
             ]
         },
@@ -510,32 +510,32 @@
             "day": 25,
             "workout": [
                 {
-                    "exercise_id": 81,
-                    "title": "Squat exercise",
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
                     "sets": 5,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Sumo_squat_exercise_vdbwpb.gif"
                 },
                 {
-                    "exercise_id": 61,
-                    "title": "Push up exercise",
+                    "exercise_id": 6,
+                    "title": "Asymmetrical push up exercise",
                     "sets": 4,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Asymmetrical_push_up_exercise_gqr2uy.gif"
                 },
                 {
-                    "exercise_id": 57,
-                    "title": "Plank exercise",
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
                     "sets": 5,
                     "reps": 40,
-                    "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152986/Plank_hip_dips_exercise_pfswvl.gif"
                 },
                 {
-                    "exercise_id": 88,
-                    "title": "Superman exercise",
+                    "exercise_id": 91,
+                    "title": "Superman twist exercise",
                     "sets": 5,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Superman_twist_exercise_wz9pqm.gif"
                 }
             ]
         },
@@ -543,32 +543,32 @@
             "day": 26,
             "workout": [
                 {
-                    "exercise_id": 48,
-                    "title": "Lunge exercise",
+                    "exercise_id": 47,
+                    "title": "Lunge back kick exercise",
                     "sets": 5,
                     "reps": 12,
-                    "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152977/Lunge_back_kick_exercise_zgyc7v.gif"
                 },
                 {
                     "exercise_id": 5,
                     "title": "Arm swings exercise",
                     "sets": 5,
                     "reps": 30,
-                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Arm_swings_exercise_dktbpw.gif"
                 },
                 {
-                    "exercise_id": 14,
-                    "title": "Bridge exercise",
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
                     "sets": 5,
                     "reps": 20,
-                    "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Advanced_bridge_exercise_hxul2s.gif"
                 },
                 {
-                    "exercise_id": 19,
-                    "title": "Crunches exercise",
+                    "exercise_id": 9,
+                    "title": "Bicycle crunches exercise",
                     "sets": 5,
                     "reps": 20,
-                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Bicycle_crunches_exercise_grpqlp.gif"
                 }
             ]
         },
@@ -584,32 +584,32 @@
             "day": 29,
             "workout": [
                 {
-                    "exercise_id": 81,
-                    "title": "Squat exercise",
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
                     "sets": 5,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Squat%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Sumo_squat_exercise_vdbwpb.gif"
                 },
                 {
-                    "exercise_id": 61,
-                    "title": "Push up exercise",
+                    "exercise_id": 6,
+                    "title": "Asymmetrical push up exercise",
                     "sets": 5,
                     "reps": 10,
-                    "image_url": "https://example.com/exercises/Push%20up%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Asymmetrical_push_up_exercise_gqr2uy.gif"
                 },
                 {
-                    "exercise_id": 57,
-                    "title": "Plank exercise",
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
                     "sets": 5,
                     "reps": 45,
-                    "image_url": "https://example.com/exercises/Plank%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152986/Plank_hip_dips_exercise_pfswvl.gif"
                 },
                 {
-                    "exercise_id": 88,
-                    "title": "Superman exercise",
+                    "exercise_id": 91,
+                    "title": "Superman twist exercise",
                     "sets": 5,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Superman%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757153001/Superman_twist_exercise_wz9pqm.gif"
                 }
             ]
         },
@@ -617,32 +617,32 @@
             "day": 30,
             "workout": [
                 {
-                    "exercise_id": 48,
-                    "title": "Lunge exercise",
+                    "exercise_id": 47,
+                    "title": "Lunge back kick exercise",
                     "sets": 5,
                     "reps": 15,
-                    "image_url": "https://example.com/exercises/Lunge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152977/Lunge_back_kick_exercise_zgyc7v.gif"
                 },
                 {
                     "exercise_id": 5,
                     "title": "Arm swings exercise",
                     "sets": 5,
                     "reps": 30,
-                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152928/Arm_swings_exercise_dktbpw.gif"
                 },
                 {
-                    "exercise_id": 14,
-                    "title": "Bridge exercise",
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
                     "sets": 5,
                     "reps": 25,
-                    "image_url": "https://example.com/exercises/Bridge%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Advanced_bridge_exercise_hxul2s.gif"
                 },
                 {
-                    "exercise_id": 19,
-                    "title": "Crunches exercise",
+                    "exercise_id": 9,
+                    "title": "Bicycle crunches exercise",
                     "sets": 5,
                     "reps": 25,
-                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                    "image_url": "https://res.cloudinary.com/dtgblf7b5/image/upload/v1757152927/Bicycle_crunches_exercise_grpqlp.gif"
                 }
             ]
         }

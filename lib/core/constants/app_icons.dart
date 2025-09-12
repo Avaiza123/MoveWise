@@ -23,7 +23,7 @@ class AppIcons {
   static const IconData backPain = Icons.event_seat;
   static const IconData migraine = Icons.psychology;
   static const IconData none = Icons.not_interested;
-
+  static const IconData coffee = Icons.coffee_maker_outlined;
   static const IconData vegan = Icons.spa;
   static const IconData vegetarian = Icons.eco;
   static const IconData glutenFree = Icons.no_food;
@@ -56,8 +56,32 @@ class AppIcons {
   static const IconData phone = Icons.phone;
   static const IconData google = Icons.g_mobiledata;
   static const IconData chatbot = Icons.chat_bubble_outline;
+  static const IconData water = Icons.local_drink;
+  static const IconData juice = Icons.local_cafe;
+  static const IconData tea = Icons.emoji_food_beverage;
+  static const IconData search = Icons.search;
+  static const IconData add = Icons.add_circle;
+  static const IconData delete = Icons.delete;
+  static const IconData food = Icons.food_bank_outlined;
+
+
+  // Nutrition-specific
+  static const IconData nutrition = Icons.fastfood;
+  static const IconData calories = Icons.local_fire_department;
+  static const IconData protein = Icons.fitness_center;
+  static const IconData fat = Icons.bubble_chart;
+  static const IconData carbs = Icons.rice_bowl;
+  static const IconData sugar = Icons.cake;
+  static const IconData fiber = Icons.grass;
 
   static const IconData username = Icons.person_outline;
+
+  static const IconData height = Icons.height;
+
+  // Actions
+  static const IconData edit = Icons.edit;
+  static const IconData save = Icons.check;
+  static const IconData cancel = Icons.close;
 
 
 }

@@ -5,6 +5,8 @@ import 'package:movewise/core/res/routes/route_name.dart';
 import 'package:movewise/views/auth/LoginScreen.dart';
 import 'package:movewise/views/auth/SignupScreen.dart';
 import 'package:movewise/views/dashboard/dashboard_screen.dart';
+import 'package:movewise/views/dashboard/profile.dart';
+import 'package:movewise/views/nutrition/nutrition_screen.dart';
 import 'package:movewise/views/onboarding/DietScreen.dart';
 import 'package:movewise/views/onboarding/disease_inspection_screen.dart';
 import 'package:movewise/views/onboarding/goal_screen.dart';
@@ -14,6 +16,7 @@ import 'package:movewise/views/onboarding/welcome_screen.dart';
 import 'package:movewise/views/splash_screen.dart';
 import 'package:movewise/views/auth/ForgetPassword.dart';
 import 'package:movewise/views/onboarding/gender_screen.dart';
+import 'package:movewise/views/water_tracker/water_screen.dart';
 
 
 class AppRoute{
@@ -70,6 +73,17 @@ class AppRoute{
         page: () => const DashboardScreen()
     ),
 
-
+    GetPage(
+        name: RouteName.WaterTrackerScreen,
+        page: () => WaterTrackerScreen()
+    ),
+    GetPage(
+        name: RouteName.NutritionScreen,
+        page: () => NutritionScreen()
+    ),
+    GetPage(
+        name: (RouteName.ProfileScreen),
+        page: () => ProfileScreen()
+    ),
   ];
 }

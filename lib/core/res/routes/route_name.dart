@@ -2,6 +2,10 @@
 
 
 
+import 'package:movewise/views/dashboard/profile.dart';
+import 'package:movewise/views/nutrition/nutrition_screen.dart';
+import 'package:movewise/views/water_tracker/water_screen.dart';
+
 class RouteName{
   RouteName._();
 
@@ -17,5 +21,7 @@ class RouteName{
   static const SignupScreen= '/signup_screen';
   static const ForgotPassword= '/ForgetPassword_screen';
   static const DashboardScreen= '/dasboard_screen';
-
+  static const WaterTrackerScreen ='/water_screen';
+  static const NutritionScreen = '/nutrition';
+  static const ProfileScreen ='/profile';
 }

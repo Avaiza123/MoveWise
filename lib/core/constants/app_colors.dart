@@ -60,6 +60,9 @@ class AppColors {
   static const Color orange = Color(0xFFFF922B);
   static const Color lilac = Color(0xFFE9E9FF);
   static const Color teal = Color(0xFF73DBD5);
+  static const Color bg = Color(0xFFF9FAFB);
+  static const Color card = Color(0xFFFFFFFF);
+  static const Color grey = Color(0xFFE0E0E0);
 
 
   // Icon Colors (vibrant)

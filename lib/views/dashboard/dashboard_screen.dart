@@ -126,13 +126,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text("Profile"),
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(RouteName.ProfileScreen);
+              },
             ),
             ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text("Settings"),
-              onTap: () {},
+              leading: const Icon(Icons.food_bank_outlined),
+              title: const Text("Nutrition"),
+              onTap: () {
+                Get.toNamed(RouteName.NutritionScreen);
+              },
             ),
+
+            /// 🚰 Water Retention Screen Route
+            ListTile(
+              leading: const Icon(AppIcons.water),
+              title: const Text("Water Retention"),
+              onTap: () {
+                Get.toNamed(RouteName.WaterTrackerScreen);
+              },
+            ),
+
+
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text("Logout"),
@@ -152,6 +167,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
+
   /// Avatar Menu in AppBar
   Widget _buildAvatarMenu(BuildContext context, String email) {
     final String letter = email.isNotEmpty ? email[0].toUpperCase() : "?";
@@ -161,9 +177,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       onSelected: (value) async {
         if (value == 'profile') {
-          // Go to profile
-        } else if (value == 'settings') {
-          // Go to settings
+          Get.toNamed(RouteName.ProfileScreen);
         } else if (value == 'logout') {
           try {
             await AuthService().signOut();

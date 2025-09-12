@@ -10,6 +10,8 @@ class AppText {
   static const String calculateBMI = 'Calculate BMI';
   static const String next = 'Next';
 
+  static const String error = 'Error';
+
   static const String bmiSeverelyUnderweight = 'Severely underweight – Consult a doctor.';
   static const String bmiModeratelyUnderweight = 'Moderately underweight – Increase calorie intake.';
   static const String bmiMildThinness = 'Mild thinness – Improve nutrition.';
@@ -82,6 +84,7 @@ class AppText {
   static const String emailRequired = 'Please enter your email';
   static const String emailInvalid = 'Enter a valid email';
   static const String loginButton = 'Login';
+  static const String noData = 'No Data Found';
 
 
   // Password
@@ -101,6 +104,7 @@ class AppText {
   static const String signupButton = 'Sign Up';
 
 
+  static const String profile = "Profile";
 
   static const String signUp = "Sign Up";
   static const String login = "Login";
@@ -115,10 +119,49 @@ class AppText {
 
   static const String password = "Password";
   static const String passwordTooShort = "Minimum 6 characters required";
-
+  static const String waterTracker = "Water Tracker";
   static const String confirmPassword = "Confirm Password";
   static const String confirmPasswordHint = "Re-enter your password";
   static const String passwordMismatch = "Passwords do not match";
+  static const String nutritionCounter = "Nutrition Counter";
+  static const String searchFoodHint = "Enter food you eat 😉😋";
+  static const String searchResults = "Search Results";
+  static const String dailyPicks = "Your Daily Picks";
+  static const String addedSnackTitle = "Added";
+  static const String addedSnackMsg = "added to your daily list";
+  static const String profileTitle = "My Profile";
+  static const String editProfile = "Edit Profile";
+  static const String saveChanges = "Save Changes";
+  static const String cancelChanges = "Cancel";
+  static const String nameLabel = "Full Name";
+  static const String weightLabel = "Weight (kg)";
+  static const String heightLabel = "Height (cm)";
+  static const String bmiLabel = "BMI";
+
+  // Messages
+  static const String profileUpdated = "Profile updated successfully!";
+  static const String updateError = "Failed to update profile. Try again.";
+
+  // Labels
+  static const String calories = "Calories";
+  static const String protein = "Protein";
+  static const String fat = "Fat";
+  static const String carbs = "Carbs";
+  static const String sugar = "Sugar";
+  static const String fiber = "Fiber";
+  static const String nutrition = "Nutrition";
+  static const ok = "OK";
+  static const cancel = "Cancel";
+  static const delete = "Delete";
+
+  // Delete Snack/Food
+  static const deletedSnackTitle = "Remove Food";
+  static const deletedSnackMsg = "has been removed from your list.";
+
+  // Empty State
+  static const noItems = "No food added yet.";
+  static const addYourFirst = "Add your first food to track nutrition!";
+
 
   static const String alreadyHaveAccount = "Already have an account?";
   static const String registrationSuccess = "Registration successful";
