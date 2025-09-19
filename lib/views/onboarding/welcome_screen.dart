@@ -44,14 +44,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     final bool onboardingDone = prefs.getBool('onboarding_done') ?? false;
     final bool isLoggedIn = prefs.getBool('is_logged_in') ?? false;
 
-    if (!onboardingDone) {
-      // If onboarding not done, go to GenderScreen
+    if (!isLoggedIn) {
+      // First time or not logged in → Go to Login Screen
+      Get.toNamed(RouteName.SignupScreen);
+    } else if (!onboardingDone) {
+      // Logged in but onboarding not done → Go to Gender/Onboarding
       Get.toNamed(RouteName.GenderScreen);
-    } else if (!isLoggedIn) {
-      // Onboarding done but not logged in
-      Get.toNamed(RouteName.LoginScreen);
     } else {
-      // Both onboarding done and logged in
+      // Both login and onboarding completed → Go to Dashboard
       Get.offAllNamed(RouteName.DashboardScreen);
     }
   }
@@ -65,7 +65,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              AppImages.splashBackground,
+              AppImages.bg,
               fit: BoxFit.cover,
             ),
           ),
@@ -92,21 +92,23 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const SizedBox(height: 60),
                     // Logo
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      height: MediaQuery.of(context).size.width * 0.7,
-                      child: Image.asset(AppImages.splashLogo),
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      height: MediaQuery.of(context).size.width * 0.79,
+                      child: Image.asset(AppImages.splashLogo,
+                          fit: BoxFit.contain),
                     ),
 
                     const SizedBox(height: AppSizes.defaultSpace),
 
                     // Gradient "Get Started" Button
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      width: MediaQuery.of(context).size.width * 0.4,
                       decoration: BoxDecoration(
                         gradient: AppColors.primaryGradient,
-                        borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                        borderRadius: BorderRadius.circular(AppSizes.s50),
                         boxShadow: [
                           BoxShadow(
                             color: AppColors.primaryColor.withOpacity(0.4),

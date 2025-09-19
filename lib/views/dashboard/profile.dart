@@ -11,8 +11,6 @@ class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
 
   final ProfileVM vm = Get.put(ProfileVM());
- // final vm = Get.put(ProfileVM());
-
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
@@ -24,27 +22,7 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: AppColors.grey,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(90),
-        child: Obx(() {
-          return CustomAppBar(
-            title: AppText.profile,
-            actions: [
-              vm.isEditing.value
-                  ? IconButton(
-                icon: const Icon(AppIcons.cancel, color: Colors.white),
-                onPressed: () => vm.cancelEdit(),
-              )
-                  : IconButton(
-                icon: const Icon(AppIcons.edit, color: Colors.white),
-                onPressed: () {
-                  nameController.text = vm.name.value;
-                  weightController.text = vm.weight.value;
-                  heightController.text = vm.height.value;
-                  vm.enableEdit();
-                },
-              ),
-            ],
-          );
-        }),
+        child: CustomAppBar(title: AppText.profile),
       ),
       body: Obx(() {
         if (vm.isLoading.value) {
@@ -54,120 +32,132 @@ class ProfileScreen extends StatelessWidget {
         return SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Email (non-editable)
-              _buildField(AppText.email, vm.email.value),
-
+              _buildField("Email", vm.email.value),
               const SizedBox(height: 16),
 
-              // Name
               _buildEditableField(
-                AppText.nameLabel,
+                "Name",
                 vm.name.value,
                 nameController,
                 vm.isEditing.value,
                 onChanged: (v) => vm.name.value = v,
               ),
-
               const SizedBox(height: 16),
 
-              // Weight
               _buildEditableField(
-                AppText.weightLabel,
+                "Weight",
                 vm.weight.value,
                 weightController,
                 vm.isEditing.value,
                 onChanged: (v) => vm.weight.value = v,
               ),
-
+              const SizedBox(height: 6),
+              _buildField("Weight Unit", vm.weightUnit.value),
               const SizedBox(height: 16),
 
-              // Height + Unit
-              Row(
+              _buildEditableField(
+                "Height",
+                vm.height.value,
+                heightController,
+                vm.isEditing.value,
+                onChanged: (v) => vm.height.value = v,
+              ),
+              const SizedBox(height: 6),
+              _buildField("Height Unit", vm.heightUnit.value),
+              const SizedBox(height: 16),
+
+              _buildField("BMI", vm.bmi.value),
+              const SizedBox(height: 16),
+
+              _buildField("Gender", vm.gender.value),
+              const SizedBox(height: 16),
+
+              _buildField(
+                "Goals",
+                vm.goals.isNotEmpty ? vm.goals.join(", ") : "-",
+              ),
+              const SizedBox(height: 16),
+
+              _buildField(
+                "Diet Preferences",
+                vm.dietPreferences.isNotEmpty
+                    ? vm.dietPreferences.join(", ")
+                    : "-",
+              ),
+              const SizedBox(height: 32),
+
+              // 👇 Edit / Save & Cancel buttons
+              vm.isEditing.value
+                  ? Row(
                 children: [
                   Expanded(
-                    flex: 2,
-                    child: _buildEditableField(
-                      AppText.height,
-                      vm.height.value,
-                      heightController,
-                      vm.isEditing.value,
-                      onChanged: (v) => vm.height.value = v,
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey,
+                        minimumSize: const Size(double.infinity, 50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      icon: const Icon(AppIcons.cancel, color: Colors.white),
+                      label: Text("Cancel",
+                          style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white)),
+                      onPressed: () {
+                        // Revert changes
+                        nameController.text = vm.name.value;
+                        weightController.text = vm.weight.value;
+                        heightController.text = vm.height.value;
+                        vm.isEditing.value = false;
+                      },
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 16),
                   Expanded(
-                    flex: 1,
-                    child: vm.isEditing.value
-                        ? DropdownButtonFormField<String>(
-                      value: vm.heightUnit.value,
-                      items: const [
-                        DropdownMenuItem(
-                            value: "cm", child: Text("cm")),
-                        DropdownMenuItem(
-                            value: "ft", child: Text("ft")),
-                        DropdownMenuItem(
-                            value: "in", child: Text("in")),
-                      ],
-                      onChanged: (val) {
-                        if (val != null) vm.heightUnit.value = val;
-                      },
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: AppColors.card,
-                        border: OutlineInputBorder(
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        minimumSize: const Size(double.infinity, 50),
+                        shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
                         ),
                       ),
-                    )
-                        : Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: AppColors.card,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        vm.heightUnit.value,
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.textPrimary,
-                        ),
-                      ),
+                      icon: const Icon(AppIcons.save, color: Colors.white),
+                      label: Text("Save",
+                          style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white)),
+                      onPressed: () => vm.saveProfile(),
                     ),
                   ),
                 ],
-              ),
-
-              const SizedBox(height: 16),
-
-              // BMI (retrieved from cache/Firestore, no calculation)
-              _buildField(AppText.bmiLabel, vm.bmi.value),
-
-              const SizedBox(height: 24),
-
-              if (vm.isEditing.value)
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    minimumSize: const Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
+              )
+                  : ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                  minimumSize: const Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  icon: const Icon(AppIcons.save, color: Colors.white),
-                  label: Text(
-                    AppText.saveChanges,
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () => vm.saveProfile(),
                 ),
+                icon: const Icon(AppIcons.edit, color: Colors.white),
+                label: Text("Edit Profile",
+                    style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white)),
+                onPressed: () {
+                  nameController.text = vm.name.value;
+                  weightController.text = vm.weight.value;
+                  heightController.text = vm.height.value;
+                  vm.enableEdit();
+                },
+              ),
             ],
           ),
         );
@@ -199,17 +189,14 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
+        const SizedBox(height: 10),
       ],
     );
   }
 
-  Widget _buildEditableField(
-      String label,
-      String value,
-      TextEditingController controller,
-      bool editable, {
-        required Function(String) onChanged,
-      }) {
+  Widget _buildEditableField(String label, String value,
+      TextEditingController controller, bool editable,
+      {required Function(String) onChanged}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -247,6 +234,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
+        const SizedBox(height: 10),
       ],
     );
   }

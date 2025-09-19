@@ -9,6 +9,8 @@ import '../../core/constants/app_sizes.dart';
 import '../../core/utils/app_styles.dart';
 import '../../core/res/routes/route_name.dart';
 import '../../widgets/custom_appbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class WeightScreen extends StatefulWidget {
   const WeightScreen({super.key});
@@ -19,27 +21,49 @@ class WeightScreen extends StatefulWidget {
 
 class _WeightScreenState extends State<WeightScreen> {
   String selectedUnit = 'kg';
-  double weight = 60;
-  double? bmi;
+  double weight = 60; // ✅ default weight
+  double? bmi;        // ✅ numeric BMI
 
   void _navigateToDisease() {
-    Get.toNamed(RouteName.DiseaseScreen);
+    Get.toNamed(RouteName.DietScreen);
   }
 
   Future<void> _calculateBMI(double heightCm) async {
+    // 🔹 Convert weight for calculation only
     double weightKg = selectedUnit == 'kg' ? weight : (weight * 0.453592);
     double heightM = heightCm / 100;
+
     setState(() {
       bmi = weightKg / pow(heightM, 2);
     });
+
+    // Save locally
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setDouble('weight', weight); // Save selected weight
-    await prefs.setDouble('bmi', bmi!);      // Save calculated BMI
-    await prefs.setBool('onboarding_done', false); // Mark onboarding done
+    await prefs.setDouble('weight', weight); // ✅ save in selected unit
+    await prefs.setString('weight_unit', selectedUnit);
+    await prefs.setDouble('bmi', bmi!);
+    await prefs.setBool('onboarding_done', false);
+
+    // 🔥 Save to Firestore → inside profile
+    try {
+      final userId = FirebaseAuth.instance.currentUser?.uid ?? "test_user";
+
+      await FirebaseFirestore.instance.collection('users').doc(userId).set({
+        "profile": {
+          "weight": weight.round(),          // ✅ number
+          "weightUnit": selectedUnit,        // ✅ kg / lb
+          "bmi": bmi!.toStringAsFixed(1),    // ✅ keep as string (e.g., "22.5")
+        },
+        "updatedAt": FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+    } catch (e) {
+      debugPrint("⚠️ Error saving to Firestore: $e");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    // ✅ Always get normalized cm from HeightScreen
     final double heightCm = Get.arguments as double;
 
     return Scaffold(
@@ -116,9 +140,8 @@ class _WeightScreenState extends State<WeightScreen> {
                         width: 60,
                         margin: const EdgeInsets.symmetric(horizontal: 6),
                         decoration: BoxDecoration(
-                          gradient: isSelected
-                              ? AppColors.primaryGradient
-                              : null,
+                          gradient:
+                          isSelected ? AppColors.primaryGradient : null,
                           color: isSelected
                               ? null
                               : Colors.grey.shade300.withOpacity(0.3),
@@ -157,15 +180,13 @@ class _WeightScreenState extends State<WeightScreen> {
               ElevatedButton(
                 onPressed: () => _calculateBMI(heightCm),
                 style: AppStyles.buttonStyle,
-                child: Text(AppText.calculateBMI,
-                    style: AppStyles.buttonText),
+                child: Text(AppText.calculateBMI, style: AppStyles.buttonText),
               ),
 
               const SizedBox(height: AppSizes.defaultSpace),
 
               /// BMI Result Display
               if (bmi != null) ...[
-                /// Gauge
                 SizedBox(
                   height: 250,
                   child: SfRadialGauge(
@@ -178,19 +199,41 @@ class _WeightScreenState extends State<WeightScreen> {
                               startValue: 10,
                               endValue: 16,
                               color: Colors.red.shade900),
-                          GaugeRange(startValue: 16, endValue: 17, color: Colors.red),
-                          GaugeRange(startValue: 17, endValue: 18.5, color: Colors.orange),
-                          GaugeRange(startValue: 18.5, endValue: 25, color: Colors.teal),
-                          GaugeRange(startValue: 25, endValue: 30, color: Colors.yellow),
-                          GaugeRange(startValue: 30, endValue: 35, color: Colors.orangeAccent),
-                          GaugeRange(startValue: 35, endValue: 40, color: Colors.deepOrange),
-                          GaugeRange(startValue: 40, endValue: 50, color: Colors.redAccent),
+                          GaugeRange(
+                              startValue: 16,
+                              endValue: 17,
+                              color: Colors.red),
+                          GaugeRange(
+                              startValue: 17,
+                              endValue: 18.5,
+                              color: Colors.orange),
+                          GaugeRange(
+                              startValue: 18.5,
+                              endValue: 25,
+                              color: Colors.teal),
+                          GaugeRange(
+                              startValue: 25,
+                              endValue: 30,
+                              color: Colors.yellow),
+                          GaugeRange(
+                              startValue: 30,
+                              endValue: 35,
+                              color: Colors.orangeAccent),
+                          GaugeRange(
+                              startValue: 35,
+                              endValue: 40,
+                              color: Colors.deepOrange),
+                          GaugeRange(
+                              startValue: 40,
+                              endValue: 50,
+                              color: Colors.redAccent),
                         ],
                         pointers: <GaugePointer>[NeedlePointer(value: bmi!)],
                         annotations: <GaugeAnnotation>[
                           GaugeAnnotation(
                             widget: Text('BMI: ${bmi!.toStringAsFixed(1)}',
-                                style: AppStyles.headingWhite.copyWith(fontSize: 20)),
+                                style: AppStyles.headingWhite
+                                    .copyWith(fontSize: 20)),
                             angle: 90,
                             positionFactor: 0.7,
                           )
@@ -202,7 +245,6 @@ class _WeightScreenState extends State<WeightScreen> {
 
                 const SizedBox(height: AppSizes.defaultSpace),
 
-                /// BMI Category Card
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 500),
                   padding: const EdgeInsets.all(AppSizes.cardPadding),
@@ -227,17 +269,18 @@ class _WeightScreenState extends State<WeightScreen> {
                       Icon(_bmiIcon(bmi!), size: 50, color: Colors.white),
                       const SizedBox(height: 12),
                       Text(_bmiCategory(bmi!),
-                          style: AppStyles.screenTitle.copyWith(color: Colors.white)),
+                          style: AppStyles.screenTitle
+                              .copyWith(color: Colors.white)),
                       const SizedBox(height: 8),
                       Text(_bmiSuggestion(bmi!),
-                          textAlign: TextAlign.center, style: AppStyles.bodyWhite),
+                          textAlign: TextAlign.center,
+                          style: AppStyles.bodyWhite),
                     ],
                   ),
                 ),
 
                 const SizedBox(height: AppSizes.defaultSpace),
 
-                /// Next Button
                 ElevatedButton(
                   onPressed: _navigateToDisease,
                   style: AppStyles.buttonStyle,

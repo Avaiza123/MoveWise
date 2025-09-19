@@ -2,20 +2,38 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // 🔥 Primary Brand Colors
-  static const Color primaryColor = Color(0xFF00C9A7); // Vibrant teal-green
-  static const Color primaryColorDark = Color(0xFF007A6E); // Deep teal
-  static const Color accentColor = Color(0xFF6C63FF); // Energetic purple accent
+  static const Color primaryColor = Color(0xFF8C5A3C); // Vibrant teal-green
+  static const Color primaryColorDark = Color(0xFF6B4226); // Deep teal
+  static const Color accentColor = Color(0xFF6B4226); // Energetic purple accent
 
   // Buttons
   static const Color buttonColor = primaryColor;
-  static const Color gradientStart = Color(0xFF00C9A7); // Fresh green-teal
-  static const Color gradientEnd = Color(0xFF007991); // Dark teal
+  // static const Color gradientStart = Color(0xFF00C9A7); // Fresh green-teal
+  // static const Color gradientEnd = Color(0xFF007991); // Dark teal
   // Text
+  // Gradient (Brown Theme)
+  // static const Color gradientStart = Color(0xFF8B5E3C); // Warm coffee brown
+  // static const Color gradientEnd   = Color(0xFFD4A373); // Amber-golden complement
+  // Primary Gradient (Strong + Energetic)
+  static const Color gradientStart = Color(0xFF6B4226); // Deep Espresso Brown
+  static const Color gradientEnd   = Color(0xFFD4A373); // Soft Caramel Beige
+
+// Secondary Gradient (Modern + Smooth)
+  static const Color secondaryStart = Color(0xFF8C5A3C); // Warm Mocha
+  static const Color secondaryEnd   = Color(0xFFE6CBA8); // Creamy Sand
+
+// Accent Gradient (Energy + Motivation)
+  static const Color accentStart = Color(0xFFB87333); // Copper Glow
+  static const Color accentEnd   = Color(0xFFF5DEB3); // Wheat Beige
+  //
+  // static const Color gradientStart = Color(0xFF4E342E); // Deep chocolate brown
+  // static const Color gradientEnd   = Color(0xFFCC7722); // Copper / burnt orange
+
   static const Color textColor = Color(0xFF212121);
   static const Color textSubtleColor = Color(0xFF6D6D6D);
 
   // Backgrounds
-  static const Color backgroundColor = Color(0xFFF9FAFB);
+  static const Color backgroundColor = Color(0xFFFFFAF0);
   static const Color cardBackground = Colors.white;
 
   // Gradient for AppBar / Buttons / Highlights

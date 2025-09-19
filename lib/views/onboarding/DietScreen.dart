@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_sizes.dart';
 import '../../core/constants/app_texts.dart';
@@ -53,15 +54,30 @@ class _DietScreenState extends State<DietScreen> {
   Future<void> _savePreferences() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('onboarding_done', true);
-    await prefs.setStringList(
-        'diet_preferences', selectedRestrictions.toList());
+    await prefs.setStringList('diet_preferences', selectedRestrictions.toList());
+
+    try {
+      final userId = FirebaseAuth.instance.currentUser?.uid ?? "test_user";
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .set({
+        "profile": {
+          "diet_preferences": selectedRestrictions.toList(),
+        }
+      }, SetOptions(merge: true)); // ensures merging into profile
+    } catch (e) {
+      print("Error saving diet preferences: $e");
+    }
   }
+
 
   /// Navigate to SignupScreen after saving
   Future<void> _navigateNext() async {
     if (selectedRestrictions.isNotEmpty) {
       await _savePreferences();
-      Get.toNamed(RouteName.SignupScreen);
+      Get.toNamed(RouteName.DashboardScreen);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

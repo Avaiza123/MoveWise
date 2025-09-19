@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:movewise/core/constants/app_colors.dart';
 import 'package:movewise/core/constants/app_sizes.dart';
 
@@ -27,8 +28,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: leading,
         title: Text(
           title,
-          style: const TextStyle(
-            fontSize: AppSizes.s28,
+          style: GoogleFonts.amarante(
+            fontSize: AppSizes.s38,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -39,8 +40,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.primaryColor,
-                AppColors.accentColor,
+                AppColors.gradientStart,
+                AppColors.gradientEnd,
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
