@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -68,16 +69,34 @@ class _SignUpScreenState extends State<SignUpScreen>
     if (_formKey.currentState!.validate()) {
       setState(() => _isLoading = true);
       try {
+        // Create user with email & password
+        UserCredential userCredential =
         await _auth.createUserWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text(AppText.registrationSuccess)),
-        );
-        Get.offNamed(RouteName.GenderScreen);
-       // Get.offNamed(RouteName.LoginScreen);
+        final User? user = userCredential.user;
+
+        if (user != null) {
+          // 🔹 Create user document with UID as doc id
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .set({
+            'uid': user.uid,
+            'username': _usernameController.text.trim(),
+            'email': _emailController.text.trim(),
+            'createdAt': FieldValue.serverTimestamp(),
+          });
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text(AppText.registrationSuccess)),
+          );
+
+          // Navigate to GenderScreen
+          Get.offNamed(RouteName.GenderScreen);
+        }
       } on FirebaseAuthException catch (e) {
         String errorMessage = AppText.registrationFailed;
         if (e.code == 'email-already-in-use') {
@@ -96,6 +115,8 @@ class _SignUpScreenState extends State<SignUpScreen>
       }
     }
   }
+
+
 
   InputDecoration _buildInputDecoration(String hint, IconData icon) {
     return InputDecoration(

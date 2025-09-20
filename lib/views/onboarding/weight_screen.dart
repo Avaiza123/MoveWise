@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import '../../core/constants/app_colors.dart';
@@ -98,8 +99,8 @@ class _WeightScreenState extends State<WeightScreen> {
                 ],
               ),
 
-              const SizedBox(height: AppSizes.spaceBetweenItem),
-
+            //  const SizedBox(height: AppSizes.spaceBetweenItem),
+              const SizedBox(height: AppSizes.s20),
               /// Weight Display in Box
               Container(
                 padding: const EdgeInsets.symmetric(
@@ -108,7 +109,7 @@ class _WeightScreenState extends State<WeightScreen> {
                 ),
                 decoration: BoxDecoration(
                   gradient: AppColors.primaryGradient,
-                  borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                  borderRadius: BorderRadius.circular(AppSizes.s180),
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.primaryColor.withOpacity(0.3),
@@ -122,11 +123,11 @@ class _WeightScreenState extends State<WeightScreen> {
                   style: AppStyles.screenTitle.copyWith(color: Colors.white),
                 ),
               ),
-              const SizedBox(height: AppSizes.spaceBetweenItem),
-
+             // const SizedBox(height: AppSizes.spaceBetweenItem),
+              const SizedBox(height: AppSizes.s20),
               /// Horizontal Weight Selector
               SizedBox(
-                height: 100,
+                height: 80,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 500,
@@ -136,15 +137,15 @@ class _WeightScreenState extends State<WeightScreen> {
                     return GestureDetector(
                       onTap: () => setState(() => weight = value),
                       child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 250),
+                        duration: const Duration(milliseconds: 200),
                         width: 60,
                         margin: const EdgeInsets.symmetric(horizontal: 6),
                         decoration: BoxDecoration(
                           gradient:
-                          isSelected ? AppColors.primaryGradient : null,
+                          isSelected ? AppColors.primaryGradient.withOpacity(0.8) : null,
                           color: isSelected
                               ? null
-                              : Colors.grey.shade300.withOpacity(0.3),
+                              : Colors.grey.shade500.withOpacity(0.3),
                           borderRadius:
                           BorderRadius.circular(AppSizes.cardRadius),
                           boxShadow: isSelected
@@ -174,14 +175,43 @@ class _WeightScreenState extends State<WeightScreen> {
                 ),
               ),
 
-              const SizedBox(height: AppSizes.spaceBetweenItem),
+              const SizedBox(height: AppSizes.s20),
 
               /// Calculate BMI Button
-              ElevatedButton(
-                onPressed: () => _calculateBMI(heightCm),
-                style: AppStyles.buttonStyle,
-                child: Text(AppText.calculateBMI, style: AppStyles.buttonText),
+              Center(
+                child: SizedBox(
+                  width: 240, // adjust width like Next button
+                  height: 60, // adjust height like Next button
+                  child: ElevatedButton(
+                    onPressed: () => _calculateBMI(heightCm),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                        gradient: AppColors.primaryGradient,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          AppText.calculateBMI,
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
+
 
               const SizedBox(height: AppSizes.defaultSpace),
 
@@ -281,16 +311,44 @@ class _WeightScreenState extends State<WeightScreen> {
 
                 const SizedBox(height: AppSizes.defaultSpace),
 
-                ElevatedButton(
-                  onPressed: _navigateToDisease,
-                  style: AppStyles.buttonStyle,
-                  child: Text(AppText.next, style: AppStyles.buttonText),
+      Center(
+        child: SizedBox(
+          width: 140, // same width as Next button
+          height: 60, // same height as Next button
+          child: ElevatedButton(
+            onPressed: _navigateToDisease,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+            ),
+            child: Ink(
+              decoration: BoxDecoration(
+                gradient: AppColors.primaryGradient,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  AppText.next,
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
-              ],
-
-              const SizedBox(height: AppSizes.bottomSpace),
-            ],
+              ),
+            ),
           ),
+        ),
+      ),
+
+
+      const SizedBox(height: AppSizes.bottomSpace),
+            ],
+         ] ),
         ),
       ),
     );

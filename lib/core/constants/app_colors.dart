@@ -5,7 +5,7 @@ class AppColors {
   static const Color primaryColor = Color(0xFF8C5A3C); // Vibrant teal-green
   static const Color primaryColorDark = Color(0xFF6B4226); // Deep teal
   static const Color accentColor = Color(0xFF6B4226); // Energetic purple accent
-
+  static const Color lightBlue = Color(0xFFADD8E6);
   // Buttons
   static const Color buttonColor = primaryColor;
   // static const Color gradientStart = Color(0xFF00C9A7); // Fresh green-teal

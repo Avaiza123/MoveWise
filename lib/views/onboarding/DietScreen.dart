@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_sizes.dart';
 import '../../core/constants/app_texts.dart';
@@ -30,7 +31,6 @@ class _DietScreenState extends State<DietScreen> {
     {'name': AppText.dietNoRestrictions, 'icon': AppIcons.noRestrictions},
   ];
 
-  /// Toggle selection logic
   void _toggleRestriction(String restriction) {
     setState(() {
       if (restriction == AppText.dietNoRestrictions) {
@@ -50,7 +50,6 @@ class _DietScreenState extends State<DietScreen> {
     });
   }
 
-  /// Save onboarding done + diet preferences in cache
   Future<void> _savePreferences() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('onboarding_done', true);
@@ -58,26 +57,20 @@ class _DietScreenState extends State<DietScreen> {
 
     try {
       final userId = FirebaseAuth.instance.currentUser?.uid ?? "test_user";
-
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(userId)
-          .set({
+      await FirebaseFirestore.instance.collection('users').doc(userId).set({
         "profile": {
           "diet_preferences": selectedRestrictions.toList(),
         }
-      }, SetOptions(merge: true)); // ensures merging into profile
+      }, SetOptions(merge: true));
     } catch (e) {
       print("Error saving diet preferences: $e");
     }
   }
 
-
-  /// Navigate to SignupScreen after saving
   Future<void> _navigateNext() async {
     if (selectedRestrictions.isNotEmpty) {
       await _savePreferences();
-      Get.toNamed(RouteName.DashboardScreen);
+      Get.toNamed(RouteName.LoginScreen);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -96,136 +89,156 @@ class _DietScreenState extends State<DietScreen> {
     }
   }
 
+  Widget _buildRestrictionCard(String name, IconData icon) {
+    final isSelected = selectedRestrictions.contains(name);
+    final noRestrictionsSelected =
+    selectedRestrictions.contains(AppText.dietNoRestrictions);
+    final isDisabled = noRestrictionsSelected && name != AppText.dietNoRestrictions;
+
+    return IgnorePointer(
+      ignoring: isDisabled,
+      child: Opacity(
+        opacity: isDisabled ? 0.4 : 1.0,
+        child: GestureDetector(
+          onTap: () => _toggleRestriction(name),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 350),
+            curve: Curves.easeOut,
+            margin: const EdgeInsets.symmetric(vertical: AppSizes.gapSmall),
+            padding: const EdgeInsets.symmetric(
+              vertical: AppSizes.md,
+              horizontal: AppSizes.lg,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              gradient: isSelected
+                  ? const LinearGradient(
+                colors: [AppColors.gradientStart, AppColors.gradientEnd],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              )
+                  : null,
+              color: isSelected ? null : AppColors.white,
+              border: Border.all(
+                color: isSelected ? Colors.transparent : Colors.grey.shade300,
+                width: 1.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: isSelected
+                      ? AppColors.primaryColor.withOpacity(0.3)
+                      : Colors.grey.withOpacity(0.1),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: AppSizes.iconLg + 12,
+                  height: AppSizes.iconLg + 12,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: isSelected ? AppColors.primaryColor : Colors.grey.shade300,
+                  ),
+                  child: Icon(
+                    icon,
+                    color: isSelected ? AppColors.white : AppColors.primaryColorDark,
+                    size: AppSizes.iconLg,
+                  ),
+                ),
+
+                const SizedBox(width: AppSizes.gapMedium),
+                Expanded(
+                  child: Text(
+                    name,
+                    style: GoogleFonts.acme(
+                      fontSize: AppSizes.fontSizeLg,
+                      fontWeight: FontWeight.w600,
+                      color: isSelected ? AppColors.white : AppColors.primaryColorDark,
+                    ),
+                  ),
+                ),
+                Icon(
+                  isSelected ? AppIcons.checkCircle : AppIcons.radioUnchecked,
+                  color: isSelected ? AppColors.white : Colors.grey,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final bool noRestrictionsSelected =
-    selectedRestrictions.contains(AppText.dietNoRestrictions);
-
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: const CustomAppBar(title: AppText.selectDietTitle),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: AppSizes.paddingLarge,
-          vertical: AppSizes.paddingLarge,
+          horizontal: AppSizes.lg,
+          vertical: AppSizes.lg,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppText.dietQuestion, style: AppStyles.screenTitle),
-            const SizedBox(height: AppSizes.gapLarge),
-
-            /// Diet Restrictions List
+            Text(
+              AppText.dietQuestion,
+              style: GoogleFonts.aboreto(
+                fontSize: 23,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            const SizedBox(height: AppSizes.gapxLarge),
             Expanded(
               child: ListView.builder(
                 itemCount: dietRestrictions.length,
                 itemBuilder: (context, index) {
                   final restriction = dietRestrictions[index];
-                  final String name = restriction['name'];
-                  final IconData icon = restriction['icon'];
-                  final bool isSelected = selectedRestrictions.contains(name);
-                  final bool isDisabled =
-                      noRestrictionsSelected && name != AppText.dietNoRestrictions;
-
-                  return IgnorePointer(
-                    ignoring: isDisabled,
-                    child: Opacity(
-                      opacity: isDisabled ? 0.4 : 1.0,
-                      child: GestureDetector(
-                        onTap: () => _toggleRestriction(name),
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(vertical: AppSizes.gapSmall),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: AppSizes.paddingLarge,
-                            horizontal: AppSizes.paddingMediumLarge,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSizes.cardRadius),
-                            gradient: isSelected
-                                ? const LinearGradient(
-                              colors: [
-                                AppColors.gradientStart,
-                                AppColors.gradientEnd,
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            )
-                                : null,
-                            color: isSelected ? null : AppColors.cardBackground,
-                            border: Border.all(
-                              color: isSelected
-                                  ? Colors.transparent
-                                  : Colors.grey.shade300,
-                              width: 2,
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                icon,
-                                color: isSelected
-                                    ? AppColors.white
-                                    : AppColors.primaryColorDark,
-                                size: AppSizes.iconLg,
-                              ),
-                              const SizedBox(width: AppSizes.gapMedium),
-                              Expanded(
-                                child: Text(
-                                  name,
-                                  style: AppStyles.heading.copyWith(
-                                    color: isSelected
-                                        ? AppColors.white
-                                        : AppColors.primaryColorDark,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: AppSizes.fontSizeLg,
-                                  ),
-                                ),
-                              ),
-                              Icon(
-                                isSelected
-                                    ? AppIcons.checkCircle
-                                    : AppIcons.radioUnchecked,
-                                color: isSelected
-                                    ? AppColors.white
-                                    : Colors.grey,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                  return _buildRestrictionCard(
+                    restriction['name'],
+                    restriction['icon'],
                   );
                 },
               ),
             ),
-
             const SizedBox(height: AppSizes.gapMedium),
-
-            /// Continue Button
             Center(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: AppColors.primaryGradient,
-                  borderRadius: BorderRadius.circular(AppSizes.cardRadius),
-                ),
+              child: SizedBox(
+                width: 190,
+                height: 60,
                 child: ElevatedButton(
                   onPressed: _navigateNext,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                      borderRadius: BorderRadius.circular(50),
                     ),
                   ),
-                  child: Text(
-                    AppText.continueButton,
-                    style: AppStyles.buttonText.copyWith(color: Colors.white),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      gradient: AppColors.primaryGradient,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        AppText.continueButton,
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-
             const SizedBox(height: AppSizes.gapLarge),
           ],
         ),

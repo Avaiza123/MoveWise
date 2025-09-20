@@ -15,7 +15,6 @@ class RouteName{
   static const GoalScreen= '/goal_screen';
   static const HeightScreen= '/height_screen';
   static const WeightScreen= '/weight_screen';
-  static const DiseaseScreen= '/disease_screen';
   static const DietScreen= '/diet_screen';
   static const LoginScreen= '/login_screen';
   static const SignupScreen= '/signup_screen';

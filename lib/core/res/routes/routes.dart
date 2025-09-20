@@ -8,7 +8,6 @@ import 'package:movewise/views/dashboard/dashboard_screen.dart';
 import 'package:movewise/views/dashboard/profile.dart';
 import 'package:movewise/views/nutrition/nutrition_screen.dart';
 import 'package:movewise/views/onboarding/DietScreen.dart';
-import 'package:movewise/views/onboarding/disease_inspection_screen.dart';
 import 'package:movewise/views/onboarding/goal_screen.dart';
 import 'package:movewise/views/onboarding/height_screen.dart';
 import 'package:movewise/views/onboarding/weight_screen.dart';
@@ -45,10 +44,6 @@ class AppRoute{
     GetPage(
         name: RouteName.WeightScreen,
         page: () => const WeightScreen()
-    ),
-    GetPage(
-        name: RouteName.DiseaseScreen,
-        page: () => const DiseaseScreen()
     ),
     GetPage(
         name: RouteName.DietScreen,

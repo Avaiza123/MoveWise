@@ -42,7 +42,7 @@ class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateM
       selectedGoals.contains(goal)
           ? selectedGoals.remove(goal)
           : selectedGoals.add(goal);
-      _animationController.forward(from: 0); // Animate on tap
+      _animationController.forward(from: 0);
     });
   }
 
@@ -89,7 +89,7 @@ class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateM
     }
   }
 
-  Widget _buildGoalCard(String goal) {
+  Widget _buildGoalCard(String goal, IconData icon) {
     final isSelected = selectedGoals.contains(goal);
 
     return GestureDetector(
@@ -103,7 +103,7 @@ class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateM
           horizontal: AppSizes.mdLg,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50), // pill shape
+          borderRadius: BorderRadius.circular(50),
           gradient: isSelected
               ? const LinearGradient(
             colors: [AppColors.gradientStart, AppColors.gradientEnd],
@@ -127,21 +127,36 @@ class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateM
           ],
         ),
         child: Row(
-          //mainAxisAlignment: MainAxisAlignment.center, // center content
           children: [
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isSelected
+                    ? Colors.white.withOpacity(0.2)
+                    : Colors.grey.shade200,
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Icon(
+                icon,
+                color: isSelected ? Colors.white : AppColors.primaryColor,
+                size: 28,
+              ),
+            ),
+            const SizedBox(width: AppSizes.md),
+            Expanded(
+              child: Text(
+                goal,
+                style: GoogleFonts.acme(
+                  fontSize: AppSizes.fontSizeLg,
+                  color: isSelected ? AppColors.white : AppColors.textColor,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
             Icon(
               isSelected ? Icons.check_circle : Icons.circle_outlined,
               color: isSelected ? AppColors.white : Colors.grey[600],
               size: 26,
-            ),
-            const SizedBox(width: AppSizes.md),
-            Text(
-              goal,
-              style: GoogleFonts.acme(
-                fontSize: AppSizes.fontSizeLg,
-                color: isSelected ? AppColors.white : AppColors.textColor,
-                fontWeight: FontWeight.w600,
-              ),
             ),
           ],
         ),
@@ -153,6 +168,15 @@ class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     final fieldWidth = MediaQuery.of(context).size.width * 0.85;
 
+    // Map goals to icons
+    final Map<String, IconData> goalIcons = {
+      "Lose Weight": Icons.fitness_center,
+      "Build Muscle": Icons.sports_martial_arts,
+      "Increase Flexibility": Icons.accessibility_new,
+      "Improve Posture": Icons.directions_run,
+      "Stay Fit": Icons.health_and_safety,
+    };
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: const CustomAppBar(title: AppText.selectYourGoalTitle),
@@ -161,26 +185,23 @@ class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateM
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppText.fitnessQuestion,
-                style: GoogleFonts.aboreto(fontSize: 24, fontWeight: FontWeight.w900)),
+            Text(
+              AppText.fitnessQuestion,
+              style: GoogleFonts.aboreto(fontSize: 24, fontWeight: FontWeight.w900),
+            ),
             const SizedBox(height: AppSizes.lg),
-
             Expanded(
-              child: Center(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: AppText.fitnessGoals.length,
-                  itemBuilder: (context, index) {
-                    final goal = AppText.fitnessGoals[index];
-                    return _buildGoalCard(goal);
-                  },
-                ),
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: AppText.fitnessGoals.length,
+                itemBuilder: (context, index) {
+                  final goal = AppText.fitnessGoals[index];
+                  final icon = goalIcons[goal] ?? Icons.star;
+                  return _buildGoalCard(goal, icon);
+                },
               ),
             ),
-
             const SizedBox(height: AppSizes.md),
-
-            // Oval Gradient Continue Button
             Center(
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 400),

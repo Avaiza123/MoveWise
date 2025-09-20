@@ -5,7 +5,11 @@ class AppIcons {
   static const IconData male = Icons.male;
   static const IconData female = Icons.female;
   static const IconData preferNotToSay = Icons.help_outline_rounded;
-
+  static const IconData user = Icons.person_outline;
+  static const IconData help = Icons.help_outline;
+  static const IconData water = Icons.local_drink_outlined;
+  static const IconData juice = Icons.local_florist_outlined;
+  static const IconData tea = Icons.free_breakfast_outlined;
   // General UI Icons
   static const IconData back = Icons.arrow_back_ios_new_rounded;
   static const IconData next = Icons.arrow_forward_ios_rounded;
@@ -56,9 +60,9 @@ class AppIcons {
   static const IconData phone = Icons.phone;
   static const IconData google = Icons.g_mobiledata;
   static const IconData chatbot = Icons.chat_bubble_outline;
-  static const IconData water = Icons.local_drink;
-  static const IconData juice = Icons.local_cafe;
-  static const IconData tea = Icons.emoji_food_beverage;
+  // static const IconData water = Icons.local_drink;
+  // static const IconData juice = Icons.local_cafe;
+  // static const IconData tea = Icons.emoji_food_beverage;
   static const IconData search = Icons.search;
   static const IconData add = Icons.add_circle;
   static const IconData delete = Icons.delete;

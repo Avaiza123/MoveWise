@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movewise/core/constants/app_colors.dart';
 import 'package:movewise/core/constants/app_sizes.dart';
 import 'package:movewise/core/constants/app_texts.dart';
-import 'package:movewise/core/constants/app_icons.dart';
+import 'package:movewise/core/constants/app_images.dart';
 import 'package:movewise/core/utils/app_styles.dart';
 import 'package:movewise/core/res/routes/route_name.dart';
 import '../../widgets/custom_appbar.dart';
@@ -42,7 +42,7 @@ class _GenderScreenState extends State<GenderScreen>
 
   void _selectGender(String gender) {
     setState(() {
-      selectedGender = gender;
+      selectedGender = selectedGender == gender ? null : gender;
       _controller.forward(from: 0);
     });
   }
@@ -70,7 +70,7 @@ class _GenderScreenState extends State<GenderScreen>
         SnackBar(
           content: Row(
             children: [
-              const Icon(AppIcons.info, color: Colors.white),
+              const Icon(Icons.info, color: Colors.white),
               const SizedBox(width: AppSizes.sm),
               Expanded(
                 child: Text(
@@ -80,7 +80,7 @@ class _GenderScreenState extends State<GenderScreen>
               ),
             ],
           ),
-          backgroundColor: AppColors.buttonColor,
+          backgroundColor: AppColors.primaryColor,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSizes.s48),
@@ -96,60 +96,50 @@ class _GenderScreenState extends State<GenderScreen>
 
   Widget _buildGenderCard({
     required String label,
-    required IconData icon,
+    required String imagePath,
   }) {
     final isSelected = selectedGender == label;
+    final borderColor = isSelected ? AppColors.primaryColor : Colors.grey.shade200;
 
     return GestureDetector(
       onTap: () => _selectGender(label),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),
         curve: Curves.easeOut,
-        width: 300, // Centered and smaller width
-        // Centered and smaller width
-        padding: const EdgeInsets.symmetric(
-          vertical: AppSizes.md,
-          horizontal: AppSizes.mdLg,
-        ),
-        margin: const EdgeInsets.symmetric(vertical: AppSizes.sm),
+        width: 160,
+        height: 200,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50), // Rounded pill shape
-          color: isSelected
-              ? AppColors.primaryColor.withOpacity(0.4)
-              : Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.white,
           border: Border.all(
-            color: isSelected ? Colors.transparent : Colors.grey.shade300,
-            width: 1.5,
+            color: borderColor,
+            width: isSelected ? 3.0 : 1.5,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12,
-              blurRadius: 6,
-              offset: const Offset(0, 3),
+              color: isSelected
+                  ? borderColor.withOpacity(0.3)
+                  : Colors.black.withOpacity(0.1),
+              blurRadius: isSelected ? 10 : 4,
+              offset: const Offset(0, 4),
             ),
-            if (isSelected)
-              BoxShadow(
-                color: AppColors.primaryColor.withOpacity(0.4),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
           ],
         ),
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.center, // Center content
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: AppSizes.iconLg,
-              color: isSelected ? AppColors.primaryColorDark : Colors.grey[800],
+            Image.asset(
+              imagePath,
+              height: 100,
+              fit: BoxFit.contain,
             ),
-            const SizedBox(width: AppSizes.md),
+            const SizedBox(height: AppSizes.md),
             Text(
               label,
-              style: GoogleFonts.acme(
+              style: GoogleFonts.poppins(
                 fontSize: AppSizes.fontSizeLg,
                 fontWeight: FontWeight.w600,
-                color: isSelected ? AppColors.primaryColorDark : Colors.grey[900],
+                color: isSelected ? AppColors.primaryColor : Colors.grey[900],
               ),
             ),
           ],
@@ -160,74 +150,117 @@ class _GenderScreenState extends State<GenderScreen>
 
   @override
   Widget build(BuildContext context) {
-    final fieldWidth = MediaQuery.of(context).size.width * 0.85;
-
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: const CustomAppBar(title: AppText.selectYourGenderTitle),
+      appBar: const CustomAppBar(
+        title: AppText.gender,
+        centerTitle: true,
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(AppSizes.xl),
+        padding: const EdgeInsets.symmetric(horizontal: AppSizes.xl),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppText.genderQuestion,
-                style: GoogleFonts.aboreto(
-                    fontSize: 28, fontWeight: FontWeight.bold)),
-            const SizedBox(height: AppSizes.md),
-            Text(AppText.genderSubText,
-                style: GoogleFonts.poppins(
-                    fontSize: 16, color: Colors.grey[700])),
             const SizedBox(height: AppSizes.xl),
-
-            // Gender Options Centered
-            Center(
-              child: Column(
+            Text(
+              'Which option best describes you?',
+              style: GoogleFonts.aboreto(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: AppSizes.md),
+            Container(
+              padding: const EdgeInsets.all(AppSizes.lg),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
                 children: [
-                  _buildGenderCard(label: AppText.genderMale, icon: AppIcons.male),
-                  _buildGenderCard(label: AppText.genderFemale, icon: AppIcons.female),
-                  _buildGenderCard(
-                      label: AppText.genderPreferNotToSay,
-                      icon: AppIcons.preferNotToSay),
+                  Icon(Icons.lightbulb_outline, color: Colors.yellow.shade700),
+                  const SizedBox(width: AppSizes.md),
+                  Expanded(
+                    child: Text(
+                      'Select your gender to continue your journey and unlock a personalized experience designed just for you.',
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        color: Colors.grey.shade700,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
+            const SizedBox(height: AppSizes.xl),
+
+            // Male/Female options
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildGenderCard(
+                  label: 'Man',
+                  imagePath: AppImages.male,
+                ),
+                const SizedBox(height: AppSizes.s12),
+                _buildGenderCard(
+                  label: 'Woman',
+                  imagePath: AppImages.female,
+                ),
+              ],
+            ),
+
             const SizedBox(height: AppSizes.lg),
 
-            // Continue Button Oval
+            // Prefer not to say
             Center(
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 400),
-                width: fieldWidth * 0.6, // Oval
-                height: 56,
-                decoration: BoxDecoration(
-                  gradient: AppColors.primaryGradient,
-                  borderRadius: BorderRadius.circular(50), // Oval
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primaryColor.withOpacity(0.4),
-                      blurRadius: 12,
-                      offset: const Offset(0, 6),
-                    ),
-                  ],
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Checkbox(
+                    value: selectedGender == 'Prefer not to say',
+                    onChanged: (bool? value) {
+                      _selectGender('Prefer not to say');
+                    },
+                    activeColor: AppColors.primaryColor,
+                    checkColor: Colors.white,
+                  ),
+                  Text(
+                    'Prefer not to say',
+                    style: GoogleFonts.poppins(fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: AppSizes.sm),
+
+            // Next button
+            Center(
+              child: SizedBox(
+                width: 140,
+                height: 60,
                 child: ElevatedButton(
                   onPressed: _navigateNext,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
+                    backgroundColor: AppColors.primaryColor,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
                   ),
                   child: Text(
-                    AppText.continueButton,
+                    'Next',
                     style: GoogleFonts.poppins(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
+
+            const SizedBox(height: AppSizes.xl),
           ],
         ),
       ),

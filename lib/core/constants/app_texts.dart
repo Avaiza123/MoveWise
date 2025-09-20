@@ -41,6 +41,7 @@ class AppText {
   static const String heightDesc = "This helps us to create your personalized plan.";
   static const String selectYourGenderTitle = 'Select your gender';
   static const String genderQuestion = 'Who are you?';
+  static const String gender = 'Gender';
   static const String genderSubText =
       'Let us know your gender to personalize your experience.';
   static const String genderMale = 'Male';
@@ -123,7 +124,7 @@ class AppText {
   static const String confirmPassword = "Confirm Password";
   static const String confirmPasswordHint = "Re-enter your password";
   static const String passwordMismatch = "Passwords do not match";
-  static const String nutritionCounter = "Nutrition Counter";
+  static const String nutritionCounter = "🥗 Nutrition Counter";
   static const String searchFoodHint = "Enter food you eat 😉😋";
   static const String searchResults = "Search Results";
   static const String dailyPicks = "Your Daily Picks";

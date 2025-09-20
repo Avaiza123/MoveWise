@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         title: Text(
           title,
           style: GoogleFonts.amarante(
-            fontSize: AppSizes.s38,
+            fontSize: AppSizes.s28,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),

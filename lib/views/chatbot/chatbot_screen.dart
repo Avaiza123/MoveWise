@@ -16,7 +16,7 @@ class ChatBotScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lilac.withOpacity(0.93),
+      backgroundColor: AppColors.backgroundColor.withOpacity(0.93),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
         child: CustomAppBar(
@@ -104,7 +104,7 @@ class ChatBotScreen extends StatelessWidget {
                 : const SizedBox()),
 
             /// Input field
-            Container(
+    Container(
               padding: const EdgeInsets.symmetric(
                   horizontal: AppSizes.md, vertical: AppSizes.sm),
               decoration: BoxDecoration(
@@ -131,7 +131,7 @@ class ChatBotScreen extends StatelessWidget {
                       decoration: InputDecoration(
                         hintText: "Ask me anything...",
                         hintStyle: TextStyle(
-                            color: Colors.grey.shade600, fontSize: 15),
+                            color: Colors.grey.shade800, fontSize: 15),
                         border: InputBorder.none,
                       ),
                       onSubmitted: (value) {
