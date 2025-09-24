@@ -81,6 +81,8 @@ class AppIcons {
   static const IconData username = Icons.person_outline;
 
   static const IconData height = Icons.height;
+  static const IconData question = Icons.question_mark_rounded;
+
 
   // Actions
   static const IconData edit = Icons.edit;

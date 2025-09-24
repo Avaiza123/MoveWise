@@ -18,7 +18,8 @@ class GoalScreen extends StatefulWidget {
   State<GoalScreen> createState() => _GoalScreenState();
 }
 
-class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateMixin {
+class _GoalScreenState extends State<GoalScreen>
+    with SingleTickerProviderStateMixin {
   final Set<String> selectedGoals = {};
   late AnimationController _animationController;
 
@@ -39,12 +40,31 @@ class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateM
 
   void _toggleGoal(String goal) {
     setState(() {
-      selectedGoals.contains(goal)
-          ? selectedGoals.remove(goal)
-          : selectedGoals.add(goal);
-      _animationController.forward(from: 0);
+      if (goal == "Nothing Special") {
+        if (selectedGoals.contains("Nothing Special")) {
+          // ✅ Deselect "Nothing Special" if tapped again
+          selectedGoals.remove("Nothing Special");
+        } else {
+          // ✅ Select "Nothing Special" and clear others
+          selectedGoals.clear();
+          selectedGoals.add("Nothing Special");
+        }
+      } else {
+        // ✅ If "Nothing Special" was selected, clear it
+        if (selectedGoals.contains("Nothing Special")) {
+          selectedGoals.clear();
+        }
+
+        // ✅ Toggle normal goals
+        if (selectedGoals.contains(goal)) {
+          selectedGoals.remove(goal);
+        } else {
+          selectedGoals.add(goal);
+        }
+      }
     });
   }
+
 
   Future<void> _handleNavigation() async {
     if (selectedGoals.isNotEmpty) {
@@ -91,72 +111,67 @@ class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateM
 
   Widget _buildGoalCard(String goal, IconData icon) {
     final isSelected = selectedGoals.contains(goal);
+    final isNothingSpecialSelected = selectedGoals.contains("Nothing Special");
+
+    // ✅ Disable and grey out other goals if "Nothing Special" is active
+    final isDisabled = isNothingSpecialSelected && goal != "Nothing Special";
 
     return GestureDetector(
-      onTap: () => _toggleGoal(goal),
+      onTap: isDisabled ? null : () => _toggleGoal(goal),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 350),
-        curve: Curves.easeOut,
-        margin: const EdgeInsets.symmetric(vertical: AppSizes.sm),
-        padding: const EdgeInsets.symmetric(
-          vertical: AppSizes.md,
-          horizontal: AppSizes.mdLg,
-        ),
+        duration: const Duration(milliseconds: 300),
+        padding: const EdgeInsets.all(AppSizes.md),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          gradient: isSelected
-              ? const LinearGradient(
-            colors: [AppColors.gradientStart, AppColors.gradientEnd],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          )
-              : null,
-          color: isSelected ? null : AppColors.white,
+          color: isDisabled
+              ? Colors.grey.shade200 // 🔹 greyed out if disabled
+              : isSelected
+              ? AppColors.primaryColor
+              : AppColors.white,
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isSelected ? Colors.transparent : Colors.grey.shade300,
-            width: 1.5,
+            color: isDisabled
+                ? Colors.grey.shade400 // 🔹 grey border when disabled
+                : isSelected
+                ? AppColors.primaryColor
+                : Colors.grey.shade300,
+            width: 2,
           ),
           boxShadow: [
-            BoxShadow(
-              color: isSelected
-                  ? AppColors.primaryColor.withOpacity(0.3)
-                  : Colors.grey.withOpacity(0.15),
-              blurRadius: 8,
-              offset: const Offset(0, 4),
-            ),
+            if (!isDisabled)
+              BoxShadow(
+                color: isSelected
+                    ? AppColors.primaryColor.withOpacity(0.35)
+                    : Colors.grey.withOpacity(0.15),
+                blurRadius: isSelected ? 10 : 6,
+                offset: const Offset(0, 4),
+              ),
           ],
         ),
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: isSelected
-                    ? Colors.white.withOpacity(0.2)
-                    : Colors.grey.shade200,
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Icon(
-                icon,
-                color: isSelected ? Colors.white : AppColors.primaryColor,
-                size: 28,
-              ),
-            ),
-            const SizedBox(width: AppSizes.md),
-            Expanded(
-              child: Text(
-                goal,
-                style: GoogleFonts.acme(
-                  fontSize: AppSizes.fontSizeLg,
-                  color: isSelected ? AppColors.white : AppColors.textColor,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
             Icon(
-              isSelected ? Icons.check_circle : Icons.circle_outlined,
-              color: isSelected ? AppColors.white : Colors.grey[600],
-              size: 26,
+              icon,
+              size: 45,
+              color: isDisabled
+                  ? Colors.grey.shade400 // 🔹 greyed out icon
+                  : isSelected
+                  ? Colors.white
+                  : Colors.grey[700],
+            ),
+            const SizedBox(height: AppSizes.sm),
+            Text(
+              goal,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.acme(
+                fontSize: AppSizes.fontSizeLg,
+                fontWeight: FontWeight.w600,
+                color: isDisabled
+                    ? Colors.grey.shade500 // 🔹 greyed out text
+                    : isSelected
+                    ? Colors.white
+                    : AppColors.textColor,
+              ),
             ),
           ],
         ),
@@ -164,49 +179,56 @@ class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateM
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-    final fieldWidth = MediaQuery.of(context).size.width * 0.85;
+    final fieldWidth = MediaQuery.of(context).size.width * 0.65;
 
-    // Map goals to icons
     final Map<String, IconData> goalIcons = {
       "Lose Weight": Icons.fitness_center,
       "Build Muscle": Icons.sports_martial_arts,
       "Increase Flexibility": Icons.accessibility_new,
       "Improve Posture": Icons.directions_run,
       "Stay Fit": Icons.health_and_safety,
+      "Nothing Special": Icons.sentiment_neutral,
     };
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: const CustomAppBar(title: AppText.selectYourGoalTitle),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppSizes.lg, vertical: AppSizes.lg),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSizes.md, vertical: AppSizes.md), // less padding
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               AppText.fitnessQuestion,
-              style: GoogleFonts.aboreto(fontSize: 24, fontWeight: FontWeight.w900),
+              style: GoogleFonts.aboreto(
+                  fontSize: 24, fontWeight: FontWeight.w900),
             ),
-            const SizedBox(height: AppSizes.lg),
+            const SizedBox(height: AppSizes.sm),
+
+            // ✅ Grid with tighter spacing and bigger squares
             Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: AppText.fitnessGoals.length,
-                itemBuilder: (context, index) {
-                  final goal = AppText.fitnessGoals[index];
-                  final icon = goalIcons[goal] ?? Icons.star;
-                  return _buildGoalCard(goal, icon);
-                },
+              child: GridView.count(
+                crossAxisCount: 2,
+                childAspectRatio: 1.1, // ✅ squares like goals
+                crossAxisSpacing: AppSizes.lg,
+                mainAxisSpacing: AppSizes.lg, // 🔹 reduced vertical gap
+                children: goalIcons.entries.map((entry) {
+                  return _buildGoalCard(entry.key, entry.value);
+                }).toList(),
               ),
             ),
-            const SizedBox(height: AppSizes.md),
+
+            const SizedBox(height: AppSizes.s4),
             Center(
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 400),
-                width: fieldWidth * 0.6,
-                height: 56,
+                width: fieldWidth * 0.7, // button slightly bigger
+                height: 58,
                 decoration: BoxDecoration(
                   gradient: AppColors.primaryGradient,
                   borderRadius: BorderRadius.circular(50),
@@ -230,12 +252,14 @@ class _GoalScreenState extends State<GoalScreen> with SingleTickerProviderStateM
                   child: Text(
                     AppText.continueButton,
                     style: GoogleFonts.poppins(
-                        fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: AppSizes.lg),
+            const SizedBox(height: AppSizes.md),
           ],
         ),
       ),

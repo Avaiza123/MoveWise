@@ -95,7 +95,7 @@ class _SignUpScreenState extends State<SignUpScreen>
           );
 
           // Navigate to GenderScreen
-          Get.offNamed(RouteName.GenderScreen);
+          Get.offNamed(RouteName.LoginScreen);
         }
       } on FirebaseAuthException catch (e) {
         String errorMessage = AppText.registrationFailed;

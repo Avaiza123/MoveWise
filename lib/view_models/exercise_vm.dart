@@ -58,4 +58,10 @@ class ExerciseViewModel {
 
     return data.map((json) => Exercise.fromJson(json)).toList();
   }
+  Future<List<Exercise>> loadExercisesFromJson(String path) async {
+    final data = await rootBundle.loadString(path);
+    final List<dynamic> jsonList = json.decode(data);
+    return jsonList.map((e) => Exercise.fromJson(e)).toList();
+  }
+
 }

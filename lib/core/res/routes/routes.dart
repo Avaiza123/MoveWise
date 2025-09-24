@@ -2,10 +2,14 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:movewise/core/res/routes/route_name.dart';
+import 'package:movewise/views/Me/about.dart';
+import 'package:movewise/views/Me/me.dart';
+import 'package:movewise/views/Me/qna.dart';
 import 'package:movewise/views/auth/LoginScreen.dart';
 import 'package:movewise/views/auth/SignupScreen.dart';
+import 'package:movewise/views/chatbot/chatbot_screen.dart';
 import 'package:movewise/views/dashboard/dashboard_screen.dart';
-import 'package:movewise/views/dashboard/profile.dart';
+import 'package:movewise/views/Me/profile.dart';
 import 'package:movewise/views/nutrition/nutrition_screen.dart';
 import 'package:movewise/views/onboarding/DietScreen.dart';
 import 'package:movewise/views/onboarding/goal_screen.dart';
@@ -79,6 +83,22 @@ class AppRoute{
     GetPage(
         name: (RouteName.ProfileScreen),
         page: () => ProfileScreen()
+    ),
+    GetPage(
+        name: (RouteName.AboutScreen),
+        page: () => AboutScreen()
+    ),
+    GetPage(
+        name: (RouteName.QnaScreen),
+        page: () => QnaScreen()
+    ),
+    GetPage(
+        name: (RouteName.Me),
+    page: () => MeScreen()
+    ),
+    GetPage(
+        name: (RouteName.ChatBotScreen),
+        page: () => ChatBotScreen()
     ),
   ];
 }

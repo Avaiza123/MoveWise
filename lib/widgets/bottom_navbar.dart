@@ -58,12 +58,12 @@ class BottomNavBar extends StatelessWidget {
           ),
           _navItem(
             icon: AppIcons.profile,
-            label: 'Profile',
+            label: 'Me',
             index: 2,
             selected: selectedIndex == 2,
             onTap: () {
               onTap(2);
-              Get.offNamed(RouteName.ProfileScreen);
+              Get.offNamed(RouteName.Me);
             },
           ),
         ],

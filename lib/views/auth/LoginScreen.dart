@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
           passwordController.text.trim(),
         );
         await _setLoginCache(); // ✅ Save login in cache
-        Get.offAllNamed(RouteName.DashboardScreen);
+        Get.offAllNamed(RouteName.GenderScreen);
       } catch (e) {
         Get.snackbar(
           "Login Failed",
@@ -164,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     try {
                       await AuthService().signInWithGoogle();
                       await _setLoginCache(); // ✅ Save login for Google
-                      Get.offAllNamed(RouteName.DashboardScreen);
+                      Get.offAllNamed(RouteName.GenderScreen);
                     } catch (e) {
                       Get.snackbar(
                         "Google Sign-In Failed",

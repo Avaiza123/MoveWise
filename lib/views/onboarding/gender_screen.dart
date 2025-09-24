@@ -170,29 +170,29 @@ class _GenderScreenState extends State<GenderScreen>
               ),
             ),
             const SizedBox(height: AppSizes.md),
-            Container(
-              padding: const EdgeInsets.all(AppSizes.lg),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                children: [
-                  Icon(Icons.lightbulb_outline, color: Colors.yellow.shade700),
-                  const SizedBox(width: AppSizes.md),
-                  Expanded(
-                    child: Text(
-                      'Select your gender to continue your journey and unlock a personalized experience designed just for you.',
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        color: Colors.grey.shade700,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: AppSizes.xl),
+            // Container(
+            //   padding: const EdgeInsets.all(AppSizes.lg),
+            //   decoration: BoxDecoration(
+            //     color: Colors.grey.shade100,
+            //     borderRadius: BorderRadius.circular(20),
+            //   ),
+            //   child: Row(
+            //     children: [
+            //       Icon(Icons.lightbulb_outline, color: Colors.yellow.shade700),
+            //       const SizedBox(width: AppSizes.md),
+            //       Expanded(
+            //         child: Text(
+            //           'Select your gender to continue your journey and unlock a personalized experience designed just for you.',
+            //           style: GoogleFonts.poppins(
+            //             fontSize: 14,
+            //             color: Colors.grey.shade700,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            const SizedBox(height: AppSizes.s90),
 
             // Male/Female options
             Row(
@@ -210,7 +210,7 @@ class _GenderScreenState extends State<GenderScreen>
               ],
             ),
 
-            const SizedBox(height: AppSizes.lg),
+            const SizedBox(height: AppSizes.s38),
 
             // Prefer not to say
             Center(

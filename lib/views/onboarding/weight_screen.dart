@@ -12,7 +12,7 @@ import '../../core/res/routes/route_name.dart';
 import '../../widgets/custom_appbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 class WeightScreen extends StatefulWidget {
   const WeightScreen({super.key});
 
@@ -72,7 +72,7 @@ class _WeightScreenState extends State<WeightScreen> {
       appBar: const CustomAppBar(title: AppText.selectWeight),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(AppSizes.defaultSpace),
+          padding: const EdgeInsets.all(AppSizes.s12),
           physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -100,7 +100,7 @@ class _WeightScreenState extends State<WeightScreen> {
               ),
 
             //  const SizedBox(height: AppSizes.spaceBetweenItem),
-              const SizedBox(height: AppSizes.s20),
+              const SizedBox(height: AppSizes.s8),
               /// Weight Display in Box
               Container(
                 padding: const EdgeInsets.symmetric(
@@ -127,7 +127,7 @@ class _WeightScreenState extends State<WeightScreen> {
               const SizedBox(height: AppSizes.s20),
               /// Horizontal Weight Selector
               SizedBox(
-                height: 80,
+                height: 65,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 500,
@@ -175,12 +175,12 @@ class _WeightScreenState extends State<WeightScreen> {
                 ),
               ),
 
-              const SizedBox(height: AppSizes.s20),
+              const SizedBox(height: AppSizes.s12),
 
               /// Calculate BMI Button
               Center(
                 child: SizedBox(
-                  width: 240, // adjust width like Next button
+                  width: 230, // adjust width like Next button
                   height: 60, // adjust height like Next button
                   child: ElevatedButton(
                     onPressed: () => _calculateBMI(heightCm),
@@ -213,12 +213,12 @@ class _WeightScreenState extends State<WeightScreen> {
               ),
 
 
-              const SizedBox(height: AppSizes.defaultSpace),
+              const SizedBox(height: AppSizes.s8),
 
               /// BMI Result Display
               if (bmi != null) ...[
                 SizedBox(
-                  height: 250,
+                  height: 240,
                   child: SfRadialGauge(
                     axes: <RadialAxis>[
                       RadialAxis(
@@ -273,43 +273,64 @@ class _WeightScreenState extends State<WeightScreen> {
                   ),
                 ),
 
-                const SizedBox(height: AppSizes.defaultSpace),
-
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
-                  padding: const EdgeInsets.all(AppSizes.cardPadding),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: _bmiGradientColors(bmi!),
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                const SizedBox(height: AppSizes.s4),
+                Center(
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 500),
+                    padding: const EdgeInsets.all(AppSizes.cardPadding),
+                    width: MediaQuery.of(context).size.width * 0.67, // 🔹 narrower than full width
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: _bmiGradientColors(bmi!),
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primaryColor.withOpacity(0.3),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
                     ),
-                    borderRadius: BorderRadius.circular(AppSizes.cardRadius),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.primaryColor.withOpacity(0.3),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
+
+
+                  child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(_bmiIcon(bmi!), size: 28, color: Colors.white),
+                          const SizedBox(width: 8),
+                          Text(
+                            _bmiCategory(bmi!),
+                            style: GoogleFonts.acme(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        _bmiSuggestion(bmi!),
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ],
-                  ),
-                  child: Column(
-                    children: [
-                      Icon(_bmiIcon(bmi!), size: 50, color: Colors.white),
-                      const SizedBox(height: 12),
-                      Text(_bmiCategory(bmi!),
-                          style: AppStyles.screenTitle
-                              .copyWith(color: Colors.white)),
-                      const SizedBox(height: 8),
-                      Text(_bmiSuggestion(bmi!),
-                          textAlign: TextAlign.center,
-                          style: AppStyles.bodyWhite),
-                    ],
-                  ),
-                ),
+                  )
 
-                const SizedBox(height: AppSizes.defaultSpace),
+                ),
+                ),
+                const SizedBox(height: AppSizes.s12),
+
 
       Center(
         child: SizedBox(

@@ -47,15 +47,15 @@ class ProfileVM extends GetxController {
       if (doc.exists) {
         final data = doc.data() ?? {};
 
-        // root-level fields
+        // 🔹 Root-level fields
         email.value = data["email"] ?? _auth.currentUser?.email ?? "";
-        name.value = data["name"] ?? "";
+        name.value = data["username"] ?? ""; // ✅ fetch username from root
 
         createdAt.value = _formatDate(data["createdAt"]);
         lastLogin.value = _formatDate(data["lastLogin"]);
         updatedAt.value = _formatDate(data["updatedAt"]);
 
-        // ✅ nested profile map
+        // 🔹 Nested profile map
         final profile = data["profile"] as Map<String, dynamic>?;
 
         if (profile != null) {
@@ -70,6 +70,7 @@ class ProfileVM extends GetxController {
           dietPreferences.assignAll(List<String>.from(profile["diet_preferences"] ?? []));
         }
 
+        // ✅ Calculate BMI if height & weight exist
         _calculateBMI();
       } else {
         error.value = "Profile not found.";
@@ -80,6 +81,7 @@ class ProfileVM extends GetxController {
       isLoading.value = false;
     }
   }
+
 
 
 

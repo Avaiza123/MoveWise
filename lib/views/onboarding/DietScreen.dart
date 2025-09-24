@@ -53,7 +53,8 @@ class _DietScreenState extends State<DietScreen> {
   Future<void> _savePreferences() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('onboarding_done', true);
-    await prefs.setStringList('diet_preferences', selectedRestrictions.toList());
+    await prefs.setStringList(
+        'diet_preferences', selectedRestrictions.toList());
 
     try {
       final userId = FirebaseAuth.instance.currentUser?.uid ?? "test_user";
@@ -70,7 +71,7 @@ class _DietScreenState extends State<DietScreen> {
   Future<void> _navigateNext() async {
     if (selectedRestrictions.isNotEmpty) {
       await _savePreferences();
-      Get.toNamed(RouteName.LoginScreen);
+      Get.toNamed(RouteName.DashboardScreen);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -93,7 +94,8 @@ class _DietScreenState extends State<DietScreen> {
     final isSelected = selectedRestrictions.contains(name);
     final noRestrictionsSelected =
     selectedRestrictions.contains(AppText.dietNoRestrictions);
-    final isDisabled = noRestrictionsSelected && name != AppText.dietNoRestrictions;
+    final isDisabled =
+        noRestrictionsSelected && name != AppText.dietNoRestrictions;
 
     return IgnorePointer(
       ignoring: isDisabled,
@@ -104,65 +106,42 @@ class _DietScreenState extends State<DietScreen> {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 350),
             curve: Curves.easeOut,
-            margin: const EdgeInsets.symmetric(vertical: AppSizes.gapSmall),
-            padding: const EdgeInsets.symmetric(
-              vertical: AppSizes.md,
-              horizontal: AppSizes.lg,
-            ),
+            margin: const EdgeInsets.all(AppSizes.sm),
+            padding: const EdgeInsets.all(AppSizes.md),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              gradient: isSelected
-                  ? const LinearGradient(
-                colors: [AppColors.gradientStart, AppColors.gradientEnd],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              )
-                  : null,
-              color: isSelected ? null : AppColors.white,
+              color: isSelected ? AppColors.primaryColor : AppColors.white,
+              borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: isSelected ? Colors.transparent : Colors.grey.shade300,
-                width: 1.5,
+                color: isSelected ? AppColors.primaryColor : Colors.grey.shade300,
+                width: 2,
               ),
               boxShadow: [
                 BoxShadow(
                   color: isSelected
-                      ? AppColors.primaryColor.withOpacity(0.3)
-                      : Colors.grey.withOpacity(0.1),
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
+                      ? AppColors.primaryColor.withOpacity(0.25)
+                      : Colors.grey.withOpacity(0.15),
+                  blurRadius: 6,
+                  offset: const Offset(0, 3),
                 ),
               ],
             ),
-            child: Row(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: AppSizes.iconLg + 12,
-                  height: AppSizes.iconLg + 12,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: isSelected ? AppColors.primaryColor : Colors.grey.shade300,
-                  ),
-                  child: Icon(
-                    icon,
-                    color: isSelected ? AppColors.white : AppColors.primaryColorDark,
-                    size: AppSizes.iconLg,
-                  ),
-                ),
-
-                const SizedBox(width: AppSizes.gapMedium),
-                Expanded(
-                  child: Text(
-                    name,
-                    style: GoogleFonts.acme(
-                      fontSize: AppSizes.fontSizeLg,
-                      fontWeight: FontWeight.w600,
-                      color: isSelected ? AppColors.white : AppColors.primaryColorDark,
-                    ),
-                  ),
-                ),
                 Icon(
-                  isSelected ? AppIcons.checkCircle : AppIcons.radioUnchecked,
-                  color: isSelected ? AppColors.white : Colors.grey,
+                  icon,
+                  size: 40,
+                  color: isSelected ? AppColors.white : AppColors.primaryColorDark,
+                ),
+                const SizedBox(height: AppSizes.sm),
+                Text(
+                  name,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.acme(
+                    fontSize: AppSizes.fontSizeMd,
+                    fontWeight: FontWeight.w600,
+                    color: isSelected ? AppColors.white : AppColors.textColor,
+                  ),
                 ),
               ],
             ),
@@ -192,17 +171,19 @@ class _DietScreenState extends State<DietScreen> {
                 fontWeight: FontWeight.w900,
               ),
             ),
-            const SizedBox(height: AppSizes.gapxLarge),
+            const SizedBox(height: AppSizes.gapMedium),
             Expanded(
-              child: ListView.builder(
-                itemCount: dietRestrictions.length,
-                itemBuilder: (context, index) {
-                  final restriction = dietRestrictions[index];
-                  return _buildRestrictionCard(
-                    restriction['name'],
-                    restriction['icon'],
-                  );
-                },
+              child: GridView.count(
+                crossAxisCount: 2,
+                childAspectRatio: 1, // ✅ squares like goals
+                crossAxisSpacing: AppSizes.s4,
+                mainAxisSpacing: AppSizes.s4,
+                children: dietRestrictions
+                    .map((restriction) => _buildRestrictionCard(
+                  restriction['name'],
+                  restriction['icon'],
+                ))
+                    .toList(),
               ),
             ),
             const SizedBox(height: AppSizes.gapMedium),

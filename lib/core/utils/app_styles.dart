@@ -122,7 +122,7 @@ class AppStyles {
   );
 
   static final TextStyle bodyWhite = GoogleFonts.roboto(
-    fontSize: AppSizes.fontSizeMd,
+    fontSize: AppSizes.s12,
     color: AppColors.primaryColorDark,
   );
 

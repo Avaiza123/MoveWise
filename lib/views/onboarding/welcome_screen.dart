@@ -45,13 +45,15 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     final bool isLoggedIn = prefs.getBool('is_logged_in') ?? false;
 
     if (!isLoggedIn) {
-      // First time or not logged in → Go to Login Screen
-      Get.toNamed(RouteName.SignupScreen);
-    } else if (!onboardingDone) {
-      // Logged in but onboarding not done → Go to Gender/Onboarding
-      Get.toNamed(RouteName.GenderScreen);
+      // User not logged in → go to signup/login
+      Get.offAllNamed(RouteName.SignupScreen);
+
+    } else if (isLoggedIn && !onboardingDone) {
+      // User logged in but onboarding not finished → go to Gender screen
+      Get.offAllNamed(RouteName.GenderScreen);
+
     } else {
-      // Both login and onboarding completed → Go to Dashboard
+      // User logged in + onboarding done → go to dashboard
       Get.offAllNamed(RouteName.DashboardScreen);
     }
   }

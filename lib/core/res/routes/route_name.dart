@@ -2,7 +2,10 @@
 
 
 
-import 'package:movewise/views/dashboard/profile.dart';
+import 'package:movewise/views/Me/about.dart';
+import 'package:movewise/views/Me/qna.dart';
+import 'package:movewise/views/Me/profile.dart';
+import 'package:movewise/views/chatbot/chatbot_screen.dart';
 import 'package:movewise/views/nutrition/nutrition_screen.dart';
 import 'package:movewise/views/water_tracker/water_screen.dart';
 
@@ -23,4 +26,8 @@ class RouteName{
   static const WaterTrackerScreen ='/water_screen';
   static const NutritionScreen = '/nutrition';
   static const ProfileScreen ='/profile';
+  static const AboutScreen ='/about';
+  static const Me ='/me';
+  static const QnaScreen ='/qna';
+  static const ChatBotScreen= '/chatbot_screen';
 }
