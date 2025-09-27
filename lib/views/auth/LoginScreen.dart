@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:movewise/services/auth_service.dart';
 import 'package:movewise/core/res/routes/route_name.dart';
 import 'package:movewise/core/constants/app_colors.dart';
