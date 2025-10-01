@@ -13,7 +13,7 @@ class ExerciseDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          exercise.title,
+          exercise.name,
           style: GoogleFonts.merriweatherSans(
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -32,7 +32,7 @@ class ExerciseDetailScreen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: Image.network(
-                  exercise.imageUrl,
+                  exercise.animationUrl,
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: 250,
@@ -56,7 +56,7 @@ class ExerciseDetailScreen extends StatelessWidget {
 
               // Title
               Text(
-                exercise.title,
+                exercise.name,
                 style: GoogleFonts.poppins(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,

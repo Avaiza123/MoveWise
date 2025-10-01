@@ -1,7 +1,8 @@
 {
-    "id": "moderately-underweight",
+    "id": 3,
+    "name": "Moderately Underweight",
     "category": "moderately underweight",
-    "duration_days": 30,
+    "days": 30,
     "description": "A 30-day exercise plan for individuals in the moderately underweight category, focusing on increasing workout intensity and promoting muscle gain.",
     "daily_schedule": [
         {

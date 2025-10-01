@@ -8,13 +8,7 @@ class AppColors {
   static const Color lightBlue = Color(0xFFADD8E6);
   // Buttons
   static const Color buttonColor = primaryColor;
-  // static const Color gradientStart = Color(0xFF00C9A7); // Fresh green-teal
-  // static const Color gradientEnd = Color(0xFF007991); // Dark teal
-  // Text
-  // Gradient (Brown Theme)
-  // static const Color gradientStart = Color(0xFF8B5E3C); // Warm coffee brown
-  // static const Color gradientEnd   = Color(0xFFD4A373); // Amber-golden complement
-  // Primary Gradient (Strong + Energetic)
+
   static const Color gradientStart = Color(0xFF6B4226); // Deep Espresso Brown
   static const Color gradientEnd   = Color(0xFFD4A373); // Soft Caramel Beige
 

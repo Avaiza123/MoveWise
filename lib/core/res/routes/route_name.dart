@@ -6,6 +6,7 @@ import 'package:movewise/views/Me/about.dart';
 import 'package:movewise/views/Me/qna.dart';
 import 'package:movewise/views/Me/profile.dart';
 import 'package:movewise/views/chatbot/chatbot_screen.dart';
+import 'package:movewise/views/exercise/exercise_plan_screen.dart';
 import 'package:movewise/views/nutrition/nutrition_screen.dart';
 import 'package:movewise/views/water_tracker/water_screen.dart';
 
@@ -30,4 +31,6 @@ class RouteName{
   static const Me ='/me';
   static const QnaScreen ='/qna';
   static const ChatBotScreen= '/chatbot_screen';
+  static const PlanScreen='/plan';
+  static const ExercisePlanScreen ='/exercise';
 }

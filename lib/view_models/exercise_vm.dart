@@ -1,36 +1,64 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/exercise_model.dart';
 
-class ExerciseViewModel {
-  List<Exercise> _allExercises = [];
+class ExerciseViewModel extends GetxController {
+  /// Reactive state
+  var exercises = <Exercise>[].obs; // current day plan exercises
+  var currentDay = 1.obs;           // tracks user progress (1–30 days)
+  var isLoading = false.obs;
 
-  /// Load all exercises from local JSON files
-  Future<void> loadExercises() async {
-    // Load all category JSONs
-    final categories = [
-      'severely_underweight',
-      'moderately_underweight',
-      'mild_thinness',
-      'normal',
-      'overweight',
-      'obese1',
-      'obese2',
-      'obese3',
-    ];
+  /// Initialize when controller is created
+  @override
+  void onInit() {
+    super.onInit();
+    _loadProgress();
+  }
 
-    _allExercises = [];
+  /// Save progress (day number) to cache
+  Future<void> saveProgress(int day) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('completed_day', day);
+    currentDay.value = day;
+  }
 
-    for (String category in categories) {
-      final String response =
-      await rootBundle.loadString('assets/exercises/$category.json');
-      final data = json.decode(response) as List;
-      _allExercises.addAll(data.map((json) => Exercise.fromJson(json)));
+  /// Load progress (last completed day) from cache
+  Future<void> _loadProgress() async {
+    final prefs = await SharedPreferences.getInstance();
+    currentDay.value = prefs.getInt('completed_day') ?? 1; // default day 1
+  }
+
+  /// Called when user presses "Done" after finishing today’s exercises
+  Future<void> markTodayComplete() async {
+    if (currentDay.value < 30) {
+      await saveProgress(currentDay.value + 1);
     }
   }
 
-  /// Determine BMI category string
+  /// Load exercises for a specific plan (My Plan, Easier, Harder, Yoga)
+  Future<void> loadExercisesForPlan(String planKey) async {
+    try {
+      isLoading.value = true;
+
+      // file path e.g. assets/exercises/my_plan_day1.json
+      final filePath = 'assets/exercises/${planKey}_day${currentDay.value}.json';
+
+      final String response = await rootBundle.loadString(filePath);
+      final List<dynamic> data = json.decode(response);
+
+      exercises.value = data.map((e) => Exercise.fromJson(e)).toList();
+
+      isLoading.value = false;
+    } catch (e) {
+      isLoading.value = false;
+      exercises.clear();
+      print("❌ Error loading plan: $e");
+    }
+  }
+
+  /// For BMI-based auto-plan (optional, can be removed if not needed)
   String _getBmiCategory(double bmi) {
     if (bmi < 16) return 'severely_underweight';
     if (bmi < 17) return 'moderately_underweight';
@@ -42,26 +70,16 @@ class ExerciseViewModel {
     return 'obese3';
   }
 
-  /// Get exercises based on BMI saved in cache
   Future<List<Exercise>> getExercisesForCachedBmi() async {
     final prefs = await SharedPreferences.getInstance();
     final double? bmi = prefs.getDouble('bmi');
-
-    if (bmi == null) return []; // no bmi saved yet
+    if (bmi == null) return [];
 
     final category = _getBmiCategory(bmi);
-
-    // Load JSON for this category only
     final String response =
     await rootBundle.loadString('assets/exercises/$category.json');
     final data = json.decode(response) as List;
 
     return data.map((json) => Exercise.fromJson(json)).toList();
   }
-  Future<List<Exercise>> loadExercisesFromJson(String path) async {
-    final data = await rootBundle.loadString(path);
-    final List<dynamic> jsonList = json.decode(data);
-    return jsonList.map((e) => Exercise.fromJson(e)).toList();
-  }
-
 }

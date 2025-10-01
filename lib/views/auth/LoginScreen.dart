@@ -9,7 +9,7 @@ import 'package:movewise/core/constants/app_texts.dart';
 import 'package:movewise/core/constants/app_icons.dart';
 import 'package:movewise/core/constants/app_images.dart';
 import 'package:movewise/core/utils/app_styles.dart';
-import '../../widgets/custom_appbar.dart'; // ✅ Custom AppBar
+import '../../widgets/custom_appbar.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

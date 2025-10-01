@@ -1,760 +1,766 @@
-[
-    {
-        "day": 1,
-        "workout": [
-            {
-                "exercise_id": 1,
-                "title": "Advanced bridge exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Advanced%20bridge%20exercise.gif"
-            },
-            {
-                "exercise_id": 17,
-                "title": "Cossack squat exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Cossack%20squat%20exercise.gif"
-            },
-            {
-                "exercise_id": 87,
-                "title": "Squat thrust exercise",
-                "sets": 3,
-                "reps": 8,
-                "image_url": "https://example.com/exercises/Squat%20thrust%20exercise.gif"
-            },
-            {
-                "exercise_id": 58,
-                "title": "Plank hip dips exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 2,
-        "workout": [
-            {
-                "exercise_id": 35,
-                "title": "Half squat jab cross exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
-            },
-            {
-                "exercise_id": 78,
-                "title": "Single leg bridge exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Single%20leg%20bridge%20exercise.gif"
-            },
-            {
-                "exercise_id": 67,
-                "title": "Russian twist exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
-            },
-            {
-                "exercise_id": 66,
-                "title": "Roll up exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Roll%20up%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 3,
-        "workout": [
-            {
-                "exercise_id": 5,
-                "title": "Arm swings exercise",
-                "sets": 3,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
-            },
-            {
-                "exercise_id": 31,
-                "title": "Front and back lunges exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
-            },
-            {
-                "exercise_id": 53,
-                "title": "Pike push up exercise guide",
-                "sets": 3,
-                "reps": 8,
-                "image_url": "https://example.com/exercises/Pike%20push%20up%20exercise%20guide.gif"
-            },
-            {
-                "exercise_id": 68,
-                "title": "Scissor kicks exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Scissor%20kicks%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 4,
-        "workout": "Rest Day"
-    },
-    {
-        "day": 5,
-        "workout": [
-            {
-                "exercise_id": 77,
-                "title": "Side shuffle exercise",
-                "sets": 3,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Side%20shuffle%20exercise.gif"
-            },
-            {
-                "exercise_id": 30,
-                "title": "Frog bridge exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Frog%20bridge%20exercise.gif"
-            },
-            {
-                "exercise_id": 95,
-                "title": "Triangle crunch exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Triangle%20crunch%20exercise.gif"
-            },
-            {
-                "exercise_id": 76,
-                "title": "Side plank hip lifts exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Side%20plank%20hip%20lifts%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 6,
-        "workout": [
-            {
-                "exercise_id": 82,
-                "title": "Skating windmill exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Skating%20windmill%20exercise.gif"
-            },
-            {
-                "exercise_id": 15,
-                "title": "Calf raises exercise",
-                "sets": 3,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
-            },
-            {
-                "exercise_id": 19,
-                "title": "Crunches exercise",
-                "sets": 3,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
-            },
-            {
-                "exercise_id": 96,
-                "title": "V sit bicycles exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/V%20sit%20bicycles%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 7,
-        "workout": "Rest Day"
-    },
-    {
-        "day": 8,
-        "workout": [
-            {
-                "exercise_id": 90,
-                "title": "Sumo squat exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
-            },
-            {
-                "exercise_id": 56,
-                "title": "Pilates swimming exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Pilates%20swimming%20exercise.gif"
-            },
-            {
-                "exercise_id": 73,
-                "title": "Side lunge to curtsy lunge exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Side%20lunge%20to%20curtsy%20lunge%20exercise.gif"
-            },
-            {
-                "exercise_id": 8,
-                "title": "Bent leg jackknife exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Bent%20leg%20jackknife%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 9,
-        "workout": [
-            {
-                "exercise_id": 94,
-                "title": "Touch and hop exercise",
-                "sets": 3,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Touch%20and%20hop%20exercise.gif"
-            },
-            {
-                "exercise_id": 48,
-                "title": "Lying hamstring curls exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Lying%20hamstring%20curls%20exercise.gif"
-            },
-            {
-                "exercise_id": 13,
-                "title": "Bridge and twist exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Bridge%20and%20twist%20exercise.gif"
-            },
-            {
-                "exercise_id": 50,
-                "title": "Oblique V crunch exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Oblique%20V%20crunch%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 10,
-        "workout": [
-            {
-                "exercise_id": 42,
-                "title": "jump squat exercise",
-                "sets": 3,
-                "reps": 8,
-                "image_url": "https://example.com/exercises/jump%20squat%20exercise.gif"
-            },
-            {
-                "exercise_id": 57,
-                "title": "Plank bird dog exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Plank%20bird%20dog%20exercise.gif"
-            },
-            {
-                "exercise_id": 75,
-                "title": "Side plank hip abduction exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Side%20plank%20hip%20abduction%20exercise.gif"
-            },
-            {
-                "exercise_id": 62,
-                "title": "Reverse crunch twist exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Reverse%20crunch%20twist%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 11,
-        "workout": "Rest Day"
-    },
-    {
-        "day": 12,
-        "workout": [
-            {
-                "exercise_id": 77,
-                "title": "Side shuffle exercise",
-                "sets": 3,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Side%20shuffle%20exercise.gif"
-            },
-            {
-                "exercise_id": 90,
-                "title": "Sumo squat exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
-            },
-            {
-                "exercise_id": 1,
-                "title": "Advanced bridge exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Advanced%20bridge%20exercise.gif"
-            },
-            {
-                "exercise_id": 20,
-                "title": "Dead bug exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Dead%20bug%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 13,
-        "workout": [
-            {
-                "exercise_id": 87,
-                "title": "Squat thrust exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Squat%20thrust%20exercise.gif"
-            },
-            {
-                "exercise_id": 5,
-                "title": "Arm swings exercise",
-                "sets": 3,
-                "reps": 20,
-                "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
-            },
-            {
-                "exercise_id": 66,
-                "title": "Roll up exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Roll%20up%20exercise.gif"
-            },
-            {
-                "exercise_id": 14,
-                "title": "Butterfly dips exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Butterfly%20dips%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 14,
-        "workout": "Rest Day"
-    },
-    {
-        "day": 15,
-        "workout": [
-            {
-                "exercise_id": 43,
-                "title": "Jump start exercise",
-                "sets": 3,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Jump%20start%20exercise.gif"
-            },
-            {
-                "exercise_id": 41,
-                "title": "Inner thigh lifts exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Inner%20thigh%20lifts%20exercise.gif"
-            },
-            {
-                "exercise_id": 71,
-                "title": "Side Bends exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Side%20Bends%20exercise.gif"
-            },
-            {
-                "exercise_id": 2,
-                "title": "Alternate heel touchers exercise",
-                "sets": 3,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Alternate%20heel%20touchers%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 16,
-        "workout": [
-            {
-                "exercise_id": 86,
-                "title": "Squat side kick exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Squat%20side%20kick%20exercise.gif"
-            },
-            {
-                "exercise_id": 91,
-                "title": "Superman twist exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Superman%20twist%20exercise.gif"
-            },
-            {
-                "exercise_id": 72,
-                "title": "Side leg lifts exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Side%20leg%20lifts%20exercise.gif"
-            },
-            {
-                "exercise_id": 63,
-                "title": "Reverse crunches exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Reverse%20crunches%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 17,
-        "workout": [
-            {
-                "exercise_id": 9,
-                "title": "Bicycle crunches exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Bicycle%20crunches%20exercise.gif"
-            },
-            {
-                "exercise_id": 18,
-                "title": "Crab toe touches exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Crab%20toe%20touches%20exercise.gif"
-            },
-            {
-                "exercise_id": 89,
-                "title": "Sumo side bends exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Sumo%20side%20bends%20exercise.gif"
-            },
-            {
-                "exercise_id": 64,
-                "title": "Reverse plank leg raises exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Reverse%20plank%20leg%20raises%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 18,
-        "workout": "Rest Day"
-    },
-    {
-        "day": 19,
-        "workout": [
-            {
-                "exercise_id": 84,
-                "title": "Speed bag punches exercise",
-                "sets": 3,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Speed%20bag%20punches%20exercise.gif"
-            },
-            {
-                "exercise_id": 74,
-                "title": "Side lunge to leg lift exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Side%20lunge%20to%20leg%20lift%20exercise.gif"
-            },
-            {
-                "exercise_id": 30,
-                "title": "Frog bridge exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Frog%20bridge%20exercise.gif"
-            },
-            {
-                "exercise_id": 36,
-                "title": "Heel beats exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Heel%20beats%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 20,
-        "workout": [
-            {
-                "exercise_id": 83,
-                "title": "Ski abs exercise",
-                "sets": 3,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Ski%20abs%20exercise.gif"
-            },
-            {
-                "exercise_id": 4,
-                "title": "Ankle tap push ups exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Ankle%20tap%20push%20ups%20exercise.gif"
-            },
-            {
-                "exercise_id": 10,
-                "title": "Big arm circles exercise",
-                "sets": 3,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Big%20arm%20circles%20exercise.gif"
-            },
-            {
-                "exercise_id": 22,
-                "title": "Donkey kick twist exercise",
-                "sets": 3,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Donkey%20kick%20twist%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 21,
-        "workout": "Rest Day"
-    },
-    {
-        "day": 22,
-        "workout": [
-            {
-                "exercise_id": 1,
-                "title": "Advanced bridge exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Advanced%20bridge%20exercise.gif"
-            },
-            {
-                "exercise_id": 17,
-                "title": "Cossack squat exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Cossack%20squat%20exercise.gif"
-            },
-            {
-                "exercise_id": 87,
-                "title": "Squat thrust exercise",
-                "sets": 4,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Squat%20thrust%20exercise.gif"
-            },
-            {
-                "exercise_id": 58,
-                "title": "Plank hip dips exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 23,
-        "workout": [
-            {
-                "exercise_id": 35,
-                "title": "Half squat jab cross exercise",
-                "sets": 4,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
-            },
-            {
-                "exercise_id": 78,
-                "title": "Single leg bridge exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Single%20leg%20bridge%20exercise.gif"
-            },
-            {
-                "exercise_id": 67,
-                "title": "Russian twist exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
-            },
-            {
-                "exercise_id": 66,
-                "title": "Roll up exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Roll%20up%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 24,
-        "workout": [
-            {
-                "exercise_id": 5,
-                "title": "Arm swings exercise",
-                "sets": 4,
-                "reps": 20,
-                "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
-            },
-            {
-                "exercise_id": 31,
-                "title": "Front and back lunges exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
-            },
-            {
-                "exercise_id": 53,
-                "title": "Pike push up exercise guide",
-                "sets": 4,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Pike%20push%20up%20exercise%20guide.gif"
-            },
-            {
-                "exercise_id": 68,
-                "title": "Scissor kicks exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Scissor%20kicks%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 25,
-        "workout": "Rest Day"
-    },
-    {
-        "day": 26,
-        "workout": [
-            {
-                "exercise_id": 77,
-                "title": "Side shuffle exercise",
-                "sets": 4,
-                "reps": 20,
-                "image_url": "https://example.com/exercises/Side%20shuffle%20exercise.gif"
-            },
-            {
-                "exercise_id": 30,
-                "title": "Frog bridge exercise",
-                "sets": 4,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Frog%20bridge%20exercise.gif"
-            },
-            {
-                "exercise_id": 95,
-                "title": "Triangle crunch exercise",
-                "sets": 4,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Triangle%20crunch%20exercise.gif"
-            },
-            {
-                "exercise_id": 76,
-                "title": "Side plank hip lifts exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Side%20plank%20hip%20lifts%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 27,
-        "workout": [
-            {
-                "exercise_id": 82,
-                "title": "Skating windmill exercise",
-                "sets": 4,
-                "reps": 15,
-                "image_url": "https://example.com/exercises/Skating%20windmill%20exercise.gif"
-            },
-            {
-                "exercise_id": 15,
-                "title": "Calf raises exercise",
-                "sets": 4,
-                "reps": 20,
-                "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
-            },
-            {
-                "exercise_id": 19,
-                "title": "Crunches exercise",
-                "sets": 4,
-                "reps": 20,
-                "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
-            },
-            {
-                "exercise_id": 96,
-                "title": "V sit bicycles exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/V%20sit%20bicycles%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 28,
-        "workout": "Rest Day"
-    },
-    {
-        "day": 29,
-        "workout": [
-            {
-                "exercise_id": 90,
-                "title": "Sumo squat exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
-            },
-            {
-                "exercise_id": 56,
-                "title": "Pilates swimming exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Pilates%20swimming%20exercise.gif"
-            },
-            {
-                "exercise_id": 73,
-                "title": "Side lunge to curtsy lunge exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Side%20lunge%20to%20curtsy%20lunge%20exercise.gif"
-            },
-            {
-                "exercise_id": 8,
-                "title": "Bent leg jackknife exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Bent%20leg%20jackknife%20exercise.gif"
-            }
-        ]
-    },
-    {
-        "day": 30,
-        "workout": [
-            {
-                "exercise_id": 94,
-                "title": "Touch and hop exercise",
-                "sets": 4,
-                "reps": 20,
-                "image_url": "https://example.com/exercises/Touch%20and%20hop%20exercise.gif"
-            },
-            {
-                "exercise_id": 48,
-                "title": "Lying hamstring curls exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Lying%20hamstring%20curls%20exercise.gif"
-            },
-            {
-                "exercise_id": 13,
-                "title": "Bridge and twist exercise",
-                "sets": 4,
-                "reps": 12,
-                "image_url": "https://example.com/exercises/Bridge%20and%20twist%20exercise.gif"
-            },
-            {
-                "exercise_id": 50,
-                "title": "Oblique V crunch exercise",
-                "sets": 4,
-                "reps": 10,
-                "image_url": "https://example.com/exercises/Oblique%20V%20crunch%20exercise.gif"
-            }
-        ]
-    }
-]
+{
+    "id": 7,
+    "name": "Obese_2",
+    "category": "Obese_2",
+    "days": 30,
+    "daily_schedule": [
+        {
+            "day": 1,
+            "workout": [
+                {
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Advanced%20bridge%20exercise.gif"
+                },
+                {
+                    "exercise_id": 17,
+                    "title": "Cossack squat exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Cossack%20squat%20exercise.gif"
+                },
+                {
+                    "exercise_id": 87,
+                    "title": "Squat thrust exercise",
+                    "sets": 3,
+                    "reps": 8,
+                    "image_url": "https://example.com/exercises/Squat%20thrust%20exercise.gif"
+                },
+                {
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "workout": [
+                {
+                    "exercise_id": 35,
+                    "title": "Half squat jab cross exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
+                },
+                {
+                    "exercise_id": 78,
+                    "title": "Single leg bridge exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Single%20leg%20bridge%20exercise.gif"
+                },
+                {
+                    "exercise_id": 67,
+                    "title": "Russian twist exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
+                },
+                {
+                    "exercise_id": 66,
+                    "title": "Roll up exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Roll%20up%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 3,
+            "workout": [
+                {
+                    "exercise_id": 5,
+                    "title": "Arm swings exercise",
+                    "sets": 3,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                },
+                {
+                    "exercise_id": 31,
+                    "title": "Front and back lunges exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
+                },
+                {
+                    "exercise_id": 53,
+                    "title": "Pike push up exercise guide",
+                    "sets": 3,
+                    "reps": 8,
+                    "image_url": "https://example.com/exercises/Pike%20push%20up%20exercise%20guide.gif"
+                },
+                {
+                    "exercise_id": 68,
+                    "title": "Scissor kicks exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Scissor%20kicks%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 4,
+            "workout": "Rest Day"
+        },
+        {
+            "day": 5,
+            "workout": [
+                {
+                    "exercise_id": 77,
+                    "title": "Side shuffle exercise",
+                    "sets": 3,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Side%20shuffle%20exercise.gif"
+                },
+                {
+                    "exercise_id": 30,
+                    "title": "Frog bridge exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Frog%20bridge%20exercise.gif"
+                },
+                {
+                    "exercise_id": 95,
+                    "title": "Triangle crunch exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Triangle%20crunch%20exercise.gif"
+                },
+                {
+                    "exercise_id": 76,
+                    "title": "Side plank hip lifts exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Side%20plank%20hip%20lifts%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 6,
+            "workout": [
+                {
+                    "exercise_id": 82,
+                    "title": "Skating windmill exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Skating%20windmill%20exercise.gif"
+                },
+                {
+                    "exercise_id": 15,
+                    "title": "Calf raises exercise",
+                    "sets": 3,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
+                },
+                {
+                    "exercise_id": 19,
+                    "title": "Crunches exercise",
+                    "sets": 3,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                },
+                {
+                    "exercise_id": 96,
+                    "title": "V sit bicycles exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/V%20sit%20bicycles%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 7,
+            "workout": "Rest Day"
+        },
+        {
+            "day": 8,
+            "workout": [
+                {
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+                },
+                {
+                    "exercise_id": 56,
+                    "title": "Pilates swimming exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Pilates%20swimming%20exercise.gif"
+                },
+                {
+                    "exercise_id": 73,
+                    "title": "Side lunge to curtsy lunge exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Side%20lunge%20to%20curtsy%20lunge%20exercise.gif"
+                },
+                {
+                    "exercise_id": 8,
+                    "title": "Bent leg jackknife exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Bent%20leg%20jackknife%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 9,
+            "workout": [
+                {
+                    "exercise_id": 94,
+                    "title": "Touch and hop exercise",
+                    "sets": 3,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Touch%20and%20hop%20exercise.gif"
+                },
+                {
+                    "exercise_id": 48,
+                    "title": "Lying hamstring curls exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Lying%20hamstring%20curls%20exercise.gif"
+                },
+                {
+                    "exercise_id": 13,
+                    "title": "Bridge and twist exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Bridge%20and%20twist%20exercise.gif"
+                },
+                {
+                    "exercise_id": 50,
+                    "title": "Oblique V crunch exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Oblique%20V%20crunch%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 10,
+            "workout": [
+                {
+                    "exercise_id": 42,
+                    "title": "jump squat exercise",
+                    "sets": 3,
+                    "reps": 8,
+                    "image_url": "https://example.com/exercises/jump%20squat%20exercise.gif"
+                },
+                {
+                    "exercise_id": 57,
+                    "title": "Plank bird dog exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Plank%20bird%20dog%20exercise.gif"
+                },
+                {
+                    "exercise_id": 75,
+                    "title": "Side plank hip abduction exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Side%20plank%20hip%20abduction%20exercise.gif"
+                },
+                {
+                    "exercise_id": 62,
+                    "title": "Reverse crunch twist exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Reverse%20crunch%20twist%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 11,
+            "workout": "Rest Day"
+        },
+        {
+            "day": 12,
+            "workout": [
+                {
+                    "exercise_id": 77,
+                    "title": "Side shuffle exercise",
+                    "sets": 3,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Side%20shuffle%20exercise.gif"
+                },
+                {
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+                },
+                {
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Advanced%20bridge%20exercise.gif"
+                },
+                {
+                    "exercise_id": 20,
+                    "title": "Dead bug exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Dead%20bug%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 13,
+            "workout": [
+                {
+                    "exercise_id": 87,
+                    "title": "Squat thrust exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Squat%20thrust%20exercise.gif"
+                },
+                {
+                    "exercise_id": 5,
+                    "title": "Arm swings exercise",
+                    "sets": 3,
+                    "reps": 20,
+                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                },
+                {
+                    "exercise_id": 66,
+                    "title": "Roll up exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Roll%20up%20exercise.gif"
+                },
+                {
+                    "exercise_id": 14,
+                    "title": "Butterfly dips exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Butterfly%20dips%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 14,
+            "workout": "Rest Day"
+        },
+        {
+            "day": 15,
+            "workout": [
+                {
+                    "exercise_id": 43,
+                    "title": "Jump start exercise",
+                    "sets": 3,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Jump%20start%20exercise.gif"
+                },
+                {
+                    "exercise_id": 41,
+                    "title": "Inner thigh lifts exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Inner%20thigh%20lifts%20exercise.gif"
+                },
+                {
+                    "exercise_id": 71,
+                    "title": "Side Bends exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Side%20Bends%20exercise.gif"
+                },
+                {
+                    "exercise_id": 2,
+                    "title": "Alternate heel touchers exercise",
+                    "sets": 3,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Alternate%20heel%20touchers%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 16,
+            "workout": [
+                {
+                    "exercise_id": 86,
+                    "title": "Squat side kick exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Squat%20side%20kick%20exercise.gif"
+                },
+                {
+                    "exercise_id": 91,
+                    "title": "Superman twist exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Superman%20twist%20exercise.gif"
+                },
+                {
+                    "exercise_id": 72,
+                    "title": "Side leg lifts exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Side%20leg%20lifts%20exercise.gif"
+                },
+                {
+                    "exercise_id": 63,
+                    "title": "Reverse crunches exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Reverse%20crunches%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 17,
+            "workout": [
+                {
+                    "exercise_id": 9,
+                    "title": "Bicycle crunches exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Bicycle%20crunches%20exercise.gif"
+                },
+                {
+                    "exercise_id": 18,
+                    "title": "Crab toe touches exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Crab%20toe%20touches%20exercise.gif"
+                },
+                {
+                    "exercise_id": 89,
+                    "title": "Sumo side bends exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Sumo%20side%20bends%20exercise.gif"
+                },
+                {
+                    "exercise_id": 64,
+                    "title": "Reverse plank leg raises exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Reverse%20plank%20leg%20raises%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 18,
+            "workout": "Rest Day"
+        },
+        {
+            "day": 19,
+            "workout": [
+                {
+                    "exercise_id": 84,
+                    "title": "Speed bag punches exercise",
+                    "sets": 3,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Speed%20bag%20punches%20exercise.gif"
+                },
+                {
+                    "exercise_id": 74,
+                    "title": "Side lunge to leg lift exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Side%20lunge%20to%20leg%20lift%20exercise.gif"
+                },
+                {
+                    "exercise_id": 30,
+                    "title": "Frog bridge exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Frog%20bridge%20exercise.gif"
+                },
+                {
+                    "exercise_id": 36,
+                    "title": "Heel beats exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Heel%20beats%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 20,
+            "workout": [
+                {
+                    "exercise_id": 83,
+                    "title": "Ski abs exercise",
+                    "sets": 3,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Ski%20abs%20exercise.gif"
+                },
+                {
+                    "exercise_id": 4,
+                    "title": "Ankle tap push ups exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Ankle%20tap%20push%20ups%20exercise.gif"
+                },
+                {
+                    "exercise_id": 10,
+                    "title": "Big arm circles exercise",
+                    "sets": 3,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Big%20arm%20circles%20exercise.gif"
+                },
+                {
+                    "exercise_id": 22,
+                    "title": "Donkey kick twist exercise",
+                    "sets": 3,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Donkey%20kick%20twist%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 21,
+            "workout": "Rest Day"
+        },
+        {
+            "day": 22,
+            "workout": [
+                {
+                    "exercise_id": 1,
+                    "title": "Advanced bridge exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Advanced%20bridge%20exercise.gif"
+                },
+                {
+                    "exercise_id": 17,
+                    "title": "Cossack squat exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Cossack%20squat%20exercise.gif"
+                },
+                {
+                    "exercise_id": 87,
+                    "title": "Squat thrust exercise",
+                    "sets": 4,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Squat%20thrust%20exercise.gif"
+                },
+                {
+                    "exercise_id": 58,
+                    "title": "Plank hip dips exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Plank%20hip%20dips%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 23,
+            "workout": [
+                {
+                    "exercise_id": 35,
+                    "title": "Half squat jab cross exercise",
+                    "sets": 4,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Half%20squat%20jab%20cross%20exercise.gif"
+                },
+                {
+                    "exercise_id": 78,
+                    "title": "Single leg bridge exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Single%20leg%20bridge%20exercise.gif"
+                },
+                {
+                    "exercise_id": 67,
+                    "title": "Russian twist exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Russian%20twist%20exercise.gif"
+                },
+                {
+                    "exercise_id": 66,
+                    "title": "Roll up exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Roll%20up%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 24,
+            "workout": [
+                {
+                    "exercise_id": 5,
+                    "title": "Arm swings exercise",
+                    "sets": 4,
+                    "reps": 20,
+                    "image_url": "https://example.com/exercises/Arm%20swings%20exercise.gif"
+                },
+                {
+                    "exercise_id": 31,
+                    "title": "Front and back lunges exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Front%20and%20back%20lunges%20exercise.gif"
+                },
+                {
+                    "exercise_id": 53,
+                    "title": "Pike push up exercise guide",
+                    "sets": 4,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Pike%20push%20up%20exercise%20guide.gif"
+                },
+                {
+                    "exercise_id": 68,
+                    "title": "Scissor kicks exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Scissor%20kicks%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 25,
+            "workout": "Rest Day"
+        },
+        {
+            "day": 26,
+            "workout": [
+                {
+                    "exercise_id": 77,
+                    "title": "Side shuffle exercise",
+                    "sets": 4,
+                    "reps": 20,
+                    "image_url": "https://example.com/exercises/Side%20shuffle%20exercise.gif"
+                },
+                {
+                    "exercise_id": 30,
+                    "title": "Frog bridge exercise",
+                    "sets": 4,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Frog%20bridge%20exercise.gif"
+                },
+                {
+                    "exercise_id": 95,
+                    "title": "Triangle crunch exercise",
+                    "sets": 4,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Triangle%20crunch%20exercise.gif"
+                },
+                {
+                    "exercise_id": 76,
+                    "title": "Side plank hip lifts exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Side%20plank%20hip%20lifts%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 27,
+            "workout": [
+                {
+                    "exercise_id": 82,
+                    "title": "Skating windmill exercise",
+                    "sets": 4,
+                    "reps": 15,
+                    "image_url": "https://example.com/exercises/Skating%20windmill%20exercise.gif"
+                },
+                {
+                    "exercise_id": 15,
+                    "title": "Calf raises exercise",
+                    "sets": 4,
+                    "reps": 20,
+                    "image_url": "https://example.com/exercises/Calf%20raises%20exercise.gif"
+                },
+                {
+                    "exercise_id": 19,
+                    "title": "Crunches exercise",
+                    "sets": 4,
+                    "reps": 20,
+                    "image_url": "https://example.com/exercises/Crunches%20exercise.gif"
+                },
+                {
+                    "exercise_id": 96,
+                    "title": "V sit bicycles exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/V%20sit%20bicycles%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 28,
+            "workout": "Rest Day"
+        },
+        {
+            "day": 29,
+            "workout": [
+                {
+                    "exercise_id": 90,
+                    "title": "Sumo squat exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Sumo%20squat%20exercise.gif"
+                },
+                {
+                    "exercise_id": 56,
+                    "title": "Pilates swimming exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Pilates%20swimming%20exercise.gif"
+                },
+                {
+                    "exercise_id": 73,
+                    "title": "Side lunge to curtsy lunge exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Side%20lunge%20to%20curtsy%20lunge%20exercise.gif"
+                },
+                {
+                    "exercise_id": 8,
+                    "title": "Bent leg jackknife exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Bent%20leg%20jackknife%20exercise.gif"
+                }
+            ]
+        },
+        {
+            "day": 30,
+            "workout": [
+                {
+                    "exercise_id": 94,
+                    "title": "Touch and hop exercise",
+                    "sets": 4,
+                    "reps": 20,
+                    "image_url": "https://example.com/exercises/Touch%20and%20hop%20exercise.gif"
+                },
+                {
+                    "exercise_id": 48,
+                    "title": "Lying hamstring curls exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Lying%20hamstring%20curls%20exercise.gif"
+                },
+                {
+                    "exercise_id": 13,
+                    "title": "Bridge and twist exercise",
+                    "sets": 4,
+                    "reps": 12,
+                    "image_url": "https://example.com/exercises/Bridge%20and%20twist%20exercise.gif"
+                },
+                {
+                    "exercise_id": 50,
+                    "title": "Oblique V crunch exercise",
+                    "sets": 4,
+                    "reps": 10,
+                    "image_url": "https://example.com/exercises/Oblique%20V%20crunch%20exercise.gif"
+                }
+            ]
+        }
+    ]
+}

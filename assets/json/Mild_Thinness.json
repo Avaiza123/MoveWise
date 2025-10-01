@@ -1,7 +1,8 @@
 {
-  "id": "mild-thinness",
+  "id": 2,
+  "name": "mild Thinness",
   "category": "mild thinness",
-  "duration_days": 30,
+  "days": 30,
   "description": "A 30-day exercise plan focused on strength and muscle building for individuals in the mild thinness category.",
   "daily_schedule": [
     {

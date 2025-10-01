@@ -10,6 +10,7 @@ import 'package:movewise/views/auth/SignupScreen.dart';
 import 'package:movewise/views/chatbot/chatbot_screen.dart';
 import 'package:movewise/views/dashboard/dashboard_screen.dart';
 import 'package:movewise/views/Me/profile.dart';
+import 'package:movewise/views/exercise/exercise_plan_screen.dart';
 import 'package:movewise/views/nutrition/nutrition_screen.dart';
 import 'package:movewise/views/onboarding/DietScreen.dart';
 import 'package:movewise/views/onboarding/goal_screen.dart';
@@ -20,6 +21,9 @@ import 'package:movewise/views/splash_screen.dart';
 import 'package:movewise/views/auth/ForgetPassword.dart';
 import 'package:movewise/views/onboarding/gender_screen.dart';
 import 'package:movewise/views/water_tracker/water_screen.dart';
+
+import '../../../view_models/plan_vm.dart';
+import '../../../views/plan/plan_screen.dart';
 
 
 class AppRoute{
@@ -69,7 +73,7 @@ class AppRoute{
 
     GetPage(
         name: RouteName.DashboardScreen,
-        page: () => const DashboardScreen()
+        page: () => DashboardScreen()
     ),
 
     GetPage(
@@ -100,5 +104,27 @@ class AppRoute{
         name: (RouteName.ChatBotScreen),
         page: () => ChatBotScreen()
     ),
+    GetPage(
+      name: RouteName.ExercisePlanScreen,
+      page: () {
+        final args = Get.arguments as Map<String, dynamic>;
+        return ExercisePlanScreen(
+          title: args['title'],
+          fileName: args['file'], // pass file/category name
+        );
+      },
+    ),
+    GetPage(
+      name: RouteName.PlanScreen,
+      page: () {
+        Get.put(PlanVM(), permanent: true);
+        final args = Get.arguments as Map<String, dynamic>? ?? {};
+        final planIndex = args['planIndex'] ?? 0;
+        return PlanScreen(planIndex: planIndex);
+      },
+    ),
+
+
+
   ];
 }
