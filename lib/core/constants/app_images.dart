@@ -13,4 +13,9 @@ class AppImages {
   static const String water = 'assets/images/water.jpg';
   static const String diet = 'assets/images/diet.png';
   static const String nutrition = 'assets/images/nutrition.jpg';
+  static const String v1 = 'assets/video/v1.png';
+  static const String v2 = 'assets/video/v2.png';
+  static const String v3 = 'assets/video/v3.png';
+  static const String v4 = 'assets/video/v4.png';
+
 }

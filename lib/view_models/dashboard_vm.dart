@@ -10,6 +10,8 @@ class DashboardVM extends GetxController {
   var highestCompletedDay = 0.obs; // integer: highest day the user completed (0..30)
   var loading = false.obs;
   final currentUserUid = FirebaseAuth.instance.currentUser!.uid;
+  var selectedPlanIndex = 0.obs;
+
 
   @override
   void onInit() {
@@ -24,7 +26,9 @@ class DashboardVM extends GetxController {
     highestCompletedDay.value = d;
     loading.value = false;
   }
-
+  void selectPlan(int index) {
+    selectedPlanIndex.value = index;
+  }
   Future<void> markDayAsCompleted(int day) async {
     // allow only sequential marking:
     // e.g., if highestCompletedDay == 0, user can mark day 1 as completed only

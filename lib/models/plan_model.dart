@@ -1,32 +1,37 @@
 import 'exercise_model.dart';
 
 class Plan {
+  final int? id; // ✅ Unique ID for identifying plan
   final String name;
   final String category;
   final int days;
   final List<Day> dailySchedule;
-  final bool isYoga; // ✅ add this
+  final bool isYoga;
+  int currentDay; // ✅ Track user progress in this plan
 
   Plan({
+    required this.id,
     required this.name,
     required this.category,
     required this.days,
     required this.dailySchedule,
-    this.isYoga = false, // ✅ default false
+    this.isYoga = false,
+    this.currentDay = 0, // starts at 0 = not started
   });
 
-  factory Plan.fromJson(Map<String, dynamic> json) {
+  factory Plan.fromJson(Map<String, dynamic> json, {required int id}) {
+    final category = json['category'] ?? '';
     return Plan(
+      id: id,
       name: json['name'] ?? 'Unnamed Plan',
-      category: json['category'] ?? '',
+      category: category,
       days: json['days'] ?? 0,
       dailySchedule: (json['daily_schedule'] as List<dynamic>?)
-          ?.map((d) => Day.fromJson(d))
+          ?.map((d) => Day.fromJson(d as Map<String, dynamic>))
           .toList() ??
           [],
-      isYoga: json['category'] != null &&
-          (json['category'] as String).toLowerCase() == 'yoga',
-      // ✅ mark as yoga if category is 'yoga'
+      isYoga: category.toLowerCase() == 'yoga',
+      currentDay: 0,
     );
   }
 }
@@ -52,9 +57,10 @@ class Day {
         exercises: workout
             .map((e) => Exercise.fromJson(e as Map<String, dynamic>))
             .toList(),
+        isRest: false,
       );
     } else {
-      return Day(day: json['day'] ?? 0, exercises: []);
+      return Day(day: json['day'] ?? 0, exercises: [], isRest: false);
     }
   }
 }

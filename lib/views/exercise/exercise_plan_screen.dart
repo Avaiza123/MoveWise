@@ -38,7 +38,7 @@ class ExercisePlanScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             final exercise = vm.exercises[index];
             return InkWell(
-              onTap: () => Get.to(() => ExerciseDetailScreen(exercise: exercise)),
+            //  onTap: () => Get.to(() => ExerciseDetailScreen(exercise: exercise)),
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
@@ -66,7 +66,7 @@ class ExercisePlanScreen extends StatelessWidget {
                   ),
 
                   title: Text(
-                    exercise.name,
+                    exercise.title,
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,

@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_icons.dart';
 import '../../core/constants/app_sizes.dart';
@@ -9,7 +11,6 @@ import '../../services/auth_service.dart';
 import '../../view_models/profile_vm.dart';
 import '../../widgets/bottom_navbar.dart';
 import '../../widgets/custom_appbar.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class BaseScreen extends StatefulWidget {
   final String title;
@@ -47,6 +48,7 @@ class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) {
     final uid = FirebaseAuth.instance.currentUser?.uid;
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -62,7 +64,29 @@ class _BaseScreenState extends State<BaseScreen> {
           preferredSize: const Size.fromHeight(100),
           child: CustomAppBar(
             title: widget.title,
-            actions: uid != null ? [_buildPopupMenu(uid)] : [],
+
+            // 🔸 Streak icon commented out
+            // leading: Container(
+            //   margin: const EdgeInsets.only(left: 8, top: 19),
+            //   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            //   decoration: BoxDecoration(
+            //     color: Colors.orange.shade600,
+            //     borderRadius: BorderRadius.circular(20),
+            //     boxShadow: const [
+            //       BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(1, 2)),
+            //     ],
+            //   ),
+            //   child: Row(
+            //     mainAxisSize: MainAxisSize.min,
+            //     children: [
+            //       const Icon(Icons.local_fire_department, color: Colors.white, size: 22),
+            //       const SizedBox(width: 4),
+            //       Text("🔥", style: GoogleFonts.poppins(color: Colors.white)),
+            //     ],
+            //   ),
+            // ),
+
+            actions: uid != null ? [_buildAvatarMenu(uid)] : [],
           ),
         ),
         body: Padding(
@@ -82,12 +106,12 @@ class _BaseScreenState extends State<BaseScreen> {
     );
   }
 
-  /// Popup menu on AppBar
-  Widget _buildPopupMenu(String uid) {
+  /// ✅ Avatar PopupMenu
+  Widget _buildAvatarMenu(String uid) {
     return Obx(() {
-      final username =
-      profileVM.name.value.isNotEmpty ? profileVM.name.value : "User";
+      final username = profileVM.name.value.isNotEmpty ? profileVM.name.value : "User";
       final avatarLetter = username[0].toUpperCase();
+
       return PopupMenuButton<String>(
         icon: CircleAvatar(
           radius: 22,
@@ -103,9 +127,8 @@ class _BaseScreenState extends State<BaseScreen> {
         ),
         offset: const Offset(0, 50),
         onSelected: (value) async {
-          if (value == 'profile') {
-            Get.toNamed(RouteName.Me);
-          } else if (value == 'logout') {
+          if (value == 'profile') Get.toNamed(RouteName.Me);
+          if (value == 'logout') {
             await AuthService().signOut();
             Get.offAllNamed(RouteName.LoginScreen);
           }
@@ -128,8 +151,7 @@ class _BaseScreenState extends State<BaseScreen> {
                 const Icon(Icons.logout, color: Colors.redAccent),
                 const SizedBox(width: 8),
                 Text("Logout",
-                    style: GoogleFonts.poppins(
-                        fontSize: 15, color: Colors.redAccent)),
+                    style: GoogleFonts.poppins(fontSize: 15, color: Colors.redAccent)),
               ],
             ),
           ),
@@ -138,108 +160,74 @@ class _BaseScreenState extends State<BaseScreen> {
     });
   }
 
-  /// Drawer
+  /// ✅ Sidebar Drawer with Gradient ClipPath
   Widget _buildDrawer(String uid) {
-    return SizedBox(
-      width: 280,
+    return ClipPath(
+      clipper: _CustomDrawerClipper(),
       child: Drawer(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(30),
-            bottomRight: Radius.circular(30),
-          ),
-        ),
+        backgroundColor: Colors.transparent,
         elevation: 10,
         child: Obx(() {
-          final username =
-          profileVM.name.value.isNotEmpty ? profileVM.name.value : "User";
+          final username = profileVM.name.value.isNotEmpty ? profileVM.name.value : "User";
           final avatarLetter = username[0].toUpperCase();
+
           return Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  AppColors.primaryColorDark,
-                  Colors.brown.shade300,
-                  Colors.brown.shade400,
-                ],
+                colors: [Color(0xFF8D6E63), Color(0xFF5D4037), Color(0xFF3E2723)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
             ),
-            child: Column(
-              children: [
-                DrawerHeader(
-                  padding: const EdgeInsets.all(16),
-                  margin: EdgeInsets.zero,
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.white,
-                        child: Text(
-                          avatarLetter,
-                          style: GoogleFonts.almendraSc(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryColorDark,
-                          ),
-                        ),
+            child: SafeArea(
+              child: Column(
+                children: [
+                  const SizedBox(height: 30),
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.white,
+                    child: Text(
+                      avatarLetter,
+                      style: GoogleFonts.almendraSc(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryColorDark,
                       ),
-                      const SizedBox(width: 14),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Welcome",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 18, color: Colors.white70)),
-                            Text(username,
-                                style: GoogleFonts.acme(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
-                                overflow: TextOverflow.ellipsis),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    children: [
-                      _drawerItem(
-                        icon: Icons.person,
-                        text: "Me",
-                        onTap: () => Get.toNamed(RouteName.Me),
-                      ),
-                      _drawerItem(
-                        icon: Icons.food_bank_outlined,
-                        text: "Nutrition",
-                        onTap: () => Get.toNamed(RouteName.NutritionScreen),
-                      ),
-                      _drawerItem(
-                        icon: AppIcons.water,
-                        text: "Water Tracker",
-                        onTap: () => Get.toNamed(RouteName.WaterTrackerScreen),
-                      ),
-                      const Divider(color: Colors.white38, indent: 20, endIndent: 20),
-                      _drawerItem(
-                        icon: Icons.logout,
-                        text: "Logout",
-                        color: Colors.redAccent,
-                        onTap: () async {
-                          await AuthService().signOut();
-                          Get.offAllNamed(RouteName.LoginScreen);
-                        },
-                      ),
-                    ],
+                  const SizedBox(height: 12),
+                  Text(
+                    "Welcome",
+                    style: GoogleFonts.poppins(
+                      color: Colors.white70,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                ),
-              ],
+                  Text(
+                    username,
+                    style: GoogleFonts.acme(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 30),
+                  _drawerItem(Icons.person, "Me", () => Get.toNamed(RouteName.Me)),
+                  _drawerItem(Icons.restaurant_menu, "Nutrition",
+                          () => Get.toNamed(RouteName.NutritionScreen)),
+                  _drawerItem(AppIcons.water, "Water Tracker",
+                          () => Get.toNamed(RouteName.WaterTrackerScreen)),
+                  const Spacer(),
+                  const Divider(color: Colors.white38, indent: 30, endIndent: 30),
+                  _drawerItem(Icons.logout, "Logout", () async {
+                    await AuthService().signOut();
+                    Get.offAllNamed(RouteName.LoginScreen);
+                  }, color: Colors.redAccent),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           );
         }),
@@ -247,23 +235,35 @@ class _BaseScreenState extends State<BaseScreen> {
     );
   }
 
-  Widget _drawerItem({
-    required IconData icon,
-    required String text,
-    required VoidCallback onTap,
-    Color? color,
-  }) {
+  Widget _drawerItem(IconData icon, String text, VoidCallback onTap, {Color? color}) {
     return ListTile(
       leading: Icon(icon, color: color ?? Colors.white, size: 26),
       title: Text(
         text,
         style: GoogleFonts.poppins(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
           color: color ?? Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
         ),
       ),
       onTap: onTap,
     );
   }
+}
+
+/// 🎨 Custom Clipper for curved sidebar
+class _CustomDrawerClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(size.width * 0.85, 0);
+    path.quadraticBezierTo(
+        size.width, size.height * 0.5, size.width * 0.85, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

@@ -1,6 +1,6 @@
 class Exercise {
   final int exerciseId;
-  final String name;
+  final String title;
   final int sets;
   final int reps;
   final String animationUrl;
@@ -9,7 +9,7 @@ class Exercise {
 
   Exercise({
     required this.exerciseId,
-    required this.name,
+    required this.title,
     required this.sets,
     required this.reps,
     required this.animationUrl,
@@ -20,7 +20,7 @@ class Exercise {
   factory Exercise.fromJson(Map<String, dynamic> json) {
     return Exercise(
       exerciseId: json['exercise_id'] ?? 0,
-     name: json['name'] ?? '',
+     title: json['title'] ?? '',
       sets: json['sets'] ?? 0,
       reps: json['reps'] ?? 0,
       animationUrl: json['image_url'] ?? '',

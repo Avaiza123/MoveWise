@@ -14,18 +14,17 @@ dependencies:
   syncfusion_flutter_gauges: ^23.1.40
 #  shared_preferences: ^2.2.0
   shared_preferences: ^2.2.2
-
+  get_storage: ^2.1.1
   get: ^4.7.2
   http: ^1.5.0
   markdown_widget: ^2.3.2+8
-  url_launcher: ^6.1.10
   flutter_markdown_plus: ^1.0.2
   cloud_firestore: ^6.0.1
   firebase_core: ^4.1.0
   firebase_auth: ^6.0.2
 
   google_sign_in: ^6.2.1
-
+  url_launcher: ^6.3.2
   cupertino_icons: ^1.0.8
   google_fonts: ^6.3.1
 #  firebase_core: ^3.15.2
@@ -60,6 +59,10 @@ flutter:
     - assets/images/logo2.png
     - assets/images/images.png
     - assets/json/
+    - assets/video/v1.png
+    - assets/video/v2.png
+    - assets/video/v3.png
+    - assets/video/v4.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
