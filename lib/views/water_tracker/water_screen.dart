@@ -134,7 +134,7 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen>
                               Positioned(
                                 bottom: 0,
                                 child: Container(
-                                  width: 8,
+                                  width: 10,
                                   height: height * vm.progress.value,
                                   decoration: BoxDecoration(
                                     color: AppColors.lightBlue,
@@ -221,7 +221,7 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen>
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   gradient: LinearGradient(
-                    colors: [Colors.blue.shade400, Colors.blue.shade800],
+                    colors: [Colors.blue.shade600, Colors.blue.shade800],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),

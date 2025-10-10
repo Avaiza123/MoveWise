@@ -117,7 +117,22 @@ class AppText {
 
   static const String email = "Email";
   static const String invalidEmail = "Enter valid email";
+  static const String appName = "MoveWise";
 
+  // 🔹 Dashboard
+  static const String planSection = "Plans";
+  static const String workoutSessions = "Workout Sessions";
+  static const String noPlans = "No plans available yet";
+  static const String videoOpenError = "Could not open video";
+
+  // 🔹 Plan Details
+  static const String startText = "Start";
+  static const String continueText = "Continue";
+  static const String notStarted = "Not Started Yet";
+  static const String day = "Day";
+
+  // 🔹 Profile / Misc
+  static const String logout = "Logout";
   static const String password = "Password";
   static const String passwordTooShort = "Minimum 6 characters required";
   static const String waterTracker = "Water Tracker";

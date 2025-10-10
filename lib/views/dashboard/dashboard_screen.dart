@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:animate_do/animate_do.dart'; // ✅ Add animation package
 import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_texts.dart';
 import '../../core/res/routes/route_name.dart';
 import '../../view_models/dashboard_vm.dart';
 import '../../view_models/plan_vm.dart';
@@ -17,47 +19,45 @@ class DashboardScreen extends StatelessWidget {
 
   DashboardScreen({super.key});
 
-  // 🔹 Video data (image + YouTube link)
   final List<Map<String, String>> videoData = [
-    {
-      "image": AppImages.v1,
-      "url": "https://www.youtube.com/watch?v=FeR-4_Opt-g"
-    },
-    {
-      "image": AppImages.v2,
-      "url": "https://www.youtube.com/watch?v=AdqrTg_hpEQ"
-    },
-    {
-      "image": AppImages.v3,
-      "url": "https://www.youtube.com/watch?v=mGQ_8OWow_A"
-    },
-    {
-      "image": AppImages.v4,
-      "url": "https://www.youtube.com/watch?v=VwVUBL_M1pk"
-    },
+    {"image": AppImages.v1, "url": "https://www.youtube.com/watch?v=FeR-4_Opt-g"},
+    {"image": AppImages.v2, "url": "https://www.youtube.com/watch?v=AdqrTg_hpEQ"},
+    {"image": AppImages.v3, "url": "https://www.youtube.com/watch?v=mGQ_8OWow_A"},
+    {"image": AppImages.v4, "url": "https://www.youtube.com/watch?v=VwVUBL_M1pk"},
   ];
 
   @override
   Widget build(BuildContext context) {
     return BaseScreen(
-      title: "Dashboard",
+      title: AppText.appName,
       selectedIndex: 0,
       body: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 🔹 Plan Section
-            Text(
-              "Plans 💪",
-              style: GoogleFonts.acme(
-                color: AppColors.primaryColorDark,
-                fontSize: 28,
-                fontWeight: FontWeight.w900,
+            // 🔹 Plan Section Header with Fade Animation
+            FadeInDown(
+              duration: const Duration(milliseconds: 700),
+              child: Row(
+                children: [
+                  Image.asset(AppImages.plan, height: 50, width: 50),
+                  const SizedBox(width: 6),
+                  Text(
+                    AppText.planSection,
+                    style: GoogleFonts.alegreya(
+                      color: AppColors.white,
+                      fontSize: 29,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 5),
 
+            const SizedBox(height: 3),
+
+            // 🔹 Animated Plan Cards
             Expanded(
               flex: 3,
               child: Obx(() {
@@ -65,92 +65,113 @@ class DashboardScreen extends StatelessWidget {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (planVM.plans.isEmpty) {
-                  return const Center(child: Text("No plans available yet"));
+                  return Center(
+                    child: Text(
+                      AppText.noPlans,
+                      style: GoogleFonts.poppins(color: AppColors.white),
+                    ),
+                  );
                 }
 
                 return PageView.builder(
-                  controller: PageController(viewportFraction: 0.92),
+                  controller: PageController(viewportFraction: 0.88),
                   itemCount: planVM.plans.length,
-                  onPageChanged: (index) {
-                    vm.selectPlan(index);
-                   // streakVM.loadStreak(selectedPlanIndex: index);
-                  },
+                  onPageChanged: (index) => vm.selectPlan(index),
                   itemBuilder: (context, index) {
                     final plan = planVM.plans[index];
-                    return _planCard(
-                      context,
-                      plan.name,
-                      "assets/images/e${index + 1}.jpg",
-                      index,
+                    return AnimatedScale(
+                      scale: vm.selectedPlanIndex.value == index ? 1.0 : 0.9,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeOut,
+                      child: _planCard(
+                        context,
+                        plan.name,
+                        "assets/images/e${index + 1}.jpg",
+                        index,
+                      ),
                     );
                   },
                 );
               }),
             ),
 
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
 
-            // 🔹 YouTube Workout Inspiration Section
-            Text(
-              "Workout Sessions 🎥",
-              style: GoogleFonts.acme(
-                color: AppColors.primaryColorDark,
-                fontSize: 22,
-                fontWeight: FontWeight.w900,
+            // 🔹 Workout Section Header (Slide animation)
+            FadeInRight(
+              duration: const Duration(milliseconds: 700),
+              child: Row(
+                children: [
+                  Image.asset(AppImages.session, height: 50, width: 50),
+                  const SizedBox(width: 10),
+                  Text(
+                    AppText.workoutSessions,
+                    style: GoogleFonts.alegreya(
+                      color: AppColors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 16),
 
+            const SizedBox(height: 12),
+
+            // 🔹 Workout Videos with smooth entry
             SizedBox(
-              height: 200,
+              height: 180,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: videoData.length,
                 itemBuilder: (context, index) {
                   final video = videoData[index];
-                  return GestureDetector(
-                    onTap: () async {
-                      final Uri url = Uri.parse(video["url"]!);
-                      if (!await launchUrl(url,
-                          mode: LaunchMode.externalApplication)) {
-                        Get.snackbar("Error", "Could not open video",
-                            snackPosition: SnackPosition.BOTTOM);
-                      }
-                    },
-                    child: Container(
-                      width: 300,
-                      margin: const EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Image.asset(
-                              video["image"]!,
-                              fit: BoxFit.cover,
-                              width: 300,
-                              height: 200,
-                            ),
-                            Container(
+                  return FadeInUp(
+                    delay: Duration(milliseconds: 100 * index),
+                    duration: const Duration(milliseconds: 600),
+                    child: GestureDetector(
+                      onTap: () async {
+                        final Uri url = Uri.parse(video["url"]!);
+                        if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+                          Get.snackbar(AppText.error, AppText.videoOpenError,
+                              snackPosition: SnackPosition.BOTTOM);
+                        }
+                      },
+                      child: Container(
+                        width: 260,
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
                               color: Colors.black26,
-                              alignment: Alignment.center,
-                              child: const Icon(
-                                Icons.play_circle_fill,
-                                color: Colors.white,
-                                size: 50,
-                              ),
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
                             ),
                           ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Image.asset(
+                                video["image"]!,
+                                fit: BoxFit.fill,
+                                width: 260,
+                                height: 180,
+                              ),
+                              Container(
+                                color: Colors.black26,
+                                alignment: Alignment.center,
+                                child: const Icon(
+                                  Icons.play_circle_fill,
+                                  color: Colors.white,
+                                  size: 50,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -164,24 +185,21 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-  // 🔹 Plan Card Widget
-  Widget _planCard(
-      BuildContext context,
-      String title,
-      String image,
-      int planIndex,
-      ) {
+  // 🔹 Plan Card with Fade and Button Animation
+  // 🔹 Enhanced Plan Card with Progress + Premium Fitness UI
+  Widget _planCard(BuildContext context, String title, String image, int planIndex) {
     final plan = planVM.plans[planIndex];
     final currentDay = plan.currentDay;
+    final totalDays = plan.days ?? 30;
     final isStarted = currentDay > 0;
+    final progress = (currentDay / totalDays).clamp(0.0, 1.0);
 
-    // 🔸 Themed card colors
     final List<Color> cardColors = [
-      const Color(0xFFD2A56E),
-      const Color(0xFFB87333),
-      const Color(0xFF9E6C55),
-      const Color(0xFFB85B16),
-      const Color(0xFFF4B860),
+      const Color(0xFFFFA726),
+      const Color(0xFFEF5350),
+      const Color(0xFF42A5F5),
+      const Color(0xFF66BB6A),
+      const Color(0xFFAB47BC),
     ];
 
     final color = cardColors[planIndex % cardColors.length];
@@ -195,99 +213,187 @@ class DashboardScreen extends StatelessWidget {
           });
         }
       },
-      child: Card(
-        margin: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
-        clipBehavior: Clip.antiAlias,
-        elevation: 8,
-        child: Stack(
-          alignment: Alignment.bottomLeft,
-          children: [
-            // 🔹 Background Image
-            Image.asset(
-              image,
-              width: double.infinity,
-              height: 245,
-              fit: BoxFit.fill,
-            ),
-
-            // 🔹 Gradient Overlay (stronger opacity for depth)
-            Container(
-              height: 280,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.5),
-                    Colors.black.withOpacity(0.4),
-                  ],
+      child: FadeInUp(
+        duration: const Duration(milliseconds: 600),
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+          height: 260, // ✅ Rectangular shape
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(22),
+            boxShadow: [
+              BoxShadow(
+                color: color.withOpacity(0.35),
+                blurRadius: 10,
+                offset: const Offset(0, 6),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(22),
+            child: Stack(
+              children: [
+                // 🖼️ Background Image
+                Positioned.fill(
+                  child: Image.asset(
+                    image,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-            ),
 
-            // 🔹 Content
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    title,
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.5,
+                // 🌈 Glass Overlay Gradient
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Colors.black.withOpacity(0.7),
+                        Colors.black.withOpacity(0.5),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    isStarted ? "Day $currentDay" : "Not Started Yet",
-                    style: GoogleFonts.poppins(
-                      color: Colors.white.withOpacity(0.85),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 75),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (!isStarted) {
-                        planVM.startPlan(planIndex);
-                      } else {
-                        Get.toNamed(RouteName.PlanScreen, arguments: {
-                          'planIndex': planIndex,
-                          'day': currentDay,
-                        });
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: color.withOpacity(0.95),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
+                ),
+
+                // 🧠 Content Row (Left Info + Right Progress)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // 🔹 Left Info Section
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // 🏋️‍♂️ Title on top
+                            Text(
+                              title,
+                              style: GoogleFonts.abyssinicaSil(
+                                color: Colors.white,
+                                fontSize: 28,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: 20),
+
+                            // 📅 Day Progress Text
+                            Text(
+                              isStarted
+                                  ? "Day $currentDay of $totalDays"
+                                  : "Not Started Yet",
+                              style: GoogleFonts.poppins(
+                                color: Colors.white.withOpacity(0.85),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+
+                            const Spacer(),
+
+                            // 🎯 Action Button
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (!isStarted) {
+                                    planVM.startPlan(planIndex);
+                                  } else {
+                                    Get.toNamed(RouteName.PlanScreen, arguments: {
+                                      'planIndex': planIndex,
+                                      'day': currentDay,
+                                    });
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: color,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                    vertical: 10,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  elevation: 3,
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      isStarted
+                                          ? Icons.play_circle_fill
+                                          : Icons.flag,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                    const SizedBox(width: 6),
+                                    Text(
+                                      isStarted ? "Continue" : "Start",
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      elevation: 3,
-                    ),
-                    child: Text(
-                      isStarted ? "Continue" : "Start",
-                      style: GoogleFonts.poppins(
-                        color: Colors.white,
-                        fontSize: 19,
-                        fontWeight: FontWeight.w600,
+
+                      // 🔸 Right Progress Circle (larger)
+                      TweenAnimationBuilder<double>(
+                        tween: Tween(begin: 0, end: progress),
+                        duration: const Duration(milliseconds: 800),
+                        builder: (context, value, _) => Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Container(
+                              width: 80,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: color.withOpacity(0.5),
+                                    blurRadius: 15,
+                                    spreadRadius: 2,
+                                  ),
+                                ],
+                              ),
+                              child: CircularProgressIndicator(
+                                value: value,
+                                strokeWidth: 7,
+                                backgroundColor: Colors.white24,
+                                valueColor: AlwaysStoppedAnimation(color),
+                              ),
+                            ),
+                            Text(
+                              "${(value * 100).toInt()}%",
+                              style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
+
 
 }

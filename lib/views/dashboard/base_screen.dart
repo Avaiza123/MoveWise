@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_icons.dart';
 import '../../core/constants/app_sizes.dart';
+import '../../core/constants/app_images.dart'; // ✅ make sure AppImages.bg1 is defined here
 import '../../core/res/routes/route_name.dart';
 import '../../services/auth_service.dart';
 import '../../view_models/profile_vm.dart';
@@ -49,60 +50,45 @@ class _BaseScreenState extends State<BaseScreen> {
   Widget build(BuildContext context) {
     final uid = FirebaseAuth.instance.currentUser?.uid;
 
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFFFBE9E7), Color(0xFFD7CCC8), Color(0xFFEFEBE9)],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        drawer: uid != null ? _buildDrawer(uid) : null,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100),
-          child: CustomAppBar(
-            title: widget.title,
-
-            // 🔸 Streak icon commented out
-            // leading: Container(
-            //   margin: const EdgeInsets.only(left: 8, top: 19),
-            //   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-            //   decoration: BoxDecoration(
-            //     color: Colors.orange.shade600,
-            //     borderRadius: BorderRadius.circular(20),
-            //     boxShadow: const [
-            //       BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(1, 2)),
-            //     ],
-            //   ),
-            //   child: Row(
-            //     mainAxisSize: MainAxisSize.min,
-            //     children: [
-            //       const Icon(Icons.local_fire_department, color: Colors.white, size: 22),
-            //       const SizedBox(width: 4),
-            //       Text("🔥", style: GoogleFonts.poppins(color: Colors.white)),
-            //     ],
-            //   ),
-            // ),
-
-            actions: uid != null ? [_buildAvatarMenu(uid)] : [],
+    return Stack(
+      children: [
+        // 🔹 Background Image with Opacity
+        Opacity(
+          opacity: 0.85, // adjust intensity (0.0 → invisible, 1.0 → full)
+          child: Image.asset(
+            AppImages.bg2, // ✅ your background image constant
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(AppSizes.padding),
-          child: widget.body,
+
+        // 🔹 Foreground Content (Scaffold)
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          drawer: uid != null ? _buildDrawer(uid) : null,
+          appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(100),
+            child: CustomAppBar(
+              title: widget.title,
+              actions: uid != null ? [_buildAvatarMenu(uid)] : [],
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(AppSizes.padding),
+            child: widget.body,
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => Get.toNamed(RouteName.ChatBotScreen),
+            backgroundColor: AppColors.primaryColorDark,
+            child: const Icon(AppIcons.chatbot, color: Colors.white),
+          ),
+          bottomNavigationBar: BottomNavBar(
+            selectedIndex: _selectedIndex,
+            onTap: _onNavBarTap,
+          ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Get.toNamed(RouteName.ChatBotScreen),
-          backgroundColor: AppColors.primaryColorDark,
-          child: const Icon(AppIcons.chatbot, color: Colors.white),
-        ),
-        bottomNavigationBar: BottomNavBar(
-          selectedIndex: _selectedIndex,
-          onTap: _onNavBarTap,
-        ),
-      ),
+      ],
     );
   }
 
