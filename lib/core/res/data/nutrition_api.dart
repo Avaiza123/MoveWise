@@ -31,29 +31,24 @@ import '../../../models/nutrition_model.dart';
 //     return foods.map((f) => Nutrition.fromJson(f)).toList();
 //   }
 // }
+
+
 class NutritionApi {
-  static const String appId = "2f69a591";
-  static const String apiKey = "90ba34e8ad5b593b67aca0acaf204cd0";
+  static const String apiKey = "u2g6SlyRbdylksVrXyJrQQ==HDjeaWSrOsy9bSmk";
 
   Future<List<Nutrition>> fetchNutrition(String query) async {
-    final url = Uri.parse("https://trackapi.nutritionix.com/v2/natural/nutrients");
+    final url = Uri.parse('https://api.api-ninjas.com/v1/nutrition?query=$query');
 
-    final response = await http.post(
+    final response = await http.get(
       url,
-      headers: {
-        "x-app-id": appId,
-        "x-app-key": apiKey,
-        "Content-Type": "application/json",
-      },
-      body: jsonEncode({"query": query}),
+      headers: {"X-Api-Key": apiKey},
     );
 
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      final foods = data['foods'] as List<dynamic>? ?? [];
-      return foods.map((e) => Nutrition.fromJson(e)).toList();
+      final List<dynamic> data = jsonDecode(response.body);
+      return data.map((item) => Nutrition.fromJson(item)).toList();
     } else {
-      print("Error: ${response.body}");
+      print("Nutrition API Error: ${response.statusCode} - ${response.body}");
       return [];
     }
   }

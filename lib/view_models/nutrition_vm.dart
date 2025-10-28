@@ -30,7 +30,20 @@ class NutritionVM extends GetxController {
       isLoading.value = true;
       error.value = "";
       final result = await _api.fetchNutrition(query);
-      nutritionList.assignAll(result);
+
+      // Calculate calories if API doesn't provide them
+      final updatedResult = result.map((item) {
+        if (item.calories == 0) {
+          item.calories = _calculateCalories(
+            fat: item.fat,
+            carbs: item.carbohydrates,
+            fiber: item.fiber,
+          );
+        }
+        return item;
+      }).toList();
+
+      nutritionList.assignAll(updatedResult);
     } catch (e) {
       error.value = "Error: $e";
     } finally {
@@ -121,10 +134,20 @@ class NutritionVM extends GetxController {
       (totalCalories.value / dailyCalorieLimit).clamp(0.0, 1.0);
 
   /// 🔹 Get fill color for circular bowl
-  // Green if <60%, Orange <90%, Red ≥90%
   static Color progressColor(double progress) {
     if (progress < 0.6) return AppColors.green.withOpacity(0.8);
     if (progress < 0.9) return AppColors.orange.withOpacity(0.7);
     return AppColors.red.withOpacity(0.7);
+  }
+
+  /// Calculate calories from fat, carbs, and fiber if API doesn't provide
+  double _calculateCalories({
+    required double fat,
+    required double carbs,
+    required double fiber,
+  }) {
+    double netCarbs = carbs - fiber;
+    if (netCarbs < 0) netCarbs = 0;
+    return (fat * 9) + (netCarbs * 4); // kcal
   }
 }

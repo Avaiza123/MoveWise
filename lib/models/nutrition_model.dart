@@ -1,51 +1,67 @@
 class Nutrition {
   final String name;
-  final int servingQty;
-  final String servingUnit;
-  final double calories;
-  final double protein;
+  final double servingSizeG;
   final double fat;
   final double carbohydrates;
   final double sugar;
   final double fiber;
+  double calories;
 
   Nutrition({
     required this.name,
-    required this.servingQty,
-    required this.servingUnit,
-    required this.calories,
-    required this.protein,
+    required this.servingSizeG,
     required this.fat,
     required this.carbohydrates,
     required this.sugar,
     required this.fiber,
-  });
+    double? calories,
+  }) : calories = calories ?? calculateCalories(fat: fat, carbs: carbohydrates, fiber: fiber);
 
+  /// Safely parse dynamic value to double
+  static double parseDouble(dynamic value) {
+    if (value == null) return 0.0;
+    if (value is num) return value.toDouble();
+    if (value is String) return double.tryParse(value) ?? 0.0;
+    return 0.0;
+  }
+
+  /// Create Nutrition object from JSON
   factory Nutrition.fromJson(Map<String, dynamic> json) {
+    double fat = parseDouble(json['fat_total_g']);
+    double carbs = parseDouble(json['carbohydrates_total_g']);
+    double fiber = parseDouble(json['fiber_g']);
+    double sugar = parseDouble(json['sugar_g']);
+
     return Nutrition(
-      name: json['food_name'] ?? '',
-      servingQty: (json['serving_qty'] ?? 0).toInt(),
-      servingUnit: json['serving_unit'] ?? '',
-      calories: (json['nf_calories'] ?? 0).toDouble(),
-      protein: (json['nf_protein'] ?? 0).toDouble(),
-      fat: (json['nf_total_fat'] ?? 0).toDouble(),
-      carbohydrates: (json['nf_total_carbohydrate'] ?? 0).toDouble(),
-      sugar: (json['nf_sugars'] ?? 0).toDouble(),
-      fiber: (json['nf_dietary_fiber'] ?? 0).toDouble(),
+      name: json['name'] ?? '',
+      servingSizeG: parseDouble(json['serving_size_g']),
+      fat: fat,
+      carbohydrates: carbs,
+      sugar: sugar,
+      fiber: fiber,
+      calories: calculateCalories(fat: fat, carbs: carbs, fiber: fiber),
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'food_name': name,
-      'serving_qty': servingQty,
-      'serving_unit': servingUnit,
-      'nf_calories': calories,
-      'nf_protein': protein,
-      'nf_total_fat': fat,
-      'nf_total_carbohydrate': carbohydrates,
-      'nf_sugars': sugar,
-      'nf_dietary_fiber': fiber,
-    };
+  /// Convert Nutrition object to JSON
+  Map<String, dynamic> toJson() => {
+    'name': name,
+    'serving_size_g': servingSizeG,
+    'fat_total_g': fat,
+    'carbohydrates_total_g': carbohydrates,
+    'sugar_g': sugar,
+    'fiber_g': fiber,
+    'calories': calories,
+  };
+
+  /// Calculate calories: fat * 9 + (carbs - fiber) * 4
+  static double calculateCalories({
+    required double fat,
+    required double carbs,
+    double fiber = 0,
+  }) {
+    double netCarbs = carbs - fiber;
+    if (netCarbs < 0) netCarbs = 0;
+    return (fat * 9) + (netCarbs * 4);
   }
 }
